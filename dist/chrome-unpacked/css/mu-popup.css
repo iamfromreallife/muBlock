@@ -1,0 +1,233 @@
+/* muBlock expressive popup, the original Lite popup.js still owns filtering. */
+:root.desktop body,
+:root.mobile body {
+  --popup-min-width: 340px;
+  --popup-gap: 12px;
+  width: 350px;
+  max-width: 350px;
+  min-width: 340px;
+  margin: 0;
+  padding: 0 14px 14px;
+  box-sizing: border-box;
+  background: var(--mu-background);
+  color: var(--mu-text);
+  font: 13px/1.45 var(--mu-family);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+:root.desktop main, :root.mobile main {
+  width: 100%;
+  min-width: 0;
+  max-width: unset;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: mu-soft-in var(--mu-motion-slow) var(--mu-ease) both;
+}
+#mu-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 46px;
+  padding: 12px 2px 4px;
+}
+.mu-pop-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font: 800 19px/1 var(--mu-family);
+  letter-spacing: -.8px;
+  color: var(--mu-text);
+}
+.mu-pop-brand img { width: 30px; height: 30px; }
+.mu-pop-caption {
+  color: var(--mu-text-muted);
+  font: 600 10px/1.2 var(--mu-family);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+}
+#hostname {
+  min-height: 0;
+  padding: 13px 15px;
+  box-sizing: border-box;
+  max-height: 72px;
+  border: 0;
+  border-radius: var(--mu-radius-md);
+  background: var(--mu-secondary-container);
+  color: var(--mu-on-secondary-container);
+  font: 600 13px/1.4 var(--mu-family);
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+#mu-hero {
+  border-radius: var(--mu-radius-xl);
+  background: linear-gradient(140deg, var(--mu-primary-container),var(--mu-secondary-container));
+  padding: 17px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  position: relative;
+}
+#mu-hero::before {
+  content: "";
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / .13);
+  position: absolute;
+  top: -160px;
+  right: -95px;
+  pointer-events: none;
+}
+#mu-power {
+  width: 88px;
+  height: 88px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: var(--mu-primary);
+  color: var(--mu-on-primary);
+  border-radius: 34px;
+  box-shadow: 0 9px 25px rgb(var(--mu-shadow) / .16);
+  cursor: pointer;
+  transition: border-radius var(--mu-motion-slow) var(--mu-ease),
+              background-color var(--mu-motion) var(--mu-ease),
+              transform var(--mu-motion) var(--mu-ease),
+              box-shadow var(--mu-motion) var(--mu-ease);
+}
+#mu-power:hover:not(:disabled) {
+  border-radius: 27px 40px 27px 40px;
+  transform: scale(1.045);
+  box-shadow: 0 12px 30px rgb(var(--mu-shadow) / .20);
+}
+#mu-power:active:not(:disabled) { transform: scale(.96); }
+#mu-power.off {
+  background: var(--mu-surface-high);
+  color: var(--mu-text-muted);
+  box-shadow: none;
+  border-radius: 44px;
+}
+#mu-power:disabled { opacity: .38; cursor: default; }
+#mu-power .mu-icon { width: 42px; height: 42px; }
+#mu-power .mu-icon svg { stroke-width: 2.5; }
+#mu-filtering-state {
+  font: 800 16px/1.3 var(--mu-family);
+  letter-spacing: -.4px;
+  color: var(--mu-on-primary-container);
+  margin-top: 4px;
+}
+#mu-hero .mu-substate {
+  color: var(--mu-on-primary-container);
+  opacity: .75;
+  font-size: 11px;
+  text-align: center;
+}
+#mu-modes-wrap {
+  border-radius: var(--mu-radius-lg);
+  background: var(--mu-surface);
+  padding: 15px 11px 13px;
+  box-shadow: 0 3px 18px rgb(var(--mu-shadow) / .05);
+}
+#mu-modes-wrap .mu-section-title {
+  font: 700 13px/1.2 var(--mu-family);
+  letter-spacing: -.2px;
+  margin: 0 0 12px 5px;
+}
+#mu-mode-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  background: var(--mu-surface-low);
+  padding: 4px;
+  border-radius: 19px;
+}
+.mu-mode-btn {
+  border: 0;
+  background: transparent;
+  color: var(--mu-text-muted);
+  border-radius: 15px;
+  min-width: 0;
+  min-height: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font: 600 10px/1 var(--mu-family);
+  cursor: pointer;
+  transition: background-color var(--mu-motion) var(--mu-ease),
+              color var(--mu-motion) var(--mu-ease),
+              border-radius var(--mu-motion) var(--mu-ease),
+              transform var(--mu-motion-fast) var(--mu-ease);
+}
+.mu-mode-btn .mu-icon { width: 19px; height: 19px; }
+.mu-mode-btn[aria-pressed="true"] {
+  background: var(--mu-primary);
+  color: var(--mu-on-primary);
+  border-radius: 13px 19px 13px 19px;
+  box-shadow: 0 3px 10px rgb(var(--mu-shadow) / .14);
+}
+.mu-mode-btn:hover:not([aria-pressed="true"]) { background: var(--mu-surface-high); }
+.mu-mode-btn:disabled { opacity: .42; cursor: not-allowed; }
+.mu-mode-help {
+  font: 400 11px/1.5 var(--mu-family);
+  margin: 10px 5px 0;
+  min-height: 16px;
+  color: var(--mu-text-muted);
+}
+.filteringModeSlider {
+  /* Original Lite slider remains in the DOM so its permission-aware handlers
+   * can receive delegated clicks from our accessible segmented controls. */
+  position: fixed !important;
+  top: -2000px !important;
+  left: -2000px !important;
+  pointer-events: none !important;
+  opacity: 0;
+}
+#filteringModeText { display: none; }
+:root.desktop .toolMenu,
+:root.mobile .toolMenu {
+  background: var(--mu-surface);
+  border: 0;
+  border-radius: var(--mu-radius-lg);
+  margin: 0;
+  padding: 9px;
+  display: grid;
+  gap: 6px;
+}
+.toolMenu > label {
+  font: 700 13px/1.2 var(--mu-family);
+  margin: 6px 6px 7px;
+  color: var(--mu-text);
+}
+.toolMenu .tool,
+.toolRibbon .tool {
+  border: none;
+  border-radius: var(--mu-radius-sm);
+  transition: background var(--mu-motion-fast) var(--mu-ease),
+              transform var(--mu-motion-fast) var(--mu-ease);
+}
+.toolMenu .tool:hover, .toolRibbon .tool:hover {
+  background: var(--mu-surface-high);
+  transform: translateY(-1px);
+}
+.toolMenu .tool:active, .toolRibbon .tool:active { transform: scale(.97); }
+.toolMenu .tool .fa-icon, .toolRibbon .tool.fa-icon { color: var(--mu-primary); fill: currentColor; }
+:root.desktop .toolRibbon {
+  padding: 8px 11px;
+  margin: 0;
+  background: var(--mu-surface);
+  border-radius: var(--mu-radius-lg);
+  border: 0;
+  justify-content: flex-end;
+}
+:root.desktop .toolRibbon .caption { display: none; }
+body.nodata #mu-power,body.nodata .mu-mode-btn { pointer-events: none; opacity: .38; }
+body.nodata #mu-filtering-state { opacity: .65; }
+:root.desktop body.loading main { visibility: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  :root.desktop main { animation: none; }
+}

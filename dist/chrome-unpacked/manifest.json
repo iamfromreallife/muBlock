@@ -1,11 +1,12 @@
 {
   "action": {
     "default_icon": {
-      "16": "img/icon_16.png",
-      "32": "img/icon_32.png",
-      "64": "img/icon_64.png"
+      "16": "img/mu-16.png",
+      "32": "img/mu-32.png",
+      "64": "img/mu-64.png"
     },
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_title": "muBlock"
   },
   "author": "Raymond Hill",
   "background": {
@@ -305,20 +306,21 @@
     ]
   },
   "default_locale": "en",
-  "description": "__MSG_extShortDesc__",
+  "description": "muBlock — expressive, privacy-first filtering powered by uBlock Origin Lite.",
   "host_permissions": [
     "<all_urls>"
   ],
   "incognito": "split",
   "icons": {
-    "16": "img/icon_16.png",
-    "32": "img/icon_32.png",
-    "64": "img/icon_64.png",
-    "128": "img/icon_128.png"
+    "16": "img/mu-16.png",
+    "32": "img/mu-32.png",
+    "48": "img/mu-48.png",
+    "64": "img/mu-64.png",
+    "128": "img/mu-128.png"
   },
   "manifest_version": 3,
   "minimum_chrome_version": "122.0",
-  "name": "__MSG_extName__",
+  "name": "muBlock",
   "options_page": "dashboard.html",
   "permissions": [
     "activeTab",
@@ -330,7 +332,7 @@
     "unlimitedStorage",
     "userScripts"
   ],
-  "short_name": "uBO Lite",
+  "short_name": "muBlock",
   "storage": {
     "managed_schema": "managed_storage.json"
   },

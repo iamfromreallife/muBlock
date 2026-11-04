@@ -17,7 +17,8 @@
 <link rel="stylesheet" href="css/develop.css">
 
 <link rel="icon" type="image/png" href="img/icon_64.png"/>
-<link rel="stylesheet" href="css/classic-dashboard.css">
+<link rel="stylesheet" href="css/mu-design.css">
+<link rel="stylesheet" href="css/mu-dashboard.css">
 </head>
 
 <body data-pane="settings" class="loading">
@@ -128,21 +129,8 @@
 </section>
 
 <!-- -------- -->
-<section data-pane="filters">
-    <ul class="hostnames"></ul>
-    <aside>
-        <details class="importFromText"><summary data-i18n="customFiltersImportExportLabel">_</summary>
-            <div><textarea spellcheck="false" placeholder="customFiltersImportTextareaPlaceholder"></textarea></div>
-            <p>
-                <button class="iconified dontshrink" type="button"><span class="fa-icon">check</span><span data-i18n="addButton">_</span><span class="hover"></span></button>
-                <button class="iconified dontshrink" type="button"><span class="fa-icon">download-alt</span><span data-i18n="importAndAppendButton">_</span><span class="hover"></span></button>
-                <button class="iconified dontshrink" type="button"><span class="fa-icon">upload-alt</span><span data-i18n="exportButton">_</span><span class="hover"></span></button><input type="file" accept="text/plain">
-            </p>
-        </details>
-    </aside>
-    <aside id="sandboxEditor">
-        <h3 data-i18n="sandboxEditorLabel">_</h3>
-        <p class="userScriptsInfo"><span data-i18n="sandboxEditorUserScriptsInfo"></span> <span data-i18n="userScriptsInfo"></span></p>
+<section data-pane="filters" id="mu-filters">
+    <aside id="sandboxEditor" class="mu-raw-editor">
         <div class="cm-container"></div>
     </aside>
 </section>
@@ -295,9 +283,10 @@
 <script src="js/i18n.js" type="module"></script>
 <script src="js/dashboard.js" type="module"></script>
 <script src="js/settings.js" type="module"></script>
-<script src="js/filter-manager-ui.js" type="module"></script>
+
 <script src="js/develop.js" type="module"></script>
 
-<script src="js/classic-dashboard.js" type="module"></script>
+<script src="js/mu-dashboard.js" type="module"></script>
+<script src="js/mu-filters.js" type="module"></script>
 </body>
 </html>
