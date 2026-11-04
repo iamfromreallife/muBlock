@@ -1,8 +1,8 @@
-name: Build Chrome extension
+name: Build muBlock Chrome extension
 
 on:
   push:
-    branches: [main]
+    branches: [main, feature/mublock-expressive]
     paths-ignore:
       - "dist/**"
       - "LICENSE"
@@ -75,17 +75,18 @@ jobs:
       - name: Upload ready-to-load ZIP
         uses: actions/upload-artifact@v4
         with:
-          name: MV3uBlockOrigin-chrome-unpacked
+          name: muBlock-chrome-unpacked
           path: dist/chrome-unpacked.zip
           if-no-files-found: error
 
       - name: Commit complete unpacked distribution to main
+        if: github.ref == 'refs/heads/main'
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add LICENSE dist/UPSTREAM_COMMIT.txt dist/chrome-unpacked
           if ! git diff --cached --quiet; then
-            git commit -m "Build installable Chromium extension from uBO Lite with classic UI"
+            git commit -m "Build installable muBlock MV3 extension from uBO Lite"
             git push origin HEAD:main
           fi
