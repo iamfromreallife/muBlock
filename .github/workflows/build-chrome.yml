@@ -1,0 +1,75 @@
+name: Build Chrome extension
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "dist/**"
+      - "LICENSE"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - name: Check out fork
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Fetch authoritative Chromium uBO Lite distribution
+        run: |
+          set -euo pipefail
+          git clone --depth=1 https://github.com/uBlockOrigin/uBOL-home.git "$RUNNER_TEMP/uBOL-home"
+          test -f "$RUNNER_TEMP/uBOL-home/chromium/manifest.json"
+          test -d "$RUNNER_TEMP/uBOL-home/chromium/rulesets"
+          mkdir -p dist/chrome-unpacked
+          cp -a "$RUNNER_TEMP/uBOL-home/chromium/." dist/chrome-unpacked/
+          cp "$RUNNER_TEMP/uBOL-home/LICENSE" LICENSE
+          git -C "$RUNNER_TEMP/uBOL-home" rev-parse HEAD > dist/UPSTREAM_COMMIT.txt
+          echo "Upstream uBO Lite commit:"
+          cat dist/UPSTREAM_COMMIT.txt
+
+      - name: Apply classic UI-only overlay
+        run: |
+          set -euo pipefail
+          python3 scripts/apply_overlay.py dist/chrome-unpacked
+
+      - name: Verify MV3 distribution and all unchanged upstream files
+        run: |
+          set -euo pipefail
+          python3 tests/test_package.py "$RUNNER_TEMP/uBOL-home/chromium" dist/chrome-unpacked
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('dist/chrome-unpacked')
+          m = json.loads((p/'manifest.json').read_text())
+          print(f"MV{m['manifest_version']} manifest; {sum(x.is_file() for x in p.rglob('*'))} runtime files")
+          PY
+
+      - name: Package downloadable ZIP
+        run: |
+          set -euo pipefail
+          (cd dist && zip -q -r chrome-unpacked.zip chrome-unpacked)
+
+      - name: Upload ready-to-load ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: MV3uBlockOrigin-chrome-unpacked
+          path: dist/chrome-unpacked.zip
+          if-no-files-found: error
+
+      - name: Commit complete unpacked distribution to main
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add LICENSE dist/UPSTREAM_COMMIT.txt dist/chrome-unpacked
+          if ! git diff --cached --quiet; then
+            git commit -m "Build installable Chromium extension from uBO Lite with classic UI"
+            git push origin HEAD:main
+          fi
