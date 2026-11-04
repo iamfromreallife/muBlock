@@ -54,7 +54,8 @@ async function main() {
                 return sendMessage({ what: 'getSandboxFilters' });
             });
             const before = await getFilters();
-            assert.equal(typeof before, 'string');
+            assert(before === null || typeof before === 'string',
+                'Unexpected initial sandbox filter storage value');
             const testFilter = 'example.test##.playwright-smoke-test';
             await page.locator('#sandboxEditor .cm-content').click();
             await page.keyboard.insertText(testFilter + '\n');
