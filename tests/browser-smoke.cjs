@@ -70,6 +70,20 @@ async function main() {
       await page.waitForTimeout(300);
       assert.equal(await page.locator('#mu-filter-list > li').count(),1);
       await page.locator('#mu-filter-search').fill('');
+      // Exercise the new Material dialog, real Lite cosmetic parser and deletion.
+      await page.getByRole('button',{name:'Add filter'}).click();
+      await page.locator('#mu-dialog-type').selectOption('site');
+      await page.locator('#mu-dialog-value').fill('example.test##.mublock-dialog-test');
+      await page.locator('dialog[open] [data-action="save"]').click();
+      await page.waitForTimeout(250);
+      await page.locator('#mu-filter-search').fill('mublock-dialog-test');
+      await page.waitForTimeout(250);
+      assert.equal(await page.locator('#mu-filter-list > li').count(),1);
+      await page.locator('#mu-filter-list .mu-filter-action.danger').click();
+      await page.locator('dialog[open] [data-action="confirm"]').click();
+      await page.waitForTimeout(250);
+      assert.equal(await page.locator('#mu-filter-list > li').count(),0);
+      await page.locator('#mu-filter-search').fill('');
       // This is the actual native Lite backup/restore module, not an imitation.
       const backupCheck=await page.evaluate(async()=>{
         const {backupToObject,restoreFromObject}=await import('./js/backup-restore.js');
