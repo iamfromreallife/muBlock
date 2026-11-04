@@ -97,6 +97,12 @@ if (root && slider && hostname && !document.querySelector('#mu-popup-header')) {
     const noSite = document.body.classList.contains('nodata');
     if (!Number.isInteger(next) || next < 0 || next > 3) {
       power.disabled = true;
+      power.classList.add('off');
+      state.textContent = noSite ? 'Not a website' : 'Checking protection';
+      substate.textContent = noSite
+        ? 'Open a website to configure protection'
+        : 'Protection for this website';
+      help.textContent = noSite ? 'Filtering controls are available on websites.' : '';
       buttons.forEach(button => { button.disabled = true; });
       return;
     }
