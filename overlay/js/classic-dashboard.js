@@ -92,8 +92,11 @@ if (pane && sandbox && hostnames && originalImport && !pane.querySelector('.clas
                 !confirm('Unsaved editor changes will be discarded. Continue?')) return;
             const incoming = await file.text();
             const existing = await sendMessage({ what: 'getSandboxFilters' });
-            if (typeof existing !== 'string') throw new Error('Unable to read sandbox filters');
-            const combined = [existing.trimEnd(), incoming.trim()].filter(Boolean).join('\n') + '\n';
+            if (existing != null && typeof existing !== 'string') {
+                throw new Error('Unable to read sandbox filters');
+            }
+            const current = existing || '';
+            const combined = [current.trimEnd(), incoming.trim()].filter(Boolean).join('\n') + '\n';
             const result = await sendMessage({ what: 'setSandboxFilters', text: combined });
             if (result === false) throw new Error('Lite rejected the imported filters');
             message('Imported into sandbox filters. Review unsupported lines in the editor.');
@@ -105,8 +108,10 @@ if (pane && sandbox && hostnames && originalImport && !pane.querySelector('.clas
     exportButton.addEventListener('click', async () => {
         try {
             const content = await sendMessage({ what: 'getSandboxFilters' });
-            if (typeof content !== 'string') throw new Error('Unable to read sandbox filters');
-            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            if (content != null && typeof content !== 'string') {
+                throw new Error('Unable to read sandbox filters');
+            }
+            const blob = new Blob([content || ''], { type: 'text/plain;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
