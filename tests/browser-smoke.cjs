@@ -13,7 +13,7 @@ async function main() {
     assert(fs.existsSync(path.join(extensionPath, 'manifest.json')));
     const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ubol-chrome-smoke-'));
     const context = await chromium.launchPersistentContext(dataDir, {
-        channel: 'chrome',
+        channel: 'chromium',
         headless: true,
         ignoreDefaultArgs: ['--disable-extensions'],
         args: [
