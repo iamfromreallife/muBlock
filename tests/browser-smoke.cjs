@@ -49,7 +49,27 @@ async function main() {
             await page.locator('#dashboard-nav .tabButton[data-pane="filters"]').click();
             await page.waitForSelector('#sandboxEditor .cm-editor', {timeout: 20000});
             assert.equal(await page.locator('#sandboxSave').count(), 1);
-            console.log('Dashboard and original Lite CodeMirror editor initialized.');
+            const getFilters = () => page.evaluate(async () => {
+                const { sendMessage } = await import('./js/ext.js');
+                return sendMessage({ what: 'getSandboxFilters' });
+            });
+            const before = await getFilters();
+            assert.equal(typeof before, 'string');
+            const testFilter = 'example.test##.playwright-smoke-test';
+            await page.locator('#sandboxEditor .cm-content').click();
+            await page.keyboard.insertText(testFilter + '\n');
+            await page.locator('#sandboxSave:not([disabled])').waitFor({timeout: 8000});
+            await page.locator('#sandboxSave').click();
+            await page.waitForTimeout(800);
+            const after = await getFilters();
+            assert(after.includes(testFilter), 'Sandbox editor save was not persisted');
+            await page.reload();
+            await page.waitForSelector('body:not(.loading)', {timeout: 20000});
+            await page.locator('#dashboard-nav .tabButton[data-pane="filters"]').click();
+            await page.waitForSelector('#sandboxEditor .cm-editor', {timeout: 20000});
+            assert((await page.locator('#sandboxEditor .cm-content').innerText()).includes(testFilter),
+                'Persisted filter did not reload into editor');
+            console.log('Dashboard, sandbox filter save/reload, and original CodeMirror passed.');
         });
         await check('popup', async page => {
             await page.waitForSelector('#classicPower', {timeout: 20000});
