@@ -449,3 +449,9 @@ section[data-pane="about"] .li { padding: 9px 6px; }
 
 /* Preserve Lite's dashboard tab visibility contract. */
 body[data-pane="filters"]:not(.busy) > #mu-filters { display: flex; }
+
+/* Lite's delegated dashboard click handler reads event.target.dataset.pane.
+ * Decorative icon artwork must never steal the button's click target. */
+#dashboard-nav .tabButton .mu-icon,
+#dashboard-nav .tabButton .mu-icon * { pointer-events: none; }
+#mu-filter-list { min-height: 1px; }
