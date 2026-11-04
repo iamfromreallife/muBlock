@@ -59,6 +59,14 @@ jobs:
           npx playwright install chromium
           node tests/browser-smoke.cjs
 
+      - name: Upload UI screenshots for visual QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chrome-ui-screenshots
+          path: test-artifacts/*.png
+          if-no-files-found: ignore
+
       - name: Package downloadable ZIP
         run: |
           set -euo pipefail
