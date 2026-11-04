@@ -185,7 +185,7 @@ if (pane && originalEditor && !pane.querySelector('#mu-filter-list')) {
     const hostname = punycode.toASCII(prettyHostname);
     let url;
     try { url = new URL('https://' + hostname + '/'); } catch {}
-    if (!url || url.hostname !== hostname || !hostname.includes('.') || hostname.includes('*')) {
+    if (!url || url.hostname !== hostname || hostname.includes('*')) {
       throw new Error('Enter a valid website hostname without a protocol.');
     }
     const parser = new sfp.AstFilterParser({ nativeCssHas: true, trustedSource: true });
