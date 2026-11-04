@@ -1,0 +1,232 @@
+/*
+ * muBlock — Material 3 Expressive-inspired design language.
+ * Shapes, size, color, containment, and considerate motion.
+ * Inter is bundled with uBO Lite and licensed under SIL OFL.
+ */
+@font-face {
+  font-family: "mu Inter";
+  src: url("/css/fonts/Inter/Inter-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "mu Inter";
+  src: url("/css/fonts/Inter/Inter-SemiBold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600 900;
+  font-display: swap;
+}
+:root {
+  --mu-primary: #6543d4;
+  --mu-on-primary: #fff;
+  --mu-primary-container: #ece4ff;
+  --mu-on-primary-container: #281657;
+  --mu-secondary: #635a77;
+  --mu-secondary-container: #e9e3f2;
+  --mu-on-secondary-container: #211b31;
+  --mu-tertiary: #007a65;
+  --mu-tertiary-container: #b8f4dc;
+  --mu-background: #f8f7fd;
+  --mu-surface: #fff;
+  --mu-surface-low: #f1eff8;
+  --mu-surface-high: #e8e5f2;
+  --mu-text: #1d1b25;
+  --mu-text-muted: #5c5967;
+  --mu-outline: #ccc7d8;
+  --mu-error: #b3261e;
+  --mu-success: #06775f;
+  --mu-shadow: 21 17 48;
+  --mu-radius-xs: 9px;
+  --mu-radius-sm: 14px;
+  --mu-radius-md: 20px;
+  --mu-radius-lg: 28px;
+  --mu-radius-xl: 34px;
+  --mu-ease: cubic-bezier(.2,0,0,1);
+  --mu-motion-fast: 150ms;
+  --mu-motion: 250ms;
+  --mu-motion-slow: 390ms;
+  --font-family: "mu Inter", Inter, system-ui, sans-serif;
+  --mu-family: "mu Inter", Inter, system-ui, sans-serif;
+  font-family: var(--mu-family);
+}
+:root.dark {
+  --mu-primary: #cbbaff;
+  --mu-on-primary: #35216f;
+  --mu-primary-container: #483387;
+  --mu-on-primary-container: #eee6ff;
+  --mu-secondary: #d1c6e0;
+  --mu-secondary-container: #474053;
+  --mu-on-secondary-container: #ede5f8;
+  --mu-tertiary: #74dfbd;
+  --mu-tertiary-container: #165a50;
+  --mu-background: #14131b;
+  --mu-surface: #211f2a;
+  --mu-surface-low: #292734;
+  --mu-surface-high: #373340;
+  --mu-text: #f4f0fa;
+  --mu-text-muted: #c2bdcb;
+  --mu-outline: #56505e;
+  --mu-error: #ffb4ab;
+  --mu-success: #81dfbf;
+  --mu-shadow: 0 0 0;
+}
+:root, body, button, select, input, textarea {
+  font-family: var(--mu-family);
+}
+body {
+  color: var(--mu-text);
+  -webkit-font-smoothing: antialiased;
+}
+button, select, [role="button"], summary {
+  -webkit-tap-highlight-color: transparent;
+}
+button, input, select, textarea, a, summary {
+  outline-offset: 3px;
+}
+:focus-visible {
+  outline: 3px solid var(--mu-tertiary) !important;
+  outline-offset: 3px;
+}
+button, input[type="button"], input[type="submit"] {
+  transition: color var(--mu-motion-fast) var(--mu-ease),
+              background-color var(--mu-motion-fast) var(--mu-ease),
+              box-shadow var(--mu-motion-fast) var(--mu-ease),
+              transform var(--mu-motion-fast) var(--mu-ease),
+              border-color var(--mu-motion-fast) var(--mu-ease);
+}
+button:not(:disabled):active, [role="button"]:active {
+  transform: scale(.97);
+}
+button:disabled, input:disabled, select:disabled {
+  cursor: not-allowed;
+}
+button.preferred, .preferred, button[aria-pressed="true"].mu-primary {
+  background: var(--mu-primary) !important;
+  color: var(--mu-on-primary) !important;
+  border-color: transparent !important;
+}
+button.preferred:hover:not(:disabled), button.mu-primary:hover:not(:disabled) {
+  box-shadow: 0 4px 16px rgb(var(--mu-shadow) / .14);
+}
+input[type="search"], input[type="text"], input[type="url"],
+input[type="number"], textarea, select {
+  box-sizing: border-box;
+  color: var(--mu-text);
+  background: var(--mu-surface-low);
+  border: 1px solid transparent;
+  border-radius: var(--mu-radius-sm);
+  padding: 10px 14px;
+  min-height: 42px;
+  caret-color: var(--mu-primary);
+  transition: background var(--mu-motion-fast) var(--mu-ease),
+              border-color var(--mu-motion-fast) var(--mu-ease);
+}
+input:hover:not(:disabled), select:hover:not(:disabled), textarea:hover:not(:disabled) {
+  background: var(--mu-surface-high);
+}
+input:focus, select:focus, textarea:focus {
+  background: var(--mu-surface-low);
+  border-color: var(--mu-primary);
+}
+input::placeholder, textarea::placeholder { color: var(--mu-text-muted); opacity: .8; }
+select {
+  cursor: pointer;
+  color-scheme: light;
+}
+:root.dark select { color-scheme: dark; }
+summary { list-style-position: inside; }
+summary::marker { color: var(--mu-primary); }
+a { color: var(--mu-primary); }
+a:hover { text-decoration: underline; }
+.mu-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+.mu-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+.mu-button {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 11px 18px;
+  background: var(--mu-secondary-container);
+  color: var(--mu-on-secondary-container);
+  min-height: 42px;
+  font: 600 13px/1 var(--mu-family);
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.mu-button:hover:not(:disabled) {
+  background: var(--mu-surface-high);
+  box-shadow: 0 3px 13px rgb(var(--mu-shadow) / .1);
+}
+.mu-button.mu-button-primary {
+  background: var(--mu-primary);
+  color: var(--mu-on-primary);
+}
+.mu-button.mu-button-primary:hover:not(:disabled) {
+  filter: brightness(1.07);
+  background: var(--mu-primary);
+}
+.mu-button.mu-button-quiet {
+  background: transparent;
+  color: var(--mu-text-muted);
+  border-color: var(--mu-outline);
+}
+.mu-button.mu-button-danger {
+  background: color-mix(in srgb, var(--mu-error) 13%, var(--mu-surface));
+  color: var(--mu-error);
+}
+.mu-button:disabled { opacity: .48; }
+.mu-muted { color: var(--mu-text-muted); }
+.mu-pill {
+  display: inline-flex;
+  padding: 5px 10px;
+  border-radius: 999px;
+  align-items: center;
+  gap: 6px;
+  background: var(--mu-secondary-container);
+  color: var(--mu-on-secondary-container);
+  font: 600 11px/1.1 var(--mu-family);
+}
+.mu-panel {
+  background: var(--mu-surface);
+  border-radius: var(--mu-radius-lg);
+  box-shadow: 0 3px 20px rgb(var(--mu-shadow) / .06);
+}
+.mu-toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  max-width: 380px;
+  z-index: 2000;
+  padding: 14px 20px;
+  border-radius: var(--mu-radius-md);
+  background: var(--mu-primary-container);
+  color: var(--mu-on-primary-container);
+  box-shadow: 0 12px 32px rgb(var(--mu-shadow) / .17);
+  font: 600 13px/1.45 var(--mu-family);
+  animation: mu-appear var(--mu-motion) var(--mu-ease) both;
+}
+@keyframes mu-appear {
+  from { opacity: 0; transform: translateY(9px) scale(.965); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes mu-soft-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
