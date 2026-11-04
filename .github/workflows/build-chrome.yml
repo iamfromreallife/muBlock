@@ -55,8 +55,8 @@ jobs:
       - name: Browser smoke test in real Chrome
         run: |
           set -euo pipefail
-          google-chrome --version
           npm install --no-save --no-package-lock --ignore-scripts playwright
+          npx playwright install chromium
           node tests/browser-smoke.cjs
 
       - name: Package downloadable ZIP
