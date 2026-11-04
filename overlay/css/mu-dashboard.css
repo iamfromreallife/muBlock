@@ -455,3 +455,18 @@ body[data-pane="filters"]:not(.busy) > #mu-filters { display: flex; }
 #dashboard-nav .tabButton .mu-icon,
 #dashboard-nav .tabButton .mu-icon * { pointer-events: none; }
 #mu-filter-list { min-height: 1px; }
+
+/* Correct original Lite's tiny fixed-width logo slot after adding a brand word. */
+#dashboard-nav .logo {
+  box-sizing: border-box;
+  width: auto !important;
+  min-width: max-content;
+  flex: 0 0 auto;
+  padding: 0 !important;
+  margin-right: 20px !important;
+}
+/* Avoid sticky navigation overlapping editor or cards during automated and
+ * keyboard scrolling in a long filter list. */
+body > header { position: relative; top: auto; }
+#mu-filters { scroll-margin-top: 18px; }
+#mu-filter-list > li { scroll-margin-top: 20px; }
