@@ -33,10 +33,13 @@ async function main() {
             const page = await context.newPage();
             const errors = [];
             page.on('pageerror', error => errors.push(String(error)));
+            await page.setViewportSize(pageName === 'popup' ? {width: 340, height: 700} : {width: 1120, height: 900});
             await page.goto('chrome-extension://' + extId + '/' + pageName + '.html');
             await page.waitForTimeout(1200);
             await checks(page);
             assert.deepEqual(errors, [], pageName + ' runtime errors');
+            fs.mkdirSync('test-artifacts', {recursive: true});
+            await page.screenshot({path: 'test-artifacts/' + pageName + '.png', fullPage: true});
             await page.close();
         };
         await check('dashboard', async page => {
