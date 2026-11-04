@@ -52,6 +52,11 @@
 #classicPower:focus-visible {
   outline: 2px solid var(--accent-surface-1);
 }
+body.nodata #classicPower {
+  opacity: .35;
+  pointer-events: none;
+}
+body.nodata #classicModeDescription { display: none; }
 :root.desktop .filteringModeSlider {
   align-self: center;
   margin: 8px auto 2px;
