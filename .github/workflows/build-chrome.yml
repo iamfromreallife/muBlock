@@ -51,6 +51,13 @@ jobs:
           print(f"MV{m['manifest_version']} manifest; {sum(x.is_file() for x in p.rglob('*'))} runtime files")
           PY
 
+      - name: Browser smoke test in real Chrome
+        run: |
+          set -euo pipefail
+          google-chrome --version
+          npm install --no-save --no-package-lock --ignore-scripts playwright
+          node tests/browser-smoke.cjs
+
       - name: Package downloadable ZIP
         run: |
           set -euo pipefail
