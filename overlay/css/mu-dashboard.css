@@ -217,7 +217,7 @@ section[data-pane="about"] .li { padding: 9px 6px; }
 /* Unified My filters: one data-backed list and a raw editing drawer. */
 #mu-filters {
   min-height: 72vh;
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 16px;
 }
@@ -446,3 +446,6 @@ section[data-pane="about"] .li { padding: 9px 6px; }
   .mu-filter-content { flex-basis: calc(100% - 65px); }
   #mu-filter-source { flex: 1 1 140px; }
 }
+
+/* Preserve Lite's dashboard tab visibility contract. */
+body[data-pane="filters"]:not(.busy) > #mu-filters { display: flex; }
