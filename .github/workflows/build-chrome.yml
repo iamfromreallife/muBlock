@@ -27,6 +27,7 @@ jobs:
           git clone --depth=1 https://github.com/uBlockOrigin/uBOL-home.git "$RUNNER_TEMP/uBOL-home"
           test -f "$RUNNER_TEMP/uBOL-home/chromium/manifest.json"
           test -d "$RUNNER_TEMP/uBOL-home/chromium/rulesets"
+          rm -rf dist/chrome-unpacked
           mkdir -p dist/chrome-unpacked
           cp -a "$RUNNER_TEMP/uBOL-home/chromium/." dist/chrome-unpacked/
           cp "$RUNNER_TEMP/uBOL-home/LICENSE" LICENSE
