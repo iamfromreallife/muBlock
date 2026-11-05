@@ -350,9 +350,9 @@
   flex:0 0 3ch;
 }
 :root#ubol-picker:not(.minimized) .resultsetWidgets input[type="range"] {
-  height:17px!important;
-  min-height:17px!important;
-  margin:1px 0!important;
+  height:26px!important;
+  min-height:26px!important;
+  margin:0!important;
 }
 :root#ubol-picker:not(.minimized) #toolbar {
   display:flex;
