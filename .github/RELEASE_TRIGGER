@@ -1,6 +1,6 @@
-muBlock compact About and versioned-release build — 2026-11-05
-Final merged source commit: 712b54e9d702db5a6b259f48aa91febcd8034403
-Package every build as muBlock_<manifest.version>.zip.
-Include Git commit changes in GitHub Release notes and README direct-download link.
-No automated tests or screenshot reviews.
-Retain main and feat/compact-about-inline-metadata-versioned-releases-20261105.
+muBlock popup Settings footer — 2026-11-05
+Final implementation commit: eb52bd11f4118ab72e007336ca0bfe736e807dad
+Move original Settings button from header to bottom footer.
+Display muBlock - based on uBlock Origin Lite <manifest.version> in muted left-aligned text.
+One packaging-only GitHub Action with versioned ZIP and release notes.
+Keep branches main and feat/popup-settings-footer-version-20261105.
