@@ -2,7 +2,7 @@ name: Build muBlock Chrome extension
 
 on:
   push:
-    branches: [main, feature/mublock-expressive, feature/mublock-new-first-icon-20261105]
+    branches: [main, feature/mublock-visual-polish-20261105]
     paths-ignore:
       - "dist/**"
       - "LICENSE"
@@ -35,6 +35,10 @@ jobs:
           echo "Upstream uBO Lite commit:"
           cat dist/UPSTREAM_COMMIT.txt
 
+      - name: Install offline icon-renderer build dependencies
+        run: |
+          python3 -m pip install --disable-pip-version-check --user cairosvg==2.8.2 pillow==12.0.0
+
       - name: Apply muBlock UI overlay
         run: |
           set -euo pipefail
@@ -57,6 +61,7 @@ jobs:
           node --check overlay/js/mu-filters.js
           node --check overlay/js/mu-dashboard.js
           node --check overlay/js/mu-popup.js
+          node --check overlay/js/mu-select.js
 
       - name: Browser smoke test in real Chrome
         run: |
