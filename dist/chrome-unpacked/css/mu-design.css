@@ -18,19 +18,19 @@
   font-display: swap;
 }
 :root {
-  --mu-primary: #6543d4;
+  --mu-primary: #1f75fe;
   --mu-on-primary: #fff;
-  --mu-primary-container: #ece4ff;
-  --mu-on-primary-container: #281657;
-  --mu-secondary: #635a77;
-  --mu-secondary-container: #e9e3f2;
-  --mu-on-secondary-container: #211b31;
+  --mu-primary-container: #e2efff;
+  --mu-on-primary-container: #103566;
+  --mu-secondary: #53657d;
+  --mu-secondary-container: #e9f0fb;
+  --mu-on-secondary-container: #243a57;
   --mu-tertiary: #007a65;
   --mu-tertiary-container: #b8f4dc;
-  --mu-background: #f8f7fd;
+  --mu-background: #f8faff;
   --mu-surface: #fff;
-  --mu-surface-low: #f1eff8;
-  --mu-surface-high: #e8e5f2;
+  --mu-surface-low: #f0f5fd;
+  --mu-surface-high: #e2ebf9;
   --mu-text: #1d1b25;
   --mu-text-muted: #5c5967;
   --mu-outline: #ccc7d8;
@@ -51,19 +51,19 @@
   font-family: var(--mu-family);
 }
 :root.dark {
-  --mu-primary: #cbbaff;
-  --mu-on-primary: #35216f;
-  --mu-primary-container: #483387;
-  --mu-on-primary-container: #eee6ff;
+  --mu-primary: #86b8ff;
+  --mu-on-primary: #fff;
+  --mu-primary-container: #203d66;
+  --mu-on-primary-container: #dbeaff;
   --mu-secondary: #d1c6e0;
-  --mu-secondary-container: #474053;
-  --mu-on-secondary-container: #ede5f8;
+  --mu-secondary-container: #2b3d55;
+  --mu-on-secondary-container: #e0efff;
   --mu-tertiary: #74dfbd;
   --mu-tertiary-container: #165a50;
-  --mu-background: #14131b;
-  --mu-surface: #211f2a;
-  --mu-surface-low: #292734;
-  --mu-surface-high: #373340;
+  --mu-background: #101b2a;
+  --mu-surface: #1c2b3d;
+  --mu-surface-low: #25374d;
+  --mu-surface-high: #334964;
   --mu-text: #f4f0fa;
   --mu-text-muted: #c2bdcb;
   --mu-outline: #56505e;
@@ -230,3 +230,15 @@ a:hover { text-decoration: underline; }
     scroll-behavior: auto !important;
   }
 }
+
+/* User preference: disable all UI motion. */
+:root, :root *, :root *::before, :root *::after {animation:none!important;transition:none!important;scroll-behavior:auto!important}
+
+/* Solid Crayola blue selections always have white foreground text. */
+:root {--accent-surface-1:#1f75fe;--accent-ink-1:#fff;}
+:root.dark {--accent-surface-1:#1f75fe;--accent-ink-1:#fff;}
+:root .mu-mode-btn[aria-pressed="true"],
+:root button.mu-button-primary,
+:root button.mu-primary[aria-pressed="true"],
+:root button.preferred,
+:root [aria-selected="true"][style*="background"] {color:#fff!important;}

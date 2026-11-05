@@ -202,3 +202,17 @@
   :root#ubol-picker aside { margin: 3px; }
   :root#ubol-picker aside #windowbar #move::after { font-size: 11px; }
 }
+
+/* All cosmetic picker matches selected by the user: blue/white, never yellow. */
+:root#ubol-picker #candidateFilters ul > li > span.on,
+:root#ubol-picker #candidateFilters ul > li > span.on:hover,
+:root#ubol-picker.preview #toolbar #preview,
+:root#ubol-picker #toolbar #create:not(:disabled),
+:root#ubol-picker #candidateFilters span[aria-selected="true"]{
+  background:#1f75fe!important;color:#fff!important;border-color:#1f75fe!important;
+}
+:root#ubol-picker #candidateFilters ul > li > span.on * {color:#fff!important;}
+:root#ubol-picker svg#overlay {animation:none!important;transition:none!important;}
+:root#ubol-picker,*,:root#ubol-picker *::before,:root#ubol-picker *::after {
+  animation:none!important;transition:none!important;
+}

@@ -31,10 +31,10 @@ let reverseMode = false;
 function disableToolbarIcon(tabId) {
     const details = {
         path: {
-             '16': '/img/icon_16_off.png',
-             '32': '/img/icon_32_off.png',
-             '64': '/img/icon_64_off.png',
-            '128': '/img/icon_128_off.png',
+             '16': '/img/mu-toolbar-off-16.png',
+             '32': '/img/mu-toolbar-off-32.png',
+             '64': '/img/mu-toolbar-off-64.png',
+            '128': '/img/mu-toolbar-off-128.png',
         }
     };
     if ( tabId !== undefined ) {
@@ -46,10 +46,10 @@ function disableToolbarIcon(tabId) {
 function enableToolbarIcon(tabId) {
     const details = {
         path: {
-             '16': '/img/icon_16.png',
-             '32': '/img/icon_32.png',
-             '64': '/img/icon_64.png',
-            '128': '/img/icon_128.png',
+             '16': '/img/mu-toolbar-16.png',
+             '32': '/img/mu-toolbar-32.png',
+             '64': '/img/mu-toolbar-64.png',
+            '128': '/img/mu-toolbar-128.png',
         }
     };
     if ( tabId !== undefined ) {
