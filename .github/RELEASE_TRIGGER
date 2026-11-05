@@ -1,3 +1,6 @@
-muBlock combined Filter Lists search and results release — retry 2026-11-05
-Resilient GitHub Release step committed on main: 13150e07c99f38024a925f56d54c59fba473e04c
-Repackage one unified full-width Filter Lists card; no tests or screenshot reviews.
+muBlock centered dashboard navigation — 2026-11-05
+Final source on main: 59bf80698425c17a703b0dd67f38357d7817ccb4
+Center the icon, muBlock wordmark and all dashboard tabs as a single group.
+Safe centering retains horizontal scroll for narrow displays and long translations.
+One final packaging-only GitHub Release; no tests/screenshots.
+Keep only main.
