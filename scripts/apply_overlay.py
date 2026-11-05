@@ -20,10 +20,12 @@ ASSETS = (
     "css/mu-dashboard.css",
     "css/mu-picker.css",
     "css/mu-select.css",
+    "css/mu-slider.css",
     "js/mu-popup.js",
     "js/mu-dashboard.js",
     "js/mu-filters.js",
     "js/mu-select.js",
+    "js/mu-slider.js",
     "img/mu-logo.svg",
 )
 
@@ -126,6 +128,21 @@ def main(extension: Path) -> None:
                 '<link rel="stylesheet" href="css/mu-select.css">')
     insert_once(report, "</body>",
                 '<script src="js/mu-select.js" type="module"></script>')
+
+    # Shared expressive slider styling is applied to every runtime UI, while
+    # the original native input event handlers stay authoritative.
+    for name in (
+        "popup.html", "dashboard.html", "picker-ui.html",
+        "unpicker-ui.html", "zapper-ui.html", "report.html",
+        "matched-rules.html", "strictblock.html",
+    ):
+        page = extension / name
+        if not page.exists():
+            continue
+        insert_once(page, "</head>",
+                    '<link rel="stylesheet" href="css/mu-slider.css">')
+        insert_once(page, "</body>",
+                    '<script src="js/mu-slider.js" type="module"></script>')
 
     manifest_path = extension / "manifest.json"
     manifest = json.loads(manifest_path.read_text("utf-8"))
