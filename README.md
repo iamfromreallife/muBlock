@@ -1,56 +1,61 @@
 # muBlock
 
-**muBlock** é uma adaptação visual independente de [uBlock Origin Lite](https://github.com/uBlockOrigin/uBOL-home), mantendo o motor de filtragem Manifest V3, as listas, o seletor de elementos, as permissões e a importação/exportação de dados da versão original. Não é uma versão oficial do uBlock Origin.
+**muBlock** is an independent UI-focused fork of [uBlock Origin Lite](https://github.com/uBlockOrigin/uBOL-home). It preserves Lite's Manifest V3 filtering engine, rulesets, element-picker behavior, configuration storage, and backup/restore compatibility.
 
-**Créditos:** o motor e as funcionalidades originais pertencem a Raymond Hill e aos colaboradores do uBlock Origin Lite. O logótipo clássico é baseado no [SVG oficial do uBlock Origin](https://github.com/gorhill/uBlock/blob/master/src/img/ublock.svg), recolorido para o vermelho `#FF0000` pedido para esta adaptação, nos termos da GPL. Autor do fork: **iamfromreallife**.
+It is **not** an official uBlock Origin release. Credit for the original filtering functionality belongs to **Raymond Hill** and the upstream uBlock Origin Lite authors and contributors. The UI fork is maintained by **iamfromreallife**.
 
-## Instalação
+## Direct download and installation
 
-Obter o ZIP **muBlock-chrome-unpacked** na [última execução do workflow de empacotamento](../../actions/workflows/build-chrome.yml). Extrair o ZIP, abrir `chrome://extensions`, ativar **Modo de programador**, clicar em **Carregar expandida** e selecionar a pasta `chrome-unpacked`.
+<!-- MU_INSTALL_START -->
+[Open the latest muBlock release and install ZIP](https://github.com/iamfromreallife/MV3uBlockOrigin/releases/latest)
+<!-- MU_INSTALL_END -->
 
-A distribuição completa também é publicada em `dist/chrome-unpacked/` na branch `main`.
+**The link above is replaced automatically with a direct ZIP download link after each completed build.** The file is named **muBlock_VERSION.zip**, where VERSION is read from the bundled upstream uBlock Origin Lite manifest.
 
-## Aspeto e comportamento
+1. Download and extract the ZIP.
+2. Open **chrome://extensions** in Chrome or a compatible Chromium browser.
+3. Enable **Developer mode**.
+4. Choose **Load unpacked** and select the extracted **chrome-unpacked** folder.
+5. On updates, replace the unpacked extension files, then reload the extension in Chrome. Back up your settings before updating.
 
-- **Cor:** vermelho puro `#FF0000` para destaques, seleções, ícones ativos e sliders; os textos sobre vermelho têm cor branca. Superfícies neutras e cinzento muito subtil nos editores.
-- **Identidade:** logótipo clássico do uBlock Origin (em vez do escudo muBlock com «m»). Ícones PNG gerados em 16, 32, 48, 64, 128, 256 e 512 px; versões desaturadas para a filtragem desligada. O `action.js` original continua a gerir a escolha dos ícones.
-- **Popup:** compacto, com botão de ativação ao lado do domínio e modos traduzidos através do sistema de localização original do Lite.
-- **Filtros personalizados:** editor de filtros gerados pelo seletor de elementos, com pesquisa em tempo real num **campo de texto multilinha totalmente editável**. Apenas as linhas correspondentes são mostradas na pesquisa, sem apagar as restantes. O realce visual usa texto branco sobre vermelho; o botão Guardar mantém o mecanismo de armazenamento do Lite.
-- **Sandbox:** editor CodeMirror separado, mantendo a sintaxe e os comandos originais.
-- **Programação:** editor de regras com CodeMirror, barra de ferramentas e apresentação uniformizados com os filtros personalizados.
-- **Dropdowns:** menus cinzentos com cantos arredondados e sombra discreta, mantendo os controlos `select` nativos e respetivos eventos no funcionamento interno do Lite.
-- **Sliders:** pista e indicador em estilo Material Expressive, sem qualquer movimento animado.
-- **Seletor de elementos:** barra minimizada de largura adequada e nome «muBlock» numa única linha, em qualquer idioma.
-- **Movimento:** animações e transições, incluindo efeitos de hover animados, desativadas.
+Find previous packages under [GitHub Releases](https://github.com/iamfromreallife/MV3uBlockOrigin/releases).
 
-## Compatibilidade com dados do Lite
+## What's included
 
-O módulo `js/backup-restore.js` é o original do uBlock Origin Lite. Para transferir todas as definições, filtros e listas, usar a **cópia de segurança/restauro** nas Definições. O editor de filtros por domínio e o editor sandbox utilizam armazenamentos internos separados, como no Lite; editar um não modifica silenciosamente o outro.
+- Original uBlock Origin Lite filtering modes, rulesets, and MV3 filtering engine.
+- A compact, localized popup with power controls alongside the site name.
+- A clean red-and-neutral UI with the classic uBlock Origin shield.
+- Rounded dashboard cards and subtle shadows shared by Settings, Filter Lists, Custom Filters, Developer Tools, and About.
+- **Custom Filters:** a large editable area for cosmetic rules added by the element picker, shown newest first, with live search in an editable multiline filter view.
+- A separate sandbox editor preserving Lite's CodeMirror and storage behavior.
+- **Filter Lists:** a short grey description directly after each list's original home icon, with no misleading list-version numbers.
+- A compact About tab with distinct titled groups for attribution, version, useful links, contributors, dependencies, and technical details.
+- Original uBlock Origin Lite configuration backups and imports/exports.
 
-## Compilação e publicação
+muBlock adds no replacement filtering engine, telemetry, or remotely loaded code.
 
-Os ficheiros editáveis estão em `overlay/` e `scripts/`. `scripts/apply_overlay.py` aplica a interface à distribuição Chromium oficial do Lite. `scripts/generate_icons.py` produz PNGs localmente com **CairoSVG** e **Pillow** na máquina de compilação; nenhuma dessas bibliotecas é necessária na extensão instalada.
+## Build and publish
 
-**O GitHub Actions apenas compila, gera o ZIP, publica o artefacto e atualiza a pasta de distribuição. Não executa testes nem recolhe capturas de ecrã.** O empacotamento só é iniciado com `workflow_dispatch` ou quando é modificado `.github/RELEASE_TRIGGER` na branch `main`, depois de todos os commits pretendidos estarem concluídos. Os commits de desenvolvimento não iniciam ações automaticamente.
+The editable UI overlay lives in **overlay/**, the build helpers in **scripts/**, and the generated Chromium extension in **dist/chrome-unpacked/**.
 
-## Licença
+Open **Actions → Build and publish muBlock → Run workflow** to build manually. A build also starts on the final release-trigger commit to **.github/RELEASE_TRIGGER** in main, after source changes have been merged.
 
-GPL-3.0-or-later. Consultar `LICENSE`, `THIRD_PARTY_NOTICES.md` e as licenças incluídas na distribuição original. Sem telemetria adicionada, código remoto ou fontes carregadas por serviços externos.
+**Every build run:**
 
-## Ajustes de interface — novembro de 2026
+1. Gets the current upstream uBlock Origin Lite Chromium extension.
+2. Applies the muBlock interface overlay.
+3. Produces **muBlock_VERSION.zip**, with VERSION taken from the actual bundled manifest.
+4. Uploads the ZIP as an Actions artifact and publishes a [GitHub Release](https://github.com/iamfromreallife/MV3uBlockOrigin/releases).
+5. Includes **all commits since the previous release** in the release description, with clickable commit links and the upstream Lite source commit.
+6. Updates this README's direct download URL.
+7. Keeps only main and the active task branch recorded in **.github/CURRENT_WORK_BRANCH**.
 
-- Removido o módulo experimental de **Aparência** (fontes, tamanhos e escolha manual de tema), regressando à tipografia e ao tema que existiam antes desta funcionalidade. O Lite continua a acompanhar o esquema de cores do sistema.
-- Eliminada a linha divisória do cabeçalho em todas as abas: Definições, Listas de filtros, Filtros personalizados, Programação e Acerca.
-- Botão de **Definições** no popup ampliado para 48 × 44 px, com fundo vermelho #FF0000 e ícone branco, mantendo os eventos originais do Lite e sem efeitos de hover animados.
-- Mantidos o destaque da versão na página Acerca, o alinhamento dos créditos e os cantos arredondados anteriormente solicitados.
+The workflow is **packaging-only: no automated tests and no screenshot reviews**, as requested by the project maintainer. A successful build does not imply browser QA has passed.
 
-Mantém-se a política de compilação final: apenas um GitHub Actions por pedido, depois da integração de todo o código, sem executar testes nem capturar screenshots. O repositório conserva apenas a branch `main` e a branch indicada em `.github/CURRENT_WORK_BRANCH`.
+## Attribution and license
 
-## Ajustes de popup e informação das listas
+- [uBlock Origin Lite](https://github.com/uBlockOrigin/uBOL-home) — original extension by Raymond Hill and contributors.
+- [uBlock Origin](https://github.com/gorhill/uBlock) — original project and classic icon artwork.
+- [muBlock fork](https://github.com/iamfromreallife/MV3uBlockOrigin) — UI adaptation maintained by **iamfromreallife**.
 
-- O botão de Definições no popup foi reduzido de 48 × 44 para **44 × 40 px**, mantendo o mesmo comando e sem animações.
-- O destaque de passagem do rato nos comandos do popup usa exatamente o mesmo fundo `--mu-primary-container` das listas de filtros nas Definições.
-- Cada lista de filtros passa a apresentar, em texto pequeno e cinzento, uma descrição do tipo de proteção que oferece e a **versão da compilação Lite instalada** que a inclui. A informação é obtida dos metadados das listas fornecidos pelo próprio Lite; a descrição não altera a seleção ou a aplicação dos filtros.
-- **Nota sobre versões:** os metadados do uBlock Origin Lite não fornecem números de versão específicos para cada lista. O número indicado corresponde à versão do pacote Lite em que a lista está incluída. Listas externas importadas são identificadas como não tendo versão própria disponível, em vez de apresentar uma versão inventada.
-
-As traduções das descrições principais acompanham o idioma do popup (português/inglês, com algumas descrições genéricas em espanhol e francês). O funcionamento das listas, o armazenamento e os backups do Lite mantêm-se intactos.
+GPL-3.0-or-later; see LICENSE and THIRD_PARTY_NOTICES.md for the applicable notices.
