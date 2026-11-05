@@ -1,5 +1,6 @@
-muBlock popup and filter-list descriptions release — 2026-11-05
-Merged source: 44838c39bd337e983a359cb0fcd51c13b232d6a4
-Settings button 44x40; list-match hover colour; accurate Lite bundle version and list purpose descriptions.
-One final packaging-only action, no tests or screenshots.
-Keep branches main and fix/popup-hover-filterlist-metadata-20261105.
+muBlock compact About and versioned-release build — 2026-11-05
+Final merged source commit: 712b54e9d702db5a6b259f48aa91febcd8034403
+Package every build as muBlock_<manifest.version>.zip.
+Include Git commit changes in GitHub Release notes and README direct-download link.
+No automated tests or screenshot reviews.
+Retain main and feat/compact-about-inline-metadata-versioned-releases-20261105.
