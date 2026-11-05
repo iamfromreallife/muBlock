@@ -63,3 +63,29 @@ if (settingsBackup) {
     card.append(note);
   }
 }
+
+
+/* Attribution at the beginning of About; Lite authors receive full credit. */
+const muAbout=document.querySelector('section[data-pane="about"] .body');
+if(muAbout&&!muAbout.querySelector('.mu-about-fork')){
+  const block=document.createElement('div');
+  block.className='mu-about-fork';
+  const pt=(chrome.i18n.getUILanguage()||'en').toLowerCase().startsWith('pt');
+  const credit=document.createElement('p');
+  credit.className='mu-about-upstream';
+  credit.textContent=pt
+    ? 'muBlock é uma versão com uma nova interface visual do uBlock Origin Lite. Todos os créditos pelo motor de filtragem e funcionalidades originais pertencem a Raymond Hill e aos restantes autores e colaboradores do uBlock Origin Lite.'
+    : 'muBlock is a visual reskin of uBlock Origin Lite. All credit for the original filtering engine and functionality belongs to Raymond Hill and the other uBlock Origin Lite authors and contributors.';
+  const upstream=document.createElement('a');
+  upstream.href='https://github.com/uBlockOrigin/uBOL-home';
+  upstream.target='_blank';upstream.rel='noopener noreferrer';
+  upstream.textContent='uBlock Origin Lite';
+  const author=document.createElement('p');
+  author.className='mu-about-author';
+  author.textContent=(pt?'Autor desta versão: ':'Fork author: ')+'iamfromreallife';
+  const fork=document.createElement('a');
+  fork.href='https://github.com/iamfromreallife/MV3uBlockOrigin';
+  fork.target='_blank';fork.rel='noopener noreferrer';fork.textContent='muBlock · GitHub';
+  block.append(credit,upstream,author,fork);
+  muAbout.prepend(block);
+}

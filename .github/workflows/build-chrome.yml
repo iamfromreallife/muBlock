@@ -2,7 +2,7 @@ name: Build muBlock Chrome extension
 
 on:
   push:
-    branches: [main, feature/mublock-expressive]
+    branches: [main, feature/mublock-expressive, feature/mublock-new-first-icon-20261105]
     paths-ignore:
       - "dist/**"
       - "LICENSE"
@@ -35,7 +35,7 @@ jobs:
           echo "Upstream uBO Lite commit:"
           cat dist/UPSTREAM_COMMIT.txt
 
-      - name: Apply classic UI-only overlay
+      - name: Apply muBlock UI overlay
         run: |
           set -euo pipefail
           python3 scripts/apply_overlay.py dist/chrome-unpacked
@@ -51,6 +51,12 @@ jobs:
           m = json.loads((p/'manifest.json').read_text())
           print(f"MV{m['manifest_version']} manifest; {sum(x.is_file() for x in p.rglob('*'))} runtime files")
           PY
+
+      - name: Validate JavaScript source
+        run: |
+          node --check overlay/js/mu-filters.js
+          node --check overlay/js/mu-dashboard.js
+          node --check overlay/js/mu-popup.js
 
       - name: Browser smoke test in real Chrome
         run: |

@@ -470,3 +470,96 @@ body[data-pane="filters"]:not(.busy) > #mu-filters { display: flex; }
 body > header { position: relative; top: auto; }
 #mu-filters { scroll-margin-top: 18px; }
 #mu-filter-list > li { scroll-margin-top: 20px; }
+
+/* Compact site filters (large) and sandbox editor (small). */
+#mu-filters{min-height:auto;gap:13px;}
+body[data-pane="filters"]:not(.busy)>#mu-filters{display:flex;}
+#mu-filters>.mu-editor-panel{
+  box-sizing:border-box;min-width:0;background:var(--mu-surface);
+  border-radius:20px;padding:17px 19px;
+}
+#mu-filters>.mu-editor-panel h2{
+  margin:0 0 12px;font:750 17px/1.4 var(--mu-family);color:var(--mu-text);
+}
+#mu-filters .mu-editor-note{margin:0 0 12px;font-size:12px;color:var(--mu-text-muted);}
+.mu-site-search{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+#mu-site-search{flex:1;min-width:120px;min-height:40px;border-radius:12px;}
+#mu-site-search-count{font-size:12px;color:var(--mu-text-muted);white-space:nowrap;}
+#mu-site-textarea{
+  box-sizing:border-box;display:block;width:100%;min-height:460px;
+  height:min(66vh,730px);padding:14px 16px;border-radius:13px;
+  resize:vertical;background:var(--mu-surface-low);
+  border:1px solid var(--mu-outline);color:var(--mu-text);
+  white-space:pre;tab-size:4;overflow:auto;
+  font:12.5px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;
+}
+#mu-site-textarea[hidden],#mu-site-search-results[hidden]{display:none!important;}
+#mu-site-search-results{
+  box-sizing:border-box;overflow:auto;width:100%;height:min(66vh,730px);
+  min-height:460px;padding:8px;border:1px solid var(--mu-outline);
+  border-radius:13px;background:var(--mu-surface-low);
+  font:12.5px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;
+}
+.mu-search-match{
+  display:flex;gap:11px;align-items:baseline;text-align:start;
+  width:100%;border:0;border-radius:7px;padding:5px 7px;
+  min-height:31px;cursor:pointer;background:transparent;color:var(--mu-text);
+  font:inherit;
+}
+.mu-search-match:hover{background:var(--mu-surface-high);}
+.mu-search-line{flex:0 0 34px;font-size:11px;color:var(--mu-text-muted);}
+.mu-search-text{min-width:0;overflow-wrap:anywhere;white-space:pre-wrap;}
+.mu-search-match mark{
+  padding:1px 2px;border-radius:3px;box-decoration-break:clone;
+  background:#1f75fe!important;color:#fff!important;
+}
+.mu-search-empty{padding:22px;text-align:center;color:var(--mu-text-muted);}
+#mu-filters .mu-site-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:11px;}
+#mu-filters .mu-site-actions .mu-button{min-height:35px;padding:8px 13px;border-radius:11px;font-size:12px;}
+#mu-site-status{margin:8px 1px 0;font-size:12px;color:var(--mu-text-muted);}
+#mu-site-status:empty{display:none;}
+#mu-site-status.mu-editor-error{color:var(--mu-error);}
+#mu-filters #sandboxEditor{display:block;margin:0;padding:0;}
+#mu-filters #sandboxEditor .cm-container{
+  box-sizing:border-box;height:min(24vh,250px);min-height:150px;
+  border:1px solid var(--mu-outline);border-radius:13px;overflow:hidden;
+  width:100%;
+}
+#mu-filters #sandboxEditor .cm-editor{height:100%;}
+#mu-filters #sandboxEditor .sandbox-panel{padding:5px 7px;gap:6px;flex-wrap:wrap;}
+#mu-filters #sandboxEditor .sandbox-panel button{
+  padding:5px 11px;min-height:30px;border-radius:10px;
+  font:600 11.5px/1.2 var(--mu-family);
+}
+/* Do not leave a separator or empty gutter below the ruleset-search header. */
+body[data-pane="rulesets"]>header{padding-bottom:0!important;border-bottom:0!important;margin-bottom:0!important;}
+body[data-pane="rulesets"]>section[data-pane="rulesets"]{
+  padding-top:0!important;margin-top:0!important;border-top:0!important;
+}
+body[data-pane="rulesets"] #lists{margin-top:0!important;padding-top:0!important;}
+.mu-about-upstream{font:500 13px/1.65 var(--mu-family);max-width:850px;}
+.mu-about-fork{margin-top:0;margin-bottom:18px;padding:15px 16px;border-radius:14px;background:var(--mu-primary-container);}
+.mu-about-fork a{color:var(--mu-primary);}
+@media(max-width:700px){
+ #mu-site-textarea,#mu-site-search-results{min-height:360px;height:58vh;}
+ #mu-filters #sandboxEditor .cm-container{min-height:140px;height:23vh;}
+}
+/* Disable motion in every dashboard element. */
+:root, :root *, :root *::before,:root *::after{
+  animation:none!important;transition:none!important;scroll-behavior:auto!important;
+}
+
+/* Saturated selected Crayola-blue navigation always uses white text. */
+body[data-pane="settings"] #dashboard-nav [data-pane="settings"],
+body[data-pane="rulesets"] #dashboard-nav [data-pane="rulesets"],
+body[data-pane="filters"] #dashboard-nav [data-pane="filters"],
+body[data-pane="develop"] #dashboard-nav [data-pane="develop"],
+body[data-pane="about"] #dashboard-nav [data-pane="about"] {
+  background:#1f75fe!important;
+  color:#fff!important;
+}
+#dashboard-nav .tabButton[aria-selected="true"] .mu-icon,
+#dashboard-nav .tabButton[aria-selected="true"] svg {
+  color:#fff!important;
+  stroke:#fff!important;
+}

@@ -92,14 +92,44 @@ def main(extension: Path) -> None:
             "<title>uBO Lite Zapper</title>", f"<title>muBlock — {page.split('-')[0]}</title>"
         ), "utf-8")
 
+    # Lite's action.js changes toolbar icons at runtime for trusted sites.
+    # Replace only its icon asset paths, leaving all filtering logic intact.
+    toolbar_module = extension / "js" / "action.js"
+    action_source = toolbar_module.read_text("utf-8")
+    for size in (16, 32, 64, 128):
+        for suffix, state in (("", ""), ("_off", "-off")):
+            original_icon = f"/img/icon_{size}{suffix}.png"
+            replacement_icon = f"/img/mu-toolbar{state}-{size}.png"
+            if original_icon not in action_source:
+                raise RuntimeError(f"Upstream action icon path changed: {original_icon}")
+            action_source = action_source.replace(original_icon, replacement_icon)
+    toolbar_module.write_text(action_source, "utf-8")
+
+    # Replace the remaining page favicons and static brand artwork.
+    dashboard_html = dashboard.read_text("utf-8")
+    dashboard_html = dashboard_html.replace(
+        'src="img/ublock.svg" alt="uBO Lite"',
+        'src="img/mu-logo.svg" alt="muBlock"',
+    )
+    dashboard.write_text(dashboard_html, "utf-8")
+    for name in ("dashboard.html", "matched-rules.html", "report.html", "strictblock.html"):
+        page = extension / name
+        html = page.read_text("utf-8")
+        html = html.replace('href="img/icon_64.png"', 'href="img/mu-64.png"')
+        if name != "dashboard.html":
+            if "</head>" not in html:
+                raise RuntimeError(f"Missing head close in {name}")
+            html = html.replace("</head>", '<link rel="stylesheet" href="css/mu-design.css">\n</head>')
+        page.write_text(html, "utf-8")
+
     manifest_path = extension / "manifest.json"
     manifest = json.loads(manifest_path.read_text("utf-8"))
     manifest["name"] = "muBlock"
     manifest["short_name"] = "muBlock"
     manifest["description"] = "muBlock — expressive, privacy-first filtering powered by uBlock Origin Lite."
     manifest["action"]["default_title"] = "muBlock"
-    for size in (16,32,64):
-        manifest["action"]["default_icon"][str(size)] = f"img/mu-{size}.png"
+    manifest["action"]["default_icon"] = {str(size): f"img/mu-toolbar-{size}.png"
+                                         for size in (16,32,64,128)}
     manifest["icons"] = {str(size): f"img/mu-{size}.png" for size in (16,32,48,64,128)}
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", "utf-8")
 
