@@ -332,3 +332,39 @@ body.nodata #mu-power,body.nodata .mu-mode-btn{opacity:.4;pointer-events:none;}
   transition:none!important;
   animation:none!important;
 }
+
+
+/* Static power button: no circle/morph/scale on hover or press.
+   Lite's live filtering-mode state alone changes red ↔ disabled grey. */
+#mu-power,
+#mu-power:hover,
+#mu-power:hover:not(:disabled),
+#mu-power:focus,
+#mu-power:active,
+#mu-power.off,
+#mu-power.off:hover {
+  box-sizing:border-box;
+  width:38px!important;
+  height:38px!important;
+  min-width:38px!important;
+  flex:0 0 38px!important;
+  border-radius:13px!important;
+  transform:none!important;
+  transition:none!important;
+  animation:none!important;
+  box-shadow:none!important;
+}
+#mu-power:not(.off):not(:disabled),
+#mu-power:not(.off):hover:not(:disabled),
+#mu-power:not(.off):active:not(:disabled) {
+  background:#ff0000!important;
+  color:#fff!important;
+}
+#mu-power.off,#mu-power.off:hover {
+  background:var(--mu-surface-high)!important;
+  color:var(--mu-text-muted)!important;
+}
+#mu-power:disabled {
+  opacity:.43!important;
+  cursor:not-allowed!important;
+}
