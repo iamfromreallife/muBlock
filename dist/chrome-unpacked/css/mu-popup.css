@@ -376,10 +376,10 @@ body.nodata #mu-power,body.nodata .mu-mode-btn{opacity:.4;pointer-events:none;}
   gap:6px;
   flex:0 0 auto;
 }
-#mu-popup-header #gotoDashboard,
-#mu-popup-header #gotoDashboard:hover,
-#mu-popup-header #gotoDashboard:focus-visible,
-#mu-popup-header #gotoDashboard:active {
+#mu-popup-footer #gotoDashboard,
+#mu-popup-footer #gotoDashboard:hover,
+#mu-popup-footer #gotoDashboard:focus-visible,
+#mu-popup-footer #gotoDashboard:active {
   box-sizing:border-box!important;
   display:inline-flex!important;
   align-items:center!important;
@@ -403,13 +403,13 @@ body.nodata #mu-power,body.nodata .mu-mode-btn{opacity:.4;pointer-events:none;}
   transition:none!important;
   animation:none!important;
 }
-#mu-popup-header #gotoDashboard svg,
-#mu-popup-header #gotoDashboard svg * {
+#mu-popup-footer #gotoDashboard svg,
+#mu-popup-footer #gotoDashboard svg * {
   fill:#fff!important;
   stroke:#fff!important;
   color:#fff!important;
 }
-#mu-popup-header #gotoDashboard:focus-visible {
+#mu-popup-footer #gotoDashboard:focus-visible {
   outline:2px solid #ff0000!important;
   outline-offset:3px;
 }
@@ -434,4 +434,52 @@ body.nodata #mu-power,body.nodata .mu-mode-btn{opacity:.4;pointer-events:none;}
   transform:none!important;
   animation:none!important;
   transition:none!important;
+}
+
+
+/* Compact standalone footer beneath the website-specific actions.
+ * The Settings control is Lite's original #gotoDashboard DOM node. */
+#mu-popup-footer {
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  min-width:0;
+  width:100%;
+  min-height:54px;
+  padding:8px 9px 8px 12px;
+  margin:0;
+  border:0;
+  border-radius:17px;
+  background:var(--mu-surface);
+  box-shadow:0 3px 18px rgb(var(--mu-shadow) / .045);
+}
+#mu-popup-footer-version {
+  display:block;
+  flex:1 1 auto;
+  min-width:0;
+  margin:0;
+  padding:0;
+  text-align:left;
+  color:var(--mu-text-muted);
+  font:500 10.5px/1.45 var(--mu-family);
+  letter-spacing:0;
+  overflow-wrap:break-word;
+  word-break:normal;
+  user-select:text;
+}
+#mu-popup-footer #gotoDashboard {
+  visibility:visible!important;
+  flex:0 0 44px!important;
+  border-radius:14px!important;
+}
+#mu-popup-footer #gotoDashboard .caption {
+  display:none!important;
+}
+#mu-popup-footer #gotoDashboard:hover,
+#mu-popup-footer #gotoDashboard:active {
+  transform:none!important;
+  transition:none!important;
+  animation:none!important;
 }
