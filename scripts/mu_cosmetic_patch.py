@@ -45,12 +45,12 @@ def patch_cosmetic_filtering(extension: Path) -> None:
         "        return isCosmeticDisabled(request.hostname);\n\n"
         "    case 'muSetCosmeticFiltering': {\n"
         "        const result = await setCosmeticDisabled(request.hostname, request.disabled);\n"
-        "        await registerContentScripts();\n"
+        "        await Promise.all([registerContentScripts(), registerUserScripts()]);\n"
         "        return result;\n"
         "    }\n\n"
         "    case 'muRestoreCosmeticFiltering':\n"
         "        await restoreCosmeticDisabledHosts(request.hostnames);\n"
-        "        await registerContentScripts();\n"
+        "        await Promise.all([registerContentScripts(), registerUserScripts()]);\n"
         "        return true;\n\n"
         "    case 'applyRulesets': {",
     )
@@ -79,6 +79,31 @@ def patch_cosmetic_filtering(extension: Path) -> None:
         "        }\n"
         "    }\n\n"
         "    ubolLog(`Unregistered all content (css/js)`);",
+    )
+
+    # Sandbox and imported cosmetic filters are registered as userScripts.
+    # Their generated IDs end in -css-specific; do not suppress +js scriptlets.
+    compiled = extension / "js" / "compiled-filters.js"
+    replace_once(
+        compiled,
+        "import { getFilteringModeDetails } from './mode-manager.js';",
+        "import { getFilteringModeDetails } from './mode-manager.js';\n"
+        "import { getCosmeticDisabledHosts } from './mu-cosmetic-rules.js';",
+    )
+    replace_once(
+        compiled,
+        "    if ( supportsUserScripts() && toAdd.length ) {",
+        "    const disabledCosmeticHosts = await getCosmeticDisabledHosts();\n"
+        "    if ( disabledCosmeticHosts.length ) {\n"
+        "        const exceptions = matchesFromHostnames(disabledCosmeticHosts);\n"
+        "        for ( const script of toAdd ) {\n"
+        "            if ( script.id.endsWith('-css-specific') === false ) { continue; }\n"
+        "            script.excludeMatches = [\n"
+        "                ...new Set([ ...(script.excludeMatches || []), ...exceptions ]),\n"
+        "            ];\n"
+        "        }\n"
+        "    }\n"
+        "    if ( supportsUserScripts() && toAdd.length ) {",
     )
 
     # Optional additional field is backward-compatible: official Lite
