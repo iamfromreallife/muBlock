@@ -548,3 +548,18 @@ body[data-pane="rulesets"] #lists{margin-top:0!important;padding-top:0!important
 :root, :root *, :root *::before,:root *::after{
   animation:none!important;transition:none!important;scroll-behavior:auto!important;
 }
+
+/* Saturated selected Crayola-blue navigation always uses white text. */
+body[data-pane="settings"] #dashboard-nav [data-pane="settings"],
+body[data-pane="rulesets"] #dashboard-nav [data-pane="rulesets"],
+body[data-pane="filters"] #dashboard-nav [data-pane="filters"],
+body[data-pane="develop"] #dashboard-nav [data-pane="develop"],
+body[data-pane="about"] #dashboard-nav [data-pane="about"] {
+  background:#1f75fe!important;
+  color:#fff!important;
+}
+#dashboard-nav .tabButton[aria-selected="true"] .mu-icon,
+#dashboard-nav .tabButton[aria-selected="true"] svg {
+  color:#fff!important;
+  stroke:#fff!important;
+}
