@@ -13,7 +13,8 @@ EXTENSION = pathlib.Path(sys.argv[2]).resolve()
 sys.argv = [sys.argv[0]]
 
 UI_PAGES = {
-    'popup.html','dashboard.html','picker-ui.html','unpicker-ui.html','zapper-ui.html'
+    'popup.html','dashboard.html','picker-ui.html','unpicker-ui.html','zapper-ui.html',
+    'matched-rules.html','report.html','strictblock.html'
 }
 UI_ASSETS = {
     'css/mu-design.css','css/mu-popup.css','css/mu-dashboard.css',
@@ -21,7 +22,9 @@ UI_ASSETS = {
     'img/mu-logo.svg'
 }
 ICONS = {'img/mu-%d.png' % size for size in (16,32,48,64,128)}
-NEW_FILES = UI_ASSETS | ICONS
+TOOLBAR_ICONS = {f'img/mu-toolbar{state}-{size}.png'
+    for state in ('', '-off') for size in (16,32,64,128)}
+NEW_FILES = UI_ASSETS | ICONS | TOOLBAR_ICONS
 
 class PackageIntegrity(unittest.TestCase):
     @classmethod
@@ -31,7 +34,7 @@ class PackageIntegrity(unittest.TestCase):
 
     def test_all_files_and_filtering_engine_preserved(self):
         self.assertEqual(self.actual,self.originals | NEW_FILES)
-        exempt = UI_PAGES | {'manifest.json'}
+        exempt = UI_PAGES | {'manifest.json','js/action.js'}
         for rel in self.originals:
             if rel in exempt or (rel.startswith('_locales/') and rel.endswith('/messages.json')):
                 continue
@@ -79,6 +82,41 @@ class PackageIntegrity(unittest.TestCase):
         for relative in protected:
             self.assertEqual((UPSTREAM/relative).read_bytes(),
                              (EXTENSION/relative).read_bytes(),relative)
+
+    def test_toolbar_icon_metadata_and_runtime_switching(self):
+        manifest=json.loads((EXTENSION/'manifest.json').read_text())
+        for size in (16,32,64,128):
+            self.assertEqual(manifest['action']['default_icon'][str(size)],
+                             f'img/mu-toolbar-{size}.png')
+            for suffix in ('','-off'):
+                self.assertTrue((EXTENSION/f'img/mu-toolbar{suffix}-{size}.png').is_file())
+        original=(UPSTREAM/'js/action.js').read_text()
+        modified=(EXTENSION/'js/action.js').read_text()
+        for size in (16,32,64,128):
+            for old,new in (
+                (f'/img/icon_{size}.png',f'/img/mu-toolbar-{size}.png'),
+                (f'/img/icon_{size}_off.png',f'/img/mu-toolbar-off-{size}.png'),
+            ):
+                self.assertIn(old,original)
+                self.assertIn(new,modified)
+                original=original.replace(old,new)
+        self.assertEqual(original,modified,
+                         'Only icon asset filenames may differ in action.js')
+
+    def test_search_and_no_motion_assets(self):
+        source=(EXTENSION/'js/mu-filters.js').read_text()
+        css=(EXTENSION/'css/mu-dashboard.css').read_text()
+        picker=(EXTENSION/'css/mu-picker.css').read_text()
+        assert 'mu-site-search' in source and 'renderSearch' in source
+        assert 'mu-site-search-results' in source
+        self.assertIn('mu-search-match mark',css)
+        self.assertIn('#mu-site-textarea',css)
+        self.assertIn('span.on',picker)
+        self.assertIn('animation:none!important',
+                      (EXTENSION/'css/mu-design.css').read_text())
+        for page in ('dashboard.html','matched-rules.html','report.html','strictblock.html'):
+            html=(EXTENSION/page).read_text()
+            self.assertIn('img/mu-64.png',html)
 
     def test_unified_my_filters_without_duplicate_legacy_editor(self):
         dash = (EXTENSION/'dashboard.html').read_text()
