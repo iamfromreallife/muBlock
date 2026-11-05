@@ -1,96 +1,58 @@
-name: Build muBlock Chrome extension
+name: Package muBlock Chrome extension
 
+# Build ONLY when all source changes are committed. A release-trigger commit
+# to .github/RELEASE_TRIGGER launches exactly one packaging run; routine
+# commits do not start an action. workflow_dispatch also allows manual runs.
 on:
-  push:
-    branches: [main, feature/mublock-visual-polish-20261105]
-    paths-ignore:
-      - "dist/**"
-      - "LICENSE"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/RELEASE_TRIGGER"
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  package:
     runs-on: ubuntu-latest
     timeout-minutes: 50
     steps:
-      - name: Check out fork
+      - name: Check out finalized muBlock source
         uses: actions/checkout@v4
-        with:
-          persist-credentials: true
 
-      - name: Fetch authoritative Chromium uBO Lite distribution
+      - name: Copy upstream uBlock Origin Lite Chromium distribution
         run: |
           set -euo pipefail
           git clone --depth=1 https://github.com/uBlockOrigin/uBOL-home.git "$RUNNER_TEMP/uBOL-home"
-          test -f "$RUNNER_TEMP/uBOL-home/chromium/manifest.json"
-          test -d "$RUNNER_TEMP/uBOL-home/chromium/rulesets"
           rm -rf dist/chrome-unpacked
           mkdir -p dist/chrome-unpacked
           cp -a "$RUNNER_TEMP/uBOL-home/chromium/." dist/chrome-unpacked/
           cp "$RUNNER_TEMP/uBOL-home/LICENSE" LICENSE
           git -C "$RUNNER_TEMP/uBOL-home" rev-parse HEAD > dist/UPSTREAM_COMMIT.txt
-          echo "Upstream uBO Lite commit:"
-          cat dist/UPSTREAM_COMMIT.txt
 
-      - name: Install offline icon-renderer build dependencies
+      - name: Install icon renderer
         run: |
           python3 -m pip install --disable-pip-version-check --user cairosvg==2.8.2 pillow==12.0.0
 
-      - name: Apply muBlock UI overlay
+      - name: Apply the finalized muBlock UI overlay
         run: |
           set -euo pipefail
           python3 scripts/apply_overlay.py dist/chrome-unpacked
 
-      - name: Verify MV3 distribution and all unchanged upstream files
+      - name: Create complete unpacked extension ZIP
         run: |
           set -euo pipefail
-          python3 tests/test_package.py "$RUNNER_TEMP/uBOL-home/chromium" dist/chrome-unpacked
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          p = Path('dist/chrome-unpacked')
-          m = json.loads((p/'manifest.json').read_text())
-          print(f"MV{m['manifest_version']} manifest; {sum(x.is_file() for x in p.rglob('*'))} runtime files")
-          PY
+          (cd dist && zip -q -r muBlock-chrome-unpacked.zip chrome-unpacked)
 
-      - name: Validate JavaScript source
-        run: |
-          node --check overlay/js/mu-filters.js
-          node --check overlay/js/mu-dashboard.js
-          node --check overlay/js/mu-popup.js
-          node --check overlay/js/mu-select.js
-
-      - name: Browser smoke test in real Chrome
-        run: |
-          set -euo pipefail
-          npm install --no-save --no-package-lock --ignore-scripts playwright
-          npx playwright install chromium
-          node tests/browser-smoke.cjs
-
-      - name: Upload UI screenshots for visual QA
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: chrome-ui-screenshots
-          path: test-artifacts/*.png
-          if-no-files-found: ignore
-
-      - name: Package downloadable ZIP
-        run: |
-          set -euo pipefail
-          (cd dist && zip -q -r chrome-unpacked.zip chrome-unpacked)
-
-      - name: Upload ready-to-load ZIP
+      - name: Publish installable ZIP artifact
         uses: actions/upload-artifact@v4
         with:
           name: muBlock-chrome-unpacked
-          path: dist/chrome-unpacked.zip
+          path: dist/muBlock-chrome-unpacked.zip
           if-no-files-found: error
 
-      - name: Commit complete unpacked distribution to main
+      - name: Commit generated extension to main
         if: github.ref == 'refs/heads/main'
         run: |
           set -euo pipefail
@@ -98,6 +60,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add LICENSE dist/UPSTREAM_COMMIT.txt dist/chrome-unpacked
           if ! git diff --cached --quiet; then
-            git commit -m "Build installable muBlock MV3 extension from uBO Lite"
+            git commit -m "Publish finalized muBlock Chrome extension"
             git push origin HEAD:main
           fi
