@@ -26,7 +26,7 @@ Find previous packages under [GitHub Releases](https://github.com/iamfromreallif
 - A compact, localized popup with power controls alongside the site name, and a separate bottom Settings footer showing the actual bundled Lite version in muted text.
 - **Extension language:** the first Behaviour setting offers the browser default and the Lite UI languages bundled with the installed release. The selected locale is stored locally and takes effect in open extension pages immediately via reload; browser-owned Chrome menus and extension names remain controlled by Chrome. Missing muBlock-only translations fall back to English.
 - **Popup labels:** the filtering-mode heading uses black text in light mode, and both that heading and the no-website message capitalize their first letter correctly for the selected language.
-- An element picker with its former **512px maximum width**, compact vertical controls, and scrollable candidate lists when fully expanded.
+- The original full-size uBlock Origin Lite element-picker layout (including its normal height, spacing, controls, and candidate list), retaining muBlock's maroon colours and visual styling.
 - A clean maroon (**#800000**) and neutral UI with the classic uBlock Origin shield, including matching toolbar and disabled-state icon variants.
 - Rounded dashboard cards and subtle shadows shared by Settings, Filter Lists, Custom Filters, Developer Tools, and About.
 - Dashboard tabs limited to a 1,000px-wide responsive layout instead of the previous 1,200px maximum.
