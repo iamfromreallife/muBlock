@@ -29,11 +29,11 @@ Find previous packages under [GitHub Releases](https://github.com/iamfromreallif
 - The original full-size uBlock Origin Lite element-picker layout (including its normal height, spacing, controls, and candidate list), retaining muBlock's maroon colours and visual styling.
 - A clean maroon (**#800000**) and neutral UI with the classic uBlock Origin shield, including matching toolbar and disabled-state icon variants.
 - Rounded dashboard cards and subtle shadows shared by Settings, Filter Lists, Custom Filters, Developer Tools, and About.
-- All dashboard tabs use a responsive **1,100px maximum width**. The muBlock logo and navigation tabs are horizontally centered as a single group. Labels stay on one line across locales, with safe horizontal scrolling instead of wrapping on narrow windows.
+- All dashboard tabs use a responsive **1,100px maximum width**. The muBlock logo and navigation tabs are **left-aligned** on one row, with horizontal scrolling rather than wrapping on narrow windows. Every tab uses the same **28px gap** between the navigation and first section.
 - **Custom Filters:** a large editable area for cosmetic rules added by the element picker, shown newest first, with live search in an editable multiline filter view.
 - A separate sandbox editor preserving Lite's CodeMirror and storage behavior; the Save icon inherits the Save label's live foreground color.
 - **Filter Lists:** one unified, full-width dashboard card containing the rule count, search field and filter groups, with a short grey description directly after each list's original home icon. No misleading list-version numbers.
-- A compact About tab with distinct titled groups for attribution, version, useful links, contributors, dependencies, and technical details, without duplicate upstream headings.
+- A compact About tab with distinct titled groups for attribution, version, useful links, contributors, dependencies, and technical details, without duplicate upstream headings. About links use **Crayola Blue (#1F75FE)**, while attribution lines have equal, compact spacing.
 - Original uBlock Origin Lite configuration backups and imports/exports.
 
 muBlock adds no replacement filtering engine, telemetry, or remotely loaded code.
