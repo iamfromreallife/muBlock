@@ -1,7 +1,7 @@
 /* Lightweight informational labels for uBO Lite filter-list entries.
  * The original filter-lists.js owns every list, checkbox and runtime action.
- * Do not confuse upstream list revisions with the Lite bundle version:
- * ruleset-details.json does not contain a version per filter list.
+ * List-specific versions are intentionally not displayed. Descriptions
+ * follow the original home icon in Lite's native iconbar.
  */
 const container = document.querySelector('#lists');
 const pt = (chrome.i18n.getUILanguage() || 'en').toLowerCase().startsWith('pt');
@@ -136,15 +136,6 @@ function purpose(rule) {
   return translation[pt ? 0 : 1];
 }
 
-const bundleVersion = chrome.runtime.getManifest().version;
-const edition = pt
-  ? (rule) => rule.group === 'imported'
-    ? 'Lista importada · versão própria não indicada'
-    : 'Incluída no Lite v' + bundleVersion
-  : (rule) => rule.group === 'imported'
-    ? 'Imported list · individual version unavailable'
-    : 'Included in Lite v' + bundleVersion;
-
 function addInformation() {
   const details = self.cachedRulesetData?.rulesetDetails;
   if (!Array.isArray(details)) return;
@@ -153,15 +144,19 @@ function addInformation() {
   for (const entry of container.querySelectorAll('.listEntry[data-role="leaf"][data-rulesetid]')) {
     const rule = byId.get(entry.dataset.rulesetid);
     if (!rule) continue;
-    const metaText = edition(rule) + ' · ' + purpose(rule);
-    let note = entry.querySelector(':scope > .mu-list-info');
+    const info = purpose(rule);
+    // Keep the description in the original Lite iconbar directly after the
+    // small home link. Never move or recreate the native checkbox/name/icon.
+    const bar = entry.querySelector(':scope > .detailbar > .iconbar');
+    if (!bar) continue;
+    let note = bar.querySelector(':scope > .mu-list-info-inline');
     if (!note) {
-      note = document.createElement('p');
-      note.className = 'mu-list-info';
-      note.setAttribute('aria-label', pt ? 'Informação da lista' : 'Filter list information');
-      entry.append(note);
+      note = document.createElement('span');
+      note.className = 'mu-list-info-inline';
+      note.setAttribute('aria-label', pt ? 'Descrição da lista' : 'Filter list description');
+      bar.append(note);
     }
-    if (note.textContent !== metaText) note.textContent = metaText;
+    if (note.textContent !== info) note.textContent = info;
   }
 }
 
