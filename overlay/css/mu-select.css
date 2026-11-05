@@ -51,3 +51,12 @@ select:not(.mu-native-select){
  box-shadow:0 2px 9px rgb(21 34 54 / .06);
 }
 .mu-select-trigger,.mu-select-menu,.mu-select-option{animation:none!important;transition:none!important;}
+
+/* Developer ruleset menu: legible width, same soft-grey surface as every menu. */
+section[data-pane="develop"] .mu-select-wrap{
+  width:min(390px,calc(100vw - 140px));max-width:100%;
+}
+section[data-pane="develop"] .mu-select-trigger{min-width:0;}
+section[data-pane="develop"] label[for="editors"]{margin-right:8px;}
+section[data-pane="develop"] .mu-select-menu{font-size:13px;}
+section[data-pane="develop"] .mu-select-option{text-align:left!important;}
