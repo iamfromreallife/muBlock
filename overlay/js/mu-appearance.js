@@ -54,11 +54,15 @@ function store() {
 }
 const settings = document.querySelector('section[data-pane="settings"]');
 let fontSelect, fontSize, fontSizeValue, themeButtons = [];
+let refreshing = false;
 
 function refreshInputs() {
   if (!fontSelect) return;
+  refreshing = true;
   fontSelect.value = current.font;
+  // The appearance dropdown wrapper listens for the native event.
   fontSelect.dispatchEvent(new Event('change', {bubbles: false}));
+  refreshing = false;
   fontSize.value = String(current.size);
   fontSizeValue.textContent = current.size + ' px';
   fontSize.setAttribute('aria-valuetext', current.size + ' px');
@@ -104,7 +108,7 @@ function setupSettings() {
   fonts.line.append(fontSelect);
   section.append(fonts.line);
   fontSelect.addEventListener('change', () => {
-    if (!Object.hasOwn(fontNames, fontSelect.value)) return;
+    if (refreshing || !Object.hasOwn(fontNames, fontSelect.value)) return;
     current.font = fontSelect.value;
     apply(); store();
   });
