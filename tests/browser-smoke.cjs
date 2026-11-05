@@ -71,7 +71,7 @@ async function main(){
      await search.fill('not-present-anywhere');
      assert.equal(await page.locator('#mu-site-search-results .mu-search-match').count(),0);
      await search.fill('older');
-     await page.locator('#mu-site-search-results .mu-search-match').first.click();
+     await page.locator('#mu-site-search-results .mu-search-match').first().click();
      assert.equal(await search.inputValue(),'');
      assert.equal(await page.locator('#mu-site-textarea').isVisible(),true);
      // Save sandbox rules through Lite's original CodeMirror and backend.
