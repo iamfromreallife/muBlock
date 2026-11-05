@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "아래의 필터를 선택하면 웹페이지의 일치하는 요소가 강조 표시됩니다. 필터를 삭제하려면 휴지통을 클릭합니다.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "모양"
-  },
-  "muAppearanceFont": {
-    "message": "글꼴"
-  },
-  "muAppearanceFontSize": {
-    "message": "글꼴 크기"
-  },
-  "muAppearanceTheme": {
-    "message": "테마"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "시스템 설정 따르기"
-  },
-  "muAppearanceLight": {
-    "message": "라이트"
-  },
-  "muAppearanceDark": {
-    "message": "다크"
-  },
-  "muAppearanceSystemFont": {
-    "message": "시스템 기본값"
-  },
-  "muAppearanceMonospace": {
-    "message": "고정폭"
   }
 }

@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "Изаберите филтер испод да бисте истакли одговарајуће елементе на веб страници. Кликните на канту за смеће да бисте уклонили филтер.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Изглед"
-  },
-  "muAppearanceFont": {
-    "message": "Фонт"
-  },
-  "muAppearanceFontSize": {
-    "message": "Величина фонта"
-  },
-  "muAppearanceTheme": {
-    "message": "Тема"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Прати систем"
-  },
-  "muAppearanceLight": {
-    "message": "Светла"
-  },
-  "muAppearanceDark": {
-    "message": "Тамна"
-  },
-  "muAppearanceSystemFont": {
-    "message": "Системски фонт"
-  },
-  "muAppearanceMonospace": {
-    "message": "Моноширински"
   }
 }

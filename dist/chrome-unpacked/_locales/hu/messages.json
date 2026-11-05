@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "Válasszon alább egy szűrőt, hogy kiemelje az egyező elemeket a weboldalon. Kattintson a kuka ikonra egy szűrő eltávolításához.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Megjelenés"
-  },
-  "muAppearanceFont": {
-    "message": "Betűtípus"
-  },
-  "muAppearanceFontSize": {
-    "message": "Betűméret"
-  },
-  "muAppearanceTheme": {
-    "message": "Téma"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Rendszerbeállítás"
-  },
-  "muAppearanceLight": {
-    "message": "Világos"
-  },
-  "muAppearanceDark": {
-    "message": "Sötét"
-  },
-  "muAppearanceSystemFont": {
-    "message": "Rendszer alapértelmezése"
-  },
-  "muAppearanceMonospace": {
-    "message": "Rögzített szélességű"
   }
 }

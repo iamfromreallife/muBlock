@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "Web sayfasındaki eşleşen öğeleri vurgulamak için aşağıdan bir filtre seçin. Bir filtreyi kaldırmak için çöp kutusuna tıklayın.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Görünüm"
-  },
-  "muAppearanceFont": {
-    "message": "Yazı tipi"
-  },
-  "muAppearanceFontSize": {
-    "message": "Yazı tipi boyutu"
-  },
-  "muAppearanceTheme": {
-    "message": "Tema"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Sistemi takip et"
-  },
-  "muAppearanceLight": {
-    "message": "Açık"
-  },
-  "muAppearanceDark": {
-    "message": "Koyu"
-  },
-  "muAppearanceSystemFont": {
-    "message": "Sistem varsayılanı"
-  },
-  "muAppearanceMonospace": {
-    "message": "Eş aralıklı"
   }
 }

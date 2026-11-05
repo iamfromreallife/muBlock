@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "Chọn một bộ lọc bên dưới để đánh dấu các phần tử phù hợp trong trang web. Nhấp vào thùng rác để xóa bộ lọc.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Giao diện"
-  },
-  "muAppearanceFont": {
-    "message": "Phông chữ"
-  },
-  "muAppearanceFontSize": {
-    "message": "Cỡ chữ"
-  },
-  "muAppearanceTheme": {
-    "message": "Chủ đề"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Theo hệ thống"
-  },
-  "muAppearanceLight": {
-    "message": "Sáng"
-  },
-  "muAppearanceDark": {
-    "message": "Tối"
-  },
-  "muAppearanceSystemFont": {
-    "message": "Mặc định hệ thống"
-  },
-  "muAppearanceMonospace": {
-    "message": "Đơn cách"
   }
 }

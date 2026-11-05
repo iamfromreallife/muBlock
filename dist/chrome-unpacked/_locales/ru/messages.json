@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "Выберите фильтр ниже, чтобы подсветить соответствующие элементы на странице. Нажмите на корзину для удаления фильтра.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Оформление"
-  },
-  "muAppearanceFont": {
-    "message": "Шрифт"
-  },
-  "muAppearanceFontSize": {
-    "message": "Размер шрифта"
-  },
-  "muAppearanceTheme": {
-    "message": "Тема"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Как в системе"
-  },
-  "muAppearanceLight": {
-    "message": "Светлая"
-  },
-  "muAppearanceDark": {
-    "message": "Тёмная"
-  },
-  "muAppearanceSystemFont": {
-    "message": "Системный шрифт"
-  },
-  "muAppearanceMonospace": {
-    "message": "Моноширинный"
   }
 }

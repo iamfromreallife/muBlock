@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "Valitse alta suodatin korostaaksesi verkkosivulta sitä vastaavat elementit. Poista suodatin klikkamalla roskakoria.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Ulkoasu"
-  },
-  "muAppearanceFont": {
-    "message": "Fontti"
-  },
-  "muAppearanceFontSize": {
-    "message": "Fonttikoko"
-  },
-  "muAppearanceTheme": {
-    "message": "Teema"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Järjestelmän mukaan"
-  },
-  "muAppearanceLight": {
-    "message": "Vaalea"
-  },
-  "muAppearanceDark": {
-    "message": "Tumma"
-  },
-  "muAppearanceSystemFont": {
-    "message": "Järjestelmän oletus"
-  },
-  "muAppearanceMonospace": {
-    "message": "Tasalevyinen"
   }
 }

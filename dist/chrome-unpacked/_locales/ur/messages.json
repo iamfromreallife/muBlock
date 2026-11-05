@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "ویب صفحے میں مماثل عناصر کو نمایاں کرنے کے لیے نیچے دیے گئے فلٹر کو منتخب کریں۔ فلٹر کو ہٹانے کے لیے کوڑے دان پر کلک کریں۔",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Appearance"
-  },
-  "muAppearanceFont": {
-    "message": "Font"
-  },
-  "muAppearanceFontSize": {
-    "message": "Font size"
-  },
-  "muAppearanceTheme": {
-    "message": "Theme"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Follow System"
-  },
-  "muAppearanceLight": {
-    "message": "Light"
-  },
-  "muAppearanceDark": {
-    "message": "Dark"
-  },
-  "muAppearanceSystemFont": {
-    "message": "System default"
-  },
-  "muAppearanceMonospace": {
-    "message": "Monospace"
   }
 }

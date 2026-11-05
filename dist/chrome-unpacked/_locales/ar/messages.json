@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "اختر خيار تصفية أدناه لتمييز العناصر المطابقة في صفحة الويب.\n انقر على سلة المهملات لإزالة خيار التصفية.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "المظهر"
-  },
-  "muAppearanceFont": {
-    "message": "الخط"
-  },
-  "muAppearanceFontSize": {
-    "message": "حجم الخط"
-  },
-  "muAppearanceTheme": {
-    "message": "السمة"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "اتباع النظام"
-  },
-  "muAppearanceLight": {
-    "message": "فاتح"
-  },
-  "muAppearanceDark": {
-    "message": "داكن"
-  },
-  "muAppearanceSystemFont": {
-    "message": "خط النظام"
-  },
-  "muAppearanceMonospace": {
-    "message": "أحادي المسافة"
   }
 }

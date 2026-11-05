@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "ವೆಬ್ ಪುಟದಲ್ಲಿ ಹೊಂದಾಣಿಕೆಯ ಅಂಶಗಳನ್ನು ಹೈಲೈಟ್ ಮಾಡಲು ಕೆಳಗಿನ ಶೋಧಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ. ಶೋಧಕವನ್ನು ತೆಗೆದುಹಾಕಲು ಕಸದ ಬುಟ್ಟಿಯ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Appearance"
-  },
-  "muAppearanceFont": {
-    "message": "Font"
-  },
-  "muAppearanceFontSize": {
-    "message": "Font size"
-  },
-  "muAppearanceTheme": {
-    "message": "Theme"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Follow System"
-  },
-  "muAppearanceLight": {
-    "message": "Light"
-  },
-  "muAppearanceDark": {
-    "message": "Dark"
-  },
-  "muAppearanceSystemFont": {
-    "message": "System default"
-  },
-  "muAppearanceMonospace": {
-    "message": "Monospace"
   }
 }

@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "Selecione um filtro abaixo para destacar os elementos correspondentes na página. Clique na lixeira para remover um filtro.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Aparência"
-  },
-  "muAppearanceFont": {
-    "message": "Fonte"
-  },
-  "muAppearanceFontSize": {
-    "message": "Tamanho da fonte"
-  },
-  "muAppearanceTheme": {
-    "message": "Tema"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Seguir o sistema"
-  },
-  "muAppearanceLight": {
-    "message": "Claro"
-  },
-  "muAppearanceDark": {
-    "message": "Escuro"
-  },
-  "muAppearanceSystemFont": {
-    "message": "Padrão do sistema"
-  },
-  "muAppearanceMonospace": {
-    "message": "Monoespaçada"
   }
 }

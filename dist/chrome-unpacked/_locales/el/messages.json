@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "Επιλέξτε ένα φίλτρο παρακάτω για να επισημάνετε τα στοιχεία που αντιστοιχούν στην ιστοσελίδα. Κάντε κλικ στον κάδο απορριμμάτων για να αφαιρέσετε ένα φίλτρο.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Εμφάνιση"
-  },
-  "muAppearanceFont": {
-    "message": "Γραμματοσειρά"
-  },
-  "muAppearanceFontSize": {
-    "message": "Μέγεθος γραμματοσειράς"
-  },
-  "muAppearanceTheme": {
-    "message": "Θέμα"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Σύμφωνα με το σύστημα"
-  },
-  "muAppearanceLight": {
-    "message": "Φωτεινό"
-  },
-  "muAppearanceDark": {
-    "message": "Σκοτεινό"
-  },
-  "muAppearanceSystemFont": {
-    "message": "Προεπιλογή συστήματος"
-  },
-  "muAppearanceMonospace": {
-    "message": "Σταθερού πλάτους"
   }
 }

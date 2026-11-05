@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "ওয়েব পৃষ্ঠায় মিলে যাওয়া উপাদানগুলি হাইলাইট করতে নিচের একটি ফিল্টার নির্বাচন করুন। একটি ফিল্টার সরাতে ট্র্যাশ ক্যানে ক্লিক করুন।",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Appearance"
-  },
-  "muAppearanceFont": {
-    "message": "Font"
-  },
-  "muAppearanceFontSize": {
-    "message": "Font size"
-  },
-  "muAppearanceTheme": {
-    "message": "Theme"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Follow System"
-  },
-  "muAppearanceLight": {
-    "message": "Light"
-  },
-  "muAppearanceDark": {
-    "message": "Dark"
-  },
-  "muAppearanceSystemFont": {
-    "message": "System default"
-  },
-  "muAppearanceMonospace": {
-    "message": "Monospace"
   }
 }

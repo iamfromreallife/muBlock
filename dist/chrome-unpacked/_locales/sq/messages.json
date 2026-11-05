@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "Zgjidhni ndër filtrat më poshtë për të parë elementin që i korrespondon në faqe. Filtrat hiqen duke klikuar koshin.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Appearance"
-  },
-  "muAppearanceFont": {
-    "message": "Font"
-  },
-  "muAppearanceFontSize": {
-    "message": "Font size"
-  },
-  "muAppearanceTheme": {
-    "message": "Theme"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Follow System"
-  },
-  "muAppearanceLight": {
-    "message": "Light"
-  },
-  "muAppearanceDark": {
-    "message": "Dark"
-  },
-  "muAppearanceSystemFont": {
-    "message": "System default"
-  },
-  "muAppearanceMonospace": {
-    "message": "Monospace"
   }
 }

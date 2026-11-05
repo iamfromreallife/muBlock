@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "בחרו את המסנן למטה להצגת הרכיבים התואמים בדף האינטרנט. לחצו על פח האשפה למחיקת המסנן.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "מראה"
-  },
-  "muAppearanceFont": {
-    "message": "גופן"
-  },
-  "muAppearanceFontSize": {
-    "message": "גודל גופן"
-  },
-  "muAppearanceTheme": {
-    "message": "ערכת נושא"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "לפי המערכת"
-  },
-  "muAppearanceLight": {
-    "message": "בהיר"
-  },
-  "muAppearanceDark": {
-    "message": "כהה"
-  },
-  "muAppearanceSystemFont": {
-    "message": "ברירת מחדל של המערכת"
-  },
-  "muAppearanceMonospace": {
-    "message": "רוחב קבוע"
   }
 }

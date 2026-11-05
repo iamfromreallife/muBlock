@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "വെബ് പേജിലെ പൊരുത്തപ്പെടുന്ന മൂലകങ്ങൾ ഹൈലൈറ്റ് ചെയ്യാൻ ചുവടെയുള്ള ഒരു ഫിൽട്ടർ തിരഞ്ഞെടുക്കുക. ഒരു ഫിൽട്ടർ നീക്കം ചെയ്യാൻ ട്രാഷ് ഐക്കൺ ക്ലിക്ക് ചെയ്യുക.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Appearance"
-  },
-  "muAppearanceFont": {
-    "message": "Font"
-  },
-  "muAppearanceFontSize": {
-    "message": "Font size"
-  },
-  "muAppearanceTheme": {
-    "message": "Theme"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Follow System"
-  },
-  "muAppearanceLight": {
-    "message": "Light"
-  },
-  "muAppearanceDark": {
-    "message": "Dark"
-  },
-  "muAppearanceSystemFont": {
-    "message": "System default"
-  },
-  "muAppearanceMonospace": {
-    "message": "Monospace"
   }
 }

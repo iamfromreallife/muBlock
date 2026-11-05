@@ -19,7 +19,7 @@ body > header {
   top: 0;
   z-index: 100;
   padding: 13px max(16px, 2.6vw) 10px;
-  border-bottom: 1px solid var(--mu-outline);
+  border-bottom: 0;
   background: color-mix(in srgb, var(--mu-background) 90%, transparent);
 }
 #dashboard-nav {
@@ -803,4 +803,87 @@ section[data-pane="develop"] .cm-tooltip{
 @media(max-width:700px){
   #mu-site-search-results.mu-filtered-editor{min-height:360px;height:58vh;}
   section[data-pane="develop"] .cm-container{min-height:280px;height:53vh;}
+}
+
+
+/* Dashboard pages all use the same uninterrupted background below navigation.
+ * Both Lite and muBlock used to draw the horizontal header separator. */
+body[data-pane] > header {
+  border:0!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+  outline:none!important;
+}
+body[data-pane] > header::before,
+body[data-pane] > header::after {
+  border:0!important;
+  box-shadow:none!important;
+}
+#dashboard-nav,
+#dashboard-nav .tabButton {
+  border:0!important;
+  border-bottom:0!important;
+}
+body[data-pane="settings"] > header,
+body[data-pane="rulesets"] > header,
+body[data-pane="filters"] > header,
+body[data-pane="develop"] > header,
+body[data-pane="about"] > header {
+  border-bottom:0!important;
+}
+
+/* Keep prior About improvements independent of the removed Appearance feature. */
+section[data-pane="about"] #aboutNameVer {
+  box-sizing:border-box;
+  display:block;
+  width:100%;
+  margin:0 0 15px;
+  padding:13px 17px!important;
+  background:#ff0000!important;
+  color:#fff!important;
+  border-radius:13px;
+  font-weight:700;
+  line-height:1.5;
+  text-align:left!important;
+  overflow-wrap:anywhere;
+}
+section[data-pane="about"] #aboutNameVer + .liul,
+section[data-pane="about"] #aboutNameVer + .liul > .li {
+  box-sizing:border-box;
+  padding-left:0!important;
+  padding-inline-start:0!important;
+  margin-left:0!important;
+  margin-inline-start:0!important;
+  text-align:left!important;
+}
+section[data-pane="about"] .body a,
+section[data-pane="about"] .body a:link,
+section[data-pane="about"] .body a:visited,
+section[data-pane="about"] .body a:hover {
+  color:#ff0000!important;
+  text-decoration-color:#ff0000;
+}
+
+/* Retain the rounded selection corners requested in the earlier version. */
+section[data-pane="settings"] :is(.input.checkbox,.input.radio),
+section[data-pane="rulesets"] .input.checkbox,
+body :is(.input.checkbox,.input.radio) {
+  border-radius:7px!important;
+  overflow:hidden;
+}
+section[data-pane="settings"] input[type="checkbox"],
+section[data-pane="settings"] input[type="radio"],
+section[data-pane="rulesets"] input[type="checkbox"] {
+  accent-color:#ff0000!important;
+}
+section[data-pane="settings"] :is(input[type="checkbox"],input[type="radio"]) + svg,
+section[data-pane="rulesets"] input[type="checkbox"] + svg {
+  border-radius:6px!important;
+}
+#defaultFilteringMode .filteringModeCard,
+#defaultFilteringMode .filteringModeSlider .filteringModeButton {
+  border-radius:18px!important;
+}
+#defaultFilteringMode .filteringModeSlider .filteringModeButton > div {
+  border-radius:8px!important;
 }

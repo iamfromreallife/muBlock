@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "இணையப் பக்கத்தில் பொருந்தும் உறுப்புகளை முன்னிலைப்படுத்த கீழே உள்ள ஒரு வடிப்பானைத் தேர்ந்தெடுக்கவும். ஒரு வடிப்பானை அகற்ற குப்பைத் தொட்டியைக் கிளிக் செய்யவும்.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Appearance"
-  },
-  "muAppearanceFont": {
-    "message": "Font"
-  },
-  "muAppearanceFontSize": {
-    "message": "Font size"
-  },
-  "muAppearanceTheme": {
-    "message": "Theme"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Follow System"
-  },
-  "muAppearanceLight": {
-    "message": "Light"
-  },
-  "muAppearanceDark": {
-    "message": "Dark"
-  },
-  "muAppearanceSystemFont": {
-    "message": "System default"
-  },
-  "muAppearanceMonospace": {
-    "message": "Monospace"
   }
 }

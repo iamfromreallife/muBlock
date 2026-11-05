@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "下のフィルターを選択すると、ウェブページ内の一致する要素がハイライトされます。フィルタを削除するには、ゴミ箱をクリックしてください。",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "外観"
-  },
-  "muAppearanceFont": {
-    "message": "フォント"
-  },
-  "muAppearanceFontSize": {
-    "message": "文字サイズ"
-  },
-  "muAppearanceTheme": {
-    "message": "テーマ"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "システムに合わせる"
-  },
-  "muAppearanceLight": {
-    "message": "ライト"
-  },
-  "muAppearanceDark": {
-    "message": "ダーク"
-  },
-  "muAppearanceSystemFont": {
-    "message": "システム標準"
-  },
-  "muAppearanceMonospace": {
-    "message": "等幅フォント"
   }
 }

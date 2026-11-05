@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "Изберете филтър по-долу, за да маркирате съвпадащите елементи в уеб страницата. Кликнете върху кошчето, за да премахнете филтъра.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Външен вид"
-  },
-  "muAppearanceFont": {
-    "message": "Шрифт"
-  },
-  "muAppearanceFontSize": {
-    "message": "Размер на шрифта"
-  },
-  "muAppearanceTheme": {
-    "message": "Тема"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Според системата"
-  },
-  "muAppearanceLight": {
-    "message": "Светла"
-  },
-  "muAppearanceDark": {
-    "message": "Тъмна"
-  },
-  "muAppearanceSystemFont": {
-    "message": "Системен шрифт"
-  },
-  "muAppearanceMonospace": {
-    "message": "Моноширинен"
   }
 }

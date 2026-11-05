@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "వెబ్ పేజీలో సరిపోలే మూలకాలను హైలైట్ చేయడానికి క్రింద ఒక ఫిల్టర్‌ను ఎంచుకోండి. ఫిల్టర్‌ను తొలగించడానికి చెత్త డబ్బాపై క్లిక్ చేయండి.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Appearance"
-  },
-  "muAppearanceFont": {
-    "message": "Font"
-  },
-  "muAppearanceFontSize": {
-    "message": "Font size"
-  },
-  "muAppearanceTheme": {
-    "message": "Theme"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Follow System"
-  },
-  "muAppearanceLight": {
-    "message": "Light"
-  },
-  "muAppearanceDark": {
-    "message": "Dark"
-  },
-  "muAppearanceSystemFont": {
-    "message": "System default"
-  },
-  "muAppearanceMonospace": {
-    "message": "Monospace"
   }
 }

@@ -462,32 +462,5 @@
   "unpickerUsage": {
     "message": "Seleziona un filtro per evidenziare gli elementi corrispondenti nella pagina web. Clicca il cestino per rimuovere un filtro.",
     "description": "Summary description on how to use the tool to remove custom filters"
-  },
-  "muAppearanceTitle": {
-    "message": "Aspetto"
-  },
-  "muAppearanceFont": {
-    "message": "Carattere"
-  },
-  "muAppearanceFontSize": {
-    "message": "Dimensione carattere"
-  },
-  "muAppearanceTheme": {
-    "message": "Tema"
-  },
-  "muAppearanceFollowSystem": {
-    "message": "Segui il sistema"
-  },
-  "muAppearanceLight": {
-    "message": "Chiaro"
-  },
-  "muAppearanceDark": {
-    "message": "Scuro"
-  },
-  "muAppearanceSystemFont": {
-    "message": "Carattere di sistema"
-  },
-  "muAppearanceMonospace": {
-    "message": "Monospaziato"
   }
 }
