@@ -1,3 +1,4 @@
+import { muGetMessage, activeLocale } from './mu-language.js';
 /*
  * muBlock custom filters. Two separate original Lite stores:
  * - picker-generated cosmetics in an editable text area;
@@ -11,8 +12,8 @@ import punycode from './punycode.js';
 
 const pane=document.querySelector('#mu-filters');
 const sandbox=pane?.querySelector('#sandboxEditor');
-const tr=key=>chrome.i18n.getMessage(key)||key;
-const pt=(chrome.i18n.getUILanguage()||'en').toLowerCase().startsWith('pt');
+const tr=key=>muGetMessage(key)||key;
+const pt=activeLocale.toLowerCase().startsWith('pt');
 const t=pt?{
  invalid:'Linha %: filtro cosmético inválido ou não suportado.',
  host:'Linha %: indique um domínio válido.',

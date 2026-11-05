@@ -1,8 +1,9 @@
 /* Compact, localized muBlock popup; the original Lite popup.js owns filtering. */
+import { muGetMessage, capitalizeFirstLetter } from './mu-language.js';
 const main=document.querySelector('main');
 const slider=document.querySelector('.filteringModeSlider');
 const hostname=document.querySelector('#hostname');
-const tr=key=>chrome.i18n.getMessage(key)||key;
+const tr=key=>muGetMessage(key)||key;
 const paths=[
  '<circle cx="12" cy="12" r="9"/><path d="M5 5l14 14"/>',
  '<path d="M12 3 20 6v6c0 5-3 8-8 10-5-2-8-5-8-10V6z"/>',
@@ -30,7 +31,7 @@ if(main&&slider&&hostname&&!document.querySelector('#mu-sitebar')){
  sitebar.append(hostname,power);header.after(sitebar);
  const panel=document.createElement('section');panel.id='mu-modes-wrap';
  const heading=document.createElement('div');heading.className='mu-section-title';
- heading.textContent=tr('popupFilteringModeLabel');
+ heading.textContent=capitalizeFirstLetter(tr('popupFilteringModeLabel'));
  const modes=document.createElement('div');modes.id='mu-mode-buttons';
  modes.setAttribute('role','group');modes.setAttribute('aria-label',heading.textContent);
  const buttons=[];
@@ -83,6 +84,21 @@ if(main&&slider&&hostname&&!document.querySelector('#mu-sitebar')){
    }
  }
  power.addEventListener('click',()=>{if(!power.disabled&&active!==null)select(active===0?last:0);});
+ // Lite can populate the no-website message after muBlock draws the popup.
+ // Capitalize its first actual letter in every language, without altering
+ // legitimate site hostnames or changing Lite's popup initialization logic.
+ function titleCaseNoWebsite() {
+   if(!document.body.classList.contains('nodata')) return;
+   const message=capitalizeFirstLetter(tr('popupNoWebsite'));
+   if(hostname.textContent!==message)hostname.textContent=message;
+ }
+ new MutationObserver(titleCaseNoWebsite).observe(
+   hostname,{childList:true,characterData:true,subtree:true}
+ );
+ new MutationObserver(titleCaseNoWebsite).observe(
+   document.body,{attributes:true,attributeFilter:['class']}
+ );
+ titleCaseNoWebsite();
  new MutationObserver(sync).observe(slider,{attributes:true,attributeFilter:['data-level']});
  new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});
  sync();

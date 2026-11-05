@@ -483,3 +483,13 @@ body.nodata #mu-power,body.nodata .mu-mode-btn{opacity:.4;pointer-events:none;}
   transition:none!important;
   animation:none!important;
 }
+
+
+/* Header label is intentionally black in light mode in every translation.
+ * Dark theme uses white for minimum contrast on the dark panel. */
+:root:not(.dark) #mu-modes-wrap .mu-section-title {
+  color:#000!important;
+}
+:root.dark #mu-modes-wrap .mu-section-title {
+  color:#fff!important;
+}
