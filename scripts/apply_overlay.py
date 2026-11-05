@@ -21,12 +21,15 @@ ASSETS = (
     "css/mu-picker.css",
     "css/mu-select.css",
     "css/mu-slider.css",
+    "css/mu-language.css",
     "js/mu-popup.js",
     "js/mu-dashboard.js",
     "js/mu-filters.js",
     "js/mu-list-info.js",
     "js/mu-select.js",
     "js/mu-slider.js",
+    "js/mu-language.js",
+    "js/mu-language-settings.js",
     "img/mu-logo.svg",
 )
 
@@ -103,6 +106,40 @@ def main(extension: Path) -> None:
             "<title>uBO Lite Zapper</title>", f"<title>muBlock — {page.split('-')[0]}</title>"
         ), "utf-8")
 
+    # Override the *UI* localization adapter only: the native filtering
+    # engine, settings storage and Chrome's built-in locale are unchanged.
+    # The adapter still uses Lite's existing sanitizing i18n.render() logic.
+    core_i18n = extension / "js" / "i18n.js"
+    i18n_code = core_i18n.read_text("utf-8")
+    native_getter = "const i18n$ = (...args) => i18n.getMessage(...args);"
+    if i18n_code.count(native_getter) != 1:
+        raise RuntimeError("Lite i18n.js API changed; refuse an unsafe patch")
+    i18n_code = (
+        "import { muGetMessage } from './mu-language.js';\n"
+        + i18n_code.replace(native_getter,
+            "const i18n$ = (...args) => muGetMessage(...args);")
+    )
+    core_i18n.write_text(i18n_code, "utf-8")
+
+    # Lite's Settings reset warning uses an imported i18n object directly
+    # rather than i18n$. Route just that UI dialog through the same adapter.
+    lite_settings = extension / "js" / "settings.js"
+    settings_code = lite_settings.read_text("utf-8")
+    direct_message = "i18n.getMessage('resetToDefaultConfirm')"
+    if settings_code.count(direct_message) != 1:
+        raise RuntimeError("Lite Settings localization API changed")
+    settings_code = settings_code.replace(direct_message,
+        "muGetMessage('resetToDefaultConfirm')")
+    lite_settings.write_text(
+        "import { muGetMessage } from './mu-language.js';\n" + settings_code,
+        "utf-8",
+    )
+
+    insert_once(dashboard, "</head>",
+                '<link rel="stylesheet" href="css/mu-language.css">')
+    insert_once(dashboard, "</body>",
+                '<script src="js/mu-language-settings.js" type="module"></script>')
+
     # Original Lite action.js is intentionally left unchanged. The icon
     # renderer writes the official UBO emblem under its stock filenames so
     # Lite's enabled/disabled runtime icon-switching works as designed.
@@ -162,9 +199,15 @@ def main(extension: Path) -> None:
     manifest["icons"] = {str(size): f"img/icon_{size}.png" for size in (16,32,48,64,128,256,512)}
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", "utf-8")
 
+    from mu_language_i18n import add_language_messages
+    locales = sorted(path.parent.name for path in
+        (extension / "_locales").glob("*/messages.json"))
+    (extension / "js" / "mu-locales.json").write_text(
+        json.dumps(locales, ensure_ascii=False) + "\n", "utf-8")
     for localization in (extension / "_locales").glob("*/messages.json"):
         data = json.loads(localization.read_text("utf-8"))
         data["extName"]["message"] = "muBlock"
+        add_language_messages(data, localization.parent.name)
         localization.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", "utf-8")
 
     from generate_icons import generate
