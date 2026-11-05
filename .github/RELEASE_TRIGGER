@@ -1,8 +1,6 @@
-muBlock maroon accent / save-icon sync / picker width — final source release
-Repository: iamfromreallife/muBlock
-All modifications finalized on main at: ab7dc47e7a41c2044e45690523ad88544236a97d
-Recolor all UI and active shield icons to #800000; disabled icons remain grey.
-Synchronize sandbox Save icon fill to the dynamic Save text color.
-Restore element picker 512px horizontal width while keeping compact vertical dimensions.
-Remove ALL remote branches except main after successful package Release.
-Package only: no automated tests or screenshots.
+muBlock full-size element picker restored — 2026-11-05
+Final source commit: e6fc5d12de54dab37ba389c44b6ffabf242ff3c4
+Revert all condensed picker size/height/spacing/toolbar/candidate-list overrides.
+Preserve previous 512px picker width, brand #800000, selection behaviour and functions.
+Package on main once after commits; no tests or screenshot review.
+Keep main branch only.
