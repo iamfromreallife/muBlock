@@ -23,7 +23,7 @@ Find previous packages under [GitHub Releases](https://github.com/iamfromreallif
 ## What's included
 
 - Original uBlock Origin Lite filtering modes, rulesets, and MV3 filtering engine.
-- A compact, localized popup with power controls alongside the site name.
+- A compact, localized popup with power controls alongside the site name, and a separate bottom Settings footer showing the actual bundled Lite version in muted text.
 - A clean red-and-neutral UI with the classic uBlock Origin shield.
 - Rounded dashboard cards and subtle shadows shared by Settings, Filter Lists, Custom Filters, Developer Tools, and About.
 - **Custom Filters:** a large editable area for cosmetic rules added by the element picker, shown newest first, with live search in an editable multiline filter view.
