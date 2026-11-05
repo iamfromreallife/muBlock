@@ -63,16 +63,50 @@ async function main(){
      await page.waitForSelector('#mu-site-search-results .mu-search-match mark');
      assert.equal(await page.locator('#mu-site-search-results .mu-search-match').count(),1);
      assert.equal(await page.locator('#mu-site-textarea').isVisible(),false);
+     fs.mkdirSync('test-artifacts',{recursive:true});
+     await page.screenshot({path:'test-artifacts/search-results.png',fullPage:true});
+     const align=await page.locator('.mu-search-text').first().evaluate(el=>
+       getComputedStyle(el).textAlign);
+     assert(['left','start'].includes(align),'Search results are not left aligned');
+     const surface=await page.locator('#mu-site-textarea').evaluate(el=>
+       getComputedStyle(el).backgroundColor);
+     assert(surface.includes('245')||surface.includes('246'),
+       'Editor should have very subtle grey background: '+surface);
      const highlight=await page.locator('#mu-site-search-results mark').evaluate(el=>({
        fg:getComputedStyle(el).color,bg:getComputedStyle(el).backgroundColor
      }));
      assert.equal(highlight.fg,'rgb(255, 255, 255)');
      assert.equal(highlight.bg,'rgb(31, 117, 254)');
+     // Edit directly inside the filtered search result. The complete
+     // textarea remains the backing source so other filters are not lost.
+     await page.locator('#mu-site-search-results .mu-search-edit-button').first().click();
+     const inline=page.locator('.mu-search-inline-editor');
+     await inline.waitFor({state:'visible'});
+     await inline.fill('example.test##.newest-edited');
+     await inline.press('Enter');
+     assert((await page.locator('#mu-site-textarea').inputValue()).includes('.newest-edited'));
+     await search.fill('newest-edited');
+     assert.equal(await page.locator('.mu-search-match').count(),1);
+     await page.locator('#mu-site-save:not([disabled])').click();
+     try {
+       await page.waitForFunction(async()=>{
+         const {sendMessage}=await import('./js/ext.js');
+         const sites=await sendMessage({what:'getAllCustomFilters'});
+         return sites.some(([host,rules])=>host==='example.test' &&
+           rules.includes('.newest-edited') && !rules.includes('.newest'));
+       },null,{timeout:12000});
+     } catch(error) {
+       const detail=await page.evaluate(async()=>{
+         const {sendMessage}=await import('./js/ext.js');
+         return {text:document.querySelector('#mu-site-textarea')?.value,
+           status:document.querySelector('#mu-site-status')?.textContent,
+           saved:await sendMessage({what:'getAllCustomFilters'})};
+       });
+       throw new Error('Inline edit was not persisted: '+JSON.stringify(detail)+'; '+String(error));
+     }
      await search.fill('not-present-anywhere');
      assert.equal(await page.locator('#mu-site-search-results .mu-search-match').count(),0);
-     await search.fill('older');
-     await page.locator('#mu-site-search-results .mu-search-match').first().click();
-     assert.equal(await search.inputValue(),'');
+     await search.fill('');
      assert.equal(await page.locator('#mu-site-textarea').isVisible(),true);
      // Save sandbox rules through Lite's original CodeMirror and backend.
      await page.locator('#sandboxEditor .cm-content').click();
@@ -91,7 +125,7 @@ async function main(){
        await restoreFromObject(backup);
        const sites=await sendMessage({what:'getAllCustomFilters'});
        const raw=await sendMessage({what:'getSandboxFilters'});
-       return sites.some(([h,s])=>h==='example.test' && s.includes('.newest')) &&
+       return sites.some(([h,s])=>h==='example.test' && s.includes('.newest-edited')) &&
               raw.includes('.sandbox-smoke');
      });
      assert(preserved,'Native Lite backup/restore roundtrip lost data');
@@ -99,7 +133,7 @@ async function main(){
      await page.waitForSelector('body:not(.loading)');
      await page.locator('#dashboard-nav [data-pane="filters"]').click();
      await page.waitForFunction(()=>document.querySelector('#mu-site-textarea')?.value
-       .split('\n')[0]?.endsWith('.newest'));
+       .split('\n')[0]?.endsWith('.newest-edited'));
      await page.screenshot({path:'test-artifacts/my-filters.png',fullPage:true});
      await page.locator('#dashboard-nav [data-pane="about"]').click();
      await page.waitForSelector('.mu-about-fork');
@@ -109,6 +143,25 @@ async function main(){
      const first=await about.locator('.mu-about-upstream').innerText();
      assert(first.includes('uBlock Origin Lite') && first.includes('Raymond Hill'));
      assert((await about.innerText()).includes('iamfromreallife'));
+     // The developer dropdown is a fully styled accessible listbox. Lite's
+     // existing <select> remains connected to its own onChange listeners.
+     await page.locator('#dashboard-nav [data-pane="develop"]').click();
+     const trigger=page.locator('#editors + .mu-select-trigger');
+     await trigger.waitFor({state:'visible'});
+     await trigger.click();
+     const menu=page.locator('.mu-select-menu:not([hidden])');
+     await menu.waitFor({state:'visible'});
+     await page.screenshot({path:'test-artifacts/open-dropdown.png',fullPage:true});
+     const menuStyle=await menu.evaluate(el=>{
+       const cs=getComputedStyle(el);
+       return {radius:parseFloat(cs.borderTopLeftRadius),shadow:cs.boxShadow};
+     });
+     assert(menuStyle.radius>=14 && menuStyle.shadow!=='none',
+       'Dropdown needs rounded corners and a soft shadow');
+     await menu.locator('[role="option"]').nth(1).click();
+     assert.equal(await page.locator('#editors').inputValue(),'dnr.rw.user');
+     assert.equal(await trigger.getAttribute('aria-expanded'),'false');
+     console.log('Inline filter editing, native Lite backup, accessible dropdown passed');
      console.log('Two editors, search highlighting, newest-first, no loss, About attribution passed');
    });
    await visit('popup',async page=>{
