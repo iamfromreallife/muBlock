@@ -10,7 +10,7 @@ body {
 }
 body > header, body > section {
   box-sizing: border-box;
-  width: min(1000px, 100%);
+  width: min(1100px, 100%);
   margin-inline: auto;
   max-width: none;
 }
@@ -1117,4 +1117,75 @@ section[data-pane="about"] .mu-about-group hr {
 }
 #sandboxEditor #sandboxSave .fa-icon > svg > path {
   stroke:none!important;
+}
+
+
+/* Keep all dashboard navigation sections on ONE row in every locale.
+ * Narrow displays/very long translations scroll horizontally instead of
+ * wrapping "About" (or any other tab) onto a second header line.
+ * Page content and nav share the same new 1100px maximum width. */
+body > header,
+body > section {
+  box-sizing:border-box;
+  width:min(1100px,100%)!important;
+  max-width:none;
+  margin-inline:auto;
+}
+body > header {
+  padding-inline:clamp(10px,1.4vw,18px)!important;
+}
+#dashboard-nav {
+  box-sizing:border-box;
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  justify-content:flex-start;
+  align-items:center;
+  gap:clamp(3px,.45vw,7px)!important;
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  overscroll-behavior-inline:contain;
+  scrollbar-width:thin;
+  -webkit-overflow-scrolling:touch;
+}
+#dashboard-nav .logo {
+  flex:0 0 auto!important;
+  min-width:max-content;
+  margin-inline-end:clamp(5px,.9vw,12px)!important;
+  white-space:nowrap!important;
+}
+#dashboard-nav .mu-brand-word {
+  white-space:nowrap!important;
+}
+#dashboard-nav .tabButton {
+  box-sizing:border-box;
+  display:inline-flex;
+  flex:0 0 auto!important;
+  align-items:center;
+  justify-content:center;
+  min-width:max-content;
+  white-space:nowrap!important;
+  overflow-wrap:normal!important;
+  text-wrap:nowrap!important;
+  padding-inline:clamp(8px,1vw,13px)!important;
+  padding-block:11px!important;
+  gap:6px;
+}
+#dashboard-nav .tabButton .mu-icon,
+#dashboard-nav .tabButton .mu-icon * {
+  flex:0 0 auto;
+}
+@media(max-width:760px) {
+  #dashboard-nav .logo {
+    margin-inline-end:5px!important;
+  }
+  #dashboard-nav .mu-brand-word {
+    display:none!important;
+  }
+  #dashboard-nav .tabButton {
+    padding-inline:9px!important;
+  }
 }
