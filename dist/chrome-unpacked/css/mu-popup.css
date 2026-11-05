@@ -294,7 +294,7 @@ body.nodata #mu-filtering-state { opacity: .65; }
 .mu-mode-btn .mu-mode-name{display:block;max-width:100%;overflow-wrap:break-word;text-align:center;}
 .mu-mode-btn .mu-icon{width:17px;height:17px;}
 .mu-mode-btn[aria-pressed="true"]{
-  background:#1f75fe;color:#fff!important;border-radius:11px;box-shadow:none;
+  background:#ff0000;color:#fff!important;border-radius:11px;box-shadow:none;
 }
 .mu-mode-btn:hover:not([aria-pressed="true"]){background:var(--mu-surface-high);}
 .mu-mode-btn:disabled{opacity:.4;cursor:not-allowed;}
@@ -324,4 +324,11 @@ body.nodata #mu-power,body.nodata .mu-mode-btn{opacity:.4;pointer-events:none;}
 /* User setting: absolutely no animations, including in custom popup controls. */
 :root,:root *,:root *::before,:root *::after{
  animation:none!important;transition:none!important;scroll-behavior:auto!important;
+}
+
+#mu-power:hover:not(:disabled),.mu-mode-btn:hover,
+:root.desktop .toolMenu .tool:hover,.toolRibbon .tool:hover {
+  transform:none!important;
+  transition:none!important;
+  animation:none!important;
 }

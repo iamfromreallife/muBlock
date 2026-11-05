@@ -47,8 +47,13 @@ if(pane&&sandbox&&!pane.querySelector('#mu-site-textarea')){
  box.setAttribute('aria-label',title.textContent);
  box.placeholder=tr('customFiltersImportTextareaPlaceholder');
  const results=document.createElement('div');results.id='mu-site-search-results';
- results.hidden=true;results.setAttribute('aria-label',t.search);
- site.append(box,results);
+ results.className='mu-filtered-editor';results.hidden=true;
+ const resultsOverlay=document.createElement('pre');resultsOverlay.id='mu-filtered-highlight';
+ resultsOverlay.setAttribute('aria-hidden','true');
+ const resultsText=document.createElement('textarea');resultsText.id='mu-filtered-textarea';
+ resultsText.spellcheck=false;resultsText.wrap='soft';resultsText.rows=22;
+ resultsText.setAttribute('aria-label',t.search);
+ results.append(resultsOverlay,resultsText);site.append(box,results);
  const toolbar=document.createElement('div');toolbar.className='mu-site-actions';
  function button(id,key,callback,extra=''){
    const b=document.createElement('button');b.type='button';b.id=id;
@@ -119,92 +124,92 @@ if(pane&&sandbox&&!pane.querySelector('#mu-site-textarea')){
    else if(status.textContent===t.changed)message('');
  }
 
- // Search is a filtered, highlighted, in-place EDITABLE projection of the
- // full textarea. The textarea remains the single unsaved source of truth.
- function replaceEditableLine(index,value) {
-   const lines=box.value.replace(/\r\n/g,'\n').split('\n');
-   if(index<0||index>=lines.length)return;
-   lines[index]=value.replace(/[\r\n]/g,'');
-   box.value=lines.join('\n');
-   buttons();
- }
- function highlightedLine(value,query) {
-   const node=document.createElement('span');node.className='mu-search-text';
-   const lower=value.toLocaleLowerCase(),needle=query.toLocaleLowerCase();
+ // Live search is a real editable textarea: matching complete lines, one per
+ // line. Edits are merged back into the full source without losing unshown
+ // filters, and Save/Revert continue to use Lite's original storage mechanism.
+ let matchedIndexes=[];
+ function syncHighlights(){
+   const query=search.value.trim();
+   const text=resultsText.value, lo=text.toLocaleLowerCase(), needle=query.toLocaleLowerCase();
+   const frag=document.createDocumentFragment();
    let offset=0,hit;
-   while((hit=lower.indexOf(needle,offset))!==-1) {
-     node.append(document.createTextNode(value.slice(offset,hit)));
-     const mark=document.createElement('mark');
-     mark.textContent=value.slice(hit,hit+query.length);
-     node.append(mark);
-     offset=hit+query.length;
+   if(needle){
+     while((hit=lo.indexOf(needle,offset))!==-1){
+       frag.append(document.createTextNode(text.slice(offset,hit)));
+       const mark=document.createElement('mark');
+       mark.textContent=text.slice(hit,hit+query.length);
+       frag.append(mark);offset=hit+query.length;
+     }
    }
-   node.append(document.createTextNode(value.slice(offset)));
-   return node;
+   frag.append(document.createTextNode(text.slice(offset)));
+   // Final newlines must stay visible in the overlay.
+   if(text.endsWith('\n'))frag.append(document.createTextNode('\u200b'));
+   resultsOverlay.replaceChildren(frag);
+   resultsOverlay.scrollTop=resultsText.scrollTop;
+   resultsOverlay.scrollLeft=resultsText.scrollLeft;
  }
  function renderSearch(){
-   const query=search.value.trim(),filtering=query.length>0;
+   const query=search.value.trim().toLocaleLowerCase();
+   const filtering=query.length>0;
    box.hidden=filtering;results.hidden=!filtering;
-   if(!filtering){counter.textContent='';results.replaceChildren();return;}
-   const lowerQuery=query.toLocaleLowerCase();
+   if(!filtering){
+     counter.textContent='';matchedIndexes=[];
+     resultsText.value='';resultsOverlay.replaceChildren();
+     return;
+   }
+   const matches=[];
    const lines=box.value.replace(/\r\n/g,'\n').split('\n');
-   let found=0;const fragment=document.createDocumentFragment();
    for(let i=0;i<lines.length;i++){
-     const line=lines[i];
-     if(!line.toLocaleLowerCase().includes(lowerQuery))continue;
-     found++;
-     const row=document.createElement('div');row.className='mu-search-match';
-     row.dataset.line=String(i+1);
-     const number=document.createElement('span');number.className='mu-search-line';
-     number.textContent=String(i+1);row.append(number);
-     const preview=highlightedLine(line,query);row.append(preview);
-     const edit=document.createElement('button');edit.type='button';
-     edit.className='mu-search-edit-button';
-     edit.setAttribute('aria-label',(pt?'Editar linha ':'Edit line ')+(i+1));
-     edit.title=edit.getAttribute('aria-label');
-     edit.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 20 5-.8 11-11-4.2-4.2-11 11L4 20zM13.6 6.4l4.2 4.2"/></svg>';
-     row.append(edit);
-     function beginEdit(){
-       if(!ready||saving||row.classList.contains('editing'))return;
-       row.classList.add('editing');
-       const initial=lines[i];
-       const field=document.createElement('textarea');
-       field.className='mu-search-inline-editor';field.rows=1;field.wrap='off';
-       field.spellcheck=false;field.value=initial;
-       field.setAttribute('aria-label',(pt?'Editar filtro na linha ':'Edit filter on line ')+(i+1));
-       field.title=pt?'Prima Enter para terminar, Escape para cancelar':
-         'Press Enter to finish, Escape to cancel';
-       row.replaceChild(field,preview);
-       field.addEventListener('input',()=>{
-         const value=field.value.replace(/[\r\n]/g,'');
-         if(value!==field.value)field.value=value;
-         replaceEditableLine(i,value);
-       });
-       function finish(cancel){
-         if(cancel)replaceEditableLine(i,initial);
-         renderSearch();
-         if(cancel)search.focus();
-       }
-       field.addEventListener('keydown',e=>{
-         if(e.key==='Escape'){e.preventDefault();finish(true);}
-         else if(e.key==='Enter'&&!e.isComposing){e.preventDefault();finish(false);}
-       });
-       field.addEventListener('blur',()=>{if(row.isConnected)finish(false);});
-       field.focus();field.setSelectionRange(field.value.length,field.value.length);
+     if(lines[i].toLocaleLowerCase().includes(query)){
+       matches.push({index:i,text:lines[i]});
      }
-     preview.addEventListener('click',beginEdit);
-     edit.addEventListener('click',beginEdit);
-     row.addEventListener('dblclick',beginEdit);
-     fragment.append(row);
    }
-   results.replaceChildren(fragment);
-   if(!found){
-     const empty=document.createElement('div');empty.className='mu-search-empty';
-     empty.textContent=t.none;results.append(empty);
+   matchedIndexes=matches.map(x=>x.index);
+   resultsText.value=matches.map(x=>x.text).join('\n');
+   resultsText.placeholder=matches.length?'' : t.none;
+   resultsText.disabled=!ready||saving;
+   counter.textContent=matches.length+' '+t.matches;
+   syncHighlights();
+ }
+ function mergeFilteredEdit(){
+   if(!ready||saving)return;
+   const full=box.value.replace(/\r\n/g,'\n').split('\n');
+   const edited=resultsText.value===''?[]:resultsText.value.replace(/\r\n/g,'\n').split('\n');
+   const matched=new Set(matchedIndexes);
+   const merged=[],nextIndexes=[];
+   let used=0;
+   // Reconcile all matching lines in source order, leaving every unmatched
+   // source line in place. Even deletions in the filtered view cannot delete
+   // a nonmatching filter.
+   for(let i=0;i<full.length;i++){
+     if(matched.has(i)){
+       if(used<edited.length){
+         nextIndexes.push(merged.length);
+         merged.push(edited[used++]);
+       }
+     }else{
+       merged.push(full[i]);
+     }
    }
-   counter.textContent=found+' '+t.matches;
+   // New lines in a filtered view are appended without moving or erasing
+   // unrelated source lines. An initially empty match view can add rules too.
+   while(used<edited.length){
+     nextIndexes.push(merged.length);
+     merged.push(edited[used++]);
+   }
+   box.value=merged.join('\n');
+   matchedIndexes=nextIndexes;
+   buttons();
+   syncHighlights();
  }
  search.addEventListener('input',renderSearch);
+ resultsText.addEventListener('input',mergeFilteredEdit);
+ resultsText.addEventListener('scroll',syncHighlights,{passive:true});
+ resultsText.addEventListener('keydown',e=>{
+   if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){
+     e.preventDefault();saveSite();
+   }
+ });
  async function loadSite(force=false){
    if(saving)return;
    const data=await sendMessage({what:'getAllCustomFilters'});
