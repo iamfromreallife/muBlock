@@ -274,6 +274,9 @@ function registerScriptlet(context, scriptletDetails) {
             js.push(`/rulesets/scripting/scriptlet/${world.toLowerCase()}/${id}.js`);
         }
         if ( js.length === 0 ) { continue; }
+        if ( world === 'MAIN' && rulesetsDetails.some(({ id }) => id === 'ublock-filters') ) {
+            js.push('/js/scripting/youtube-player.js');
+        }
         js.unshift(`/rulesets/scripting/scriptlet/${world.toLowerCase()}/scriptlet-begin.js`);
         js.push(`/rulesets/scripting/scriptlet/${world.toLowerCase()}/scriptlet-end.js`);
         const directive = {

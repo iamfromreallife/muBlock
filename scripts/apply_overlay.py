@@ -23,6 +23,7 @@ ASSETS = (
     "css/mu-slider.css",
     "css/mu-language.css",
     "js/mu-cosmetic-rules.js",
+    "js/scripting/youtube-player.js",
     "js/mu-popup.js",
     "js/mu-dashboard.js",
     "js/mu-filters.js",
@@ -57,6 +58,17 @@ def main(extension: Path) -> None:
     # exceptions into Lite's existing cosmetic CSS registration and backup UI.
     from mu_cosmetic_patch import patch_cosmetic_filtering
     patch_cosmetic_filtering(extension)
+
+    # Preserve the known YouTube playback fix across upstream rebuilds.
+    # Register it alongside the stock MAIN-world scriptlets, preserving
+    # filtering-mode permissions and the normal rule-list activation logic.
+    insert_once(
+        extension / "js/scripting-manager.js",
+        "        js.unshift(`/rulesets/scripting/scriptlet/${world.toLowerCase()}/scriptlet-begin.js`);",
+        "        if ( world === 'MAIN' && rulesetsDetails.some(({ id }) => id === 'ublock-filters') ) {\n"
+        "            js.push('/js/scripting/youtube-player.js');\n"
+        "        }",
+    )
 
     # Only replace Lite's legacy custom-filter presentation. The CodeMirror
     # engine, picker, and original filtering backend remain untouched.
