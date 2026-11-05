@@ -173,42 +173,32 @@ if(pane&&sandbox&&!pane.querySelector('#mu-site-textarea')){
  }
  function mergeFilteredEdit(){
    if(!ready||saving)return;
-   const whole=box.value.replace(/\r\n/g,'\n').split('\n');
-   const newLines=resultsText.value.replace(/\r\n/g,'\n').split('\n');
-   // For a completely empty filtered view, the empty textarea contains zero
-   // lines. Typing adds a new line to the full editor without removing any
-   // existing, nonmatching rules.
-   if(matchedIndexes.length===0){
-     const added=resultsText.value ? newLines : [];
-     if(added.length){
-       box.value=[...added,...whole].join('\n');
-       matchedIndexes=added.map((_,i)=>i);
-     }
-   }else{
-     const count=Math.min(matchedIndexes.length,newLines.length);
-     for(let i=0;i<count;i++)whole[matchedIndexes[i]]=newLines[i];
-     // Removing a line in a filtered view removes only that matching line.
-     if(newLines.length<matchedIndexes.length){
-       for(let i=matchedIndexes.length-1;i>=newLines.length;i--){
-         whole.splice(matchedIndexes[i],1);
+   const full=box.value.replace(/\r\n/g,'\n').split('\n');
+   const edited=resultsText.value===''?[]:resultsText.value.replace(/\r\n/g,'\n').split('\n');
+   const matched=new Set(matchedIndexes);
+   const merged=[],nextIndexes=[];
+   let used=0;
+   // Reconcile all matching lines in source order, leaving every unmatched
+   // source line in place. Even deletions in the filtered view cannot delete
+   // a nonmatching filter.
+   for(let i=0;i<full.length;i++){
+     if(matched.has(i)){
+       if(used<edited.length){
+         nextIndexes.push(merged.length);
+         merged.push(edited[used++]);
        }
-     }else if(newLines.length>matchedIndexes.length){
-       const at=matchedIndexes[matchedIndexes.length-1]+1;
-       whole.splice(at,0,...newLines.slice(matchedIndexes.length));
-     }
-     box.value=whole.join('\n');
-     // Recalculate line indexes, preserving current filtered editing session
-     // even if a changed line stops matching the search query.
-     const start=Math.min(matchedIndexes[0]??0,Math.max(0,whole.length-1));
-     let position=0;
-     const set=new Set(matchedIndexes);
-     const inserted=Math.max(0,newLines.length-matchedIndexes.length);
-     matchedIndexes=matchedIndexes.slice(0,count);
-     if(inserted){
-       const last=matchedIndexes[matchedIndexes.length-1]??start;
-       for(let i=1;i<=inserted;i++)matchedIndexes.push(last+i);
+     }else{
+       merged.push(full[i]);
      }
    }
+   // New lines in a filtered view are appended without moving or erasing
+   // unrelated source lines. An initially empty match view can add rules too.
+   while(used<edited.length){
+     nextIndexes.push(merged.length);
+     merged.push(edited[used++]);
+   }
+   box.value=merged.join('\n');
+   matchedIndexes=nextIndexes;
    buttons();
    syncHighlights();
  }
