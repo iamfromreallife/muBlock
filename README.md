@@ -45,3 +45,12 @@ GPL-3.0-or-later. Consultar `LICENSE`, `THIRD_PARTY_NOTICES.md` e as licenças i
 - Mantidos o destaque da versão na página Acerca, o alinhamento dos créditos e os cantos arredondados anteriormente solicitados.
 
 Mantém-se a política de compilação final: apenas um GitHub Actions por pedido, depois da integração de todo o código, sem executar testes nem capturar screenshots. O repositório conserva apenas a branch `main` e a branch indicada em `.github/CURRENT_WORK_BRANCH`.
+
+## Ajustes de popup e informação das listas
+
+- O botão de Definições no popup foi reduzido de 48 × 44 para **44 × 40 px**, mantendo o mesmo comando e sem animações.
+- O destaque de passagem do rato nos comandos do popup usa exatamente o mesmo fundo `--mu-primary-container` das listas de filtros nas Definições.
+- Cada lista de filtros passa a apresentar, em texto pequeno e cinzento, uma descrição do tipo de proteção que oferece e a **versão da compilação Lite instalada** que a inclui. A informação é obtida dos metadados das listas fornecidos pelo próprio Lite; a descrição não altera a seleção ou a aplicação dos filtros.
+- **Nota sobre versões:** os metadados do uBlock Origin Lite não fornecem números de versão específicos para cada lista. O número indicado corresponde à versão do pacote Lite em que a lista está incluída. Listas externas importadas são identificadas como não tendo versão própria disponível, em vez de apresentar uma versão inventada.
+
+As traduções das descrições principais acompanham o idioma do popup (português/inglês, com algumas descrições genéricas em espanhol e francês). O funcionamento das listas, o armazenamento e os backups do Lite mantêm-se intactos.
