@@ -24,6 +24,7 @@ ASSETS = (
     "js/mu-popup.js",
     "js/mu-dashboard.js",
     "js/mu-filters.js",
+    "js/mu-list-info.js",
     "js/mu-select.js",
     "js/mu-slider.js",
     "img/mu-logo.svg",
@@ -85,6 +86,12 @@ def main(extension: Path) -> None:
     insert_once(
         dashboard, "</body>",
         '<script src="js/mu-filters.js" type="module"></script>',
+    )
+    # Supplement the original Lite filter-list UI with factual, optional
+    # explanatory labels. Never replace list selection/storage code.
+    insert_once(
+        dashboard, "</body>",
+        '<script src="js/mu-list-info.js" type="module"></script>',
     )
 
     for page in ("picker-ui.html", "zapper-ui.html", "unpicker-ui.html"):
