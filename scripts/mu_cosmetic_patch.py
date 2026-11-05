@@ -67,7 +67,7 @@ def patch_cosmetic_filtering(extension: Path) -> None:
     # excludeMatches entry to all three without touching network rules.
     replace_once(
         manager,
-        "    ubolLog(\`Unregistered all content (css/js)\`);",
+        "    ubolLog(`Unregistered all content (css/js)`);",
         "    const disabledCosmeticHosts = await getCosmeticDisabledHosts();\n"
         "    if ( disabledCosmeticHosts.length !== 0 ) {\n"
         "        const exceptions = ut.matchesFromHostnames(disabledCosmeticHosts);\n"
@@ -78,7 +78,7 @@ def patch_cosmetic_filtering(extension: Path) -> None:
         "            ];\n"
         "        }\n"
         "    }\n\n"
-        "    ubolLog(\`Unregistered all content (css/js)\`);",
+        "    ubolLog(`Unregistered all content (css/js)`);",
     )
 
     # Optional additional field is backward-compatible: official Lite
