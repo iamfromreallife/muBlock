@@ -1,5 +1,5 @@
-muBlock unpicker selected-trash icon correction
-Completed source commit: 2240484b2d80a41fbc20b1a3a710567d0c03bf58
-Selected maroon row: bin SVG white via currentColor; inactive rows unchanged.
-Publish versioned muBlock ZIP on main, no tests or screenshot review.
-Leave only the main branch.
+muBlock dashboard one-line navigation release — 2026-11-05
+All finalized UI changes committed to main at: 4c4ae0c9d027e20b7bdbc401a2238d2d6cad1c90
+Dashboard max width increased from 1000px to 1100px.
+Never wrap localized dashboard navigation tabs; horizontally scroll on constrained windows.
+Only main branch. Packaging-only GitHub Release; no tests/screenshots.
