@@ -131,7 +131,7 @@ jobs:
             --target "$(git rev-parse HEAD)" \
             --draft
           release_id="$(gh api "repos/$GITHUB_REPOSITORY/releases?per_page=100" \
-            --jq '.[] | select(.tag_name == env.MUBLOCK_TAG) | .id' | head -n 1)"
+            --jq ".[] | select(.tag_name == \"$MUBLOCK_TAG\") | .id" | head -n 1)"
           if [[ -z "$release_id" ]]; then
             echo "The created draft release could not be found." >&2
             exit 1
