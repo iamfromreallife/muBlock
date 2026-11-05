@@ -36,6 +36,8 @@ try {
 if (stored !== 'system' && !exists(stored)) stored = 'system';
 export const selectedLanguage = stored;
 export const activeLocale = resolveLocale(stored === 'system' ? systemTag : stored);
+// Expose the actual UI language for screen readers and language-aware text.
+document.documentElement.lang = activeLocale.replace(/_/g, '-');
 const primaryBundle = (await loadJSON('_locales/'+activeLocale+'/messages.json')) || {};
 const englishBundle = activeLocale === fallbackTag
   ? primaryBundle : (await loadJSON('_locales/en/messages.json')) || {};
