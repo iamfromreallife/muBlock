@@ -368,3 +368,56 @@ body.nodata #mu-power,body.nodata .mu-mode-btn{opacity:.4;pointer-events:none;}
   opacity:.43!important;
   cursor:not-allowed!important;
 }
+
+
+/* Larger, high-visibility native Lite Settings action in muBlock popup.
+ * This is the ORIGINAL #gotoDashboard control and click listener. */
+#mu-popup-header .mu-header-actions {
+  gap:6px;
+  flex:0 0 auto;
+}
+#mu-popup-header #gotoDashboard,
+#mu-popup-header #gotoDashboard:hover,
+#mu-popup-header #gotoDashboard:focus-visible,
+#mu-popup-header #gotoDashboard:active {
+  box-sizing:border-box!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:0 0 48px!important;
+  min-width:48px!important;
+  width:48px!important;
+  height:44px!important;
+  min-height:44px!important;
+  margin:0!important;
+  padding:0!important;
+  background:#ff0000!important;
+  color:#fff!important;
+  fill:#fff!important;
+  border:0!important;
+  border-radius:15px!important;
+  box-shadow:0 3px 9px rgb(255 0 0 / .17)!important;
+  font-size:23px!important;
+  cursor:pointer;
+  transform:none!important;
+  transition:none!important;
+  animation:none!important;
+}
+#mu-popup-header #gotoDashboard svg,
+#mu-popup-header #gotoDashboard svg * {
+  fill:#fff!important;
+  stroke:#fff!important;
+  color:#fff!important;
+}
+#mu-popup-header #gotoDashboard:focus-visible {
+  outline:2px solid #ff0000!important;
+  outline-offset:3px;
+}
+#mu-popup-header {
+  min-height:47px!important;
+  height:auto!important;
+  padding-bottom:4px!important;
+}
+#mu-popup-header .mu-pop-brand {
+  min-width:0;
+}
