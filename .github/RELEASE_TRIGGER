@@ -1,7 +1,5 @@
-muBlock selectable UI language + popup labels — 2026-11-05
-Final merged implementation commit: 954fce55887ab05f6d8ea4d093b47a9e81d098da
-Add Extension language as first Behaviour option, using bundled Lite translations.
-Capitalize Filtering mode and No website; black heading in light theme.
-Publish only the new commits since the previous GitHub Release.
-One final packaging-only GitHub Action, no tests or screenshots.
+muBlock corrected incremental release — 2026-11-05
+Language dropdown and popup capitalization merged: 954fce55887ab05f6d8ea4d093b47a9e81d098da
+Release notes start at .github/LAST_PUBLISHED_COMMIT, never full history.
+Corrected packaging-only GitHub Release, no tests or screenshot reviews.
 Keep main and feat/extension-language-popup-labels-20261105.
