@@ -1,17 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="muBlock">
-  <defs>
-    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#9b45fc"/>
-      <stop offset=".49" stop-color="#6239d9"/>
-      <stop offset="1" stop-color="#28137e"/>
-    </linearGradient>
-    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#7bf9ca"/>
-      <stop offset="1" stop-color="#27d7bd"/>
-    </linearGradient>
-  </defs>
-  <rect x="5" y="5" width="118" height="118" rx="28" fill="url(#tile)"/>
-  <path d="M 5 50 C 28 29 56 30 87 5 L 33 5 Q 5 5 5 33 Z" fill="#fff" opacity=".11"/>
-  <path d="M28 91V56 C28 43 35 40 43 40 C51 40 58 44 58 57 V91 M58 57 C58 45 65 40 74 40 C86 40 95 49 95 62 V91" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="15"/>
-  <path d="M65 91 C64 74 76 65 93 62 C98 80 88 91 65 91Z" fill="url(#leaf)"/>
+  <path d="M64 5C43 18 26 19 12 23v40c0 29 18 48 52 60 34-12 52-31 52-60V23C99 19 85 17 64 5Z" fill="#c1172a"/>
+  <path d="M64 13C45 24 30 25 20 29v34c0 24 14 41 44 52 30-11 44-28 44-52V29C95 25 80 23 64 13Z" fill="#eb2637"/>
+  <path d="M36 81V58c0-10 6-14 14-14 8 0 12 5 14 12 2-7 7-12 15-12 9 0 13 6 13 14v23" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
