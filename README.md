@@ -37,3 +37,13 @@ Run GitHub Actions to fetch upstream, build, verify file integrity, exercise an 
 ## License
 
 GPL-3.0-or-later, consistent with the parent extension. See `LICENSE`, `THIRD_PARTY_NOTICES.md` and upstream bundled licenses. No remote executable code, telemetry or external font service is introduced.
+
+## Search, static UI and attribution
+
+- **Filter search:** in **Custom filters**, typing filters a read-only view of matching picker-generated rules in real time. Matches are highlighted in Crayola Blue with white text. Click a result to jump back to its line in the full editable textarea. Search never deletes or rewrites the other filter lines.
+- **Two separate editors:** site filters have a tall editable textarea with the original Lite-supported Save, Revert, Import and Export operations; sandbox filters keep their own compact, native CodeMirror 6 editor and storage.
+- **Branding:** all muBlock logos and favicon/toolbar sizes use the red shield with a white lowercase **m**. The disabled/trusted-site toolbar variant is lighter and desaturated.
+- **No animations:** transitions and animations have been disabled across the extension's UI.
+- **Credits:** the **About** page opens with full credit to Raymond Hill and the uBlock Origin Lite contributors; the independent fork author is **iamfromreallife**.
+
+The unmodified Lite filtering engine and backup/restore format are preserved. Since the upstream per-site filter store does not keep creation timestamps, newly discovered picker rules are shown first through **presentation-only ordering metadata**. Existing rules without historical timestamps cannot be accurately dated.
