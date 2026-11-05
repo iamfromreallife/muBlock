@@ -1,3 +1,4 @@
+import { activeLocale } from './mu-language.js';
 /* muBlock dashboard polish. The original Lite settings and list event
  * handlers remain the source of truth for all configuration changes.
  */
@@ -32,7 +33,7 @@ if (nav && !nav.querySelector('.mu-brand-word')) {
     btn.style.display = 'inline-flex';
     btn.style.gap = '8px';
     btn.style.alignItems = 'center';
-    if (pane === 'filters' && chrome.i18n.getUILanguage().startsWith('en')) {
+    if (pane === 'filters' && activeLocale.startsWith('en')) {
       const textNode = Array.from(btn.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
       if (textNode) textNode.textContent = 'My filters';
     }
@@ -60,7 +61,7 @@ const muAbout=document.querySelector('section[data-pane="about"] .body');
 if(muAbout&&!muAbout.querySelector('.mu-about-fork')){
   const block=document.createElement('div');
   block.className='mu-about-fork';
-  const pt=(chrome.i18n.getUILanguage()||'en').toLowerCase().startsWith('pt');
+  const pt=(activeLocale||'en').toLowerCase().startsWith('pt');
   const credit=document.createElement('p');
   credit.className='mu-about-upstream';
   credit.textContent=pt
@@ -84,7 +85,7 @@ if(muAbout&&!muAbout.querySelector('.mu-about-fork')){
 /* Compact, clearly separated About groups. All original links/details are
  * moved, never recreated, so upstream destinations and handlers survive. */
 if (muAbout && !muAbout.querySelector('.mu-about-grid')) {
-  const pt = (chrome.i18n.getUILanguage() || 'en').toLowerCase().startsWith('pt');
+  const pt = (activeLocale || 'en').toLowerCase().startsWith('pt');
   const labels = pt ? {
     intro: 'Sobre o muBlock', version: 'Versão e direitos',
     links: 'Ligações úteis', contributors: 'Contribuidores',
