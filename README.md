@@ -1,56 +1,38 @@
-# muBlock — expressive content blocking for Chrome
+# muBlock
 
-**muBlock** is an independent, unofficial visual redesign of [uBlock Origin Lite](https://github.com/uBlockOrigin/uBOL-home). It keeps the upstream Manifest V3 filtering engine and ruleset architecture while introducing a cohesive Material 3 Expressive-inspired popup, settings dashboard, unified custom-filter manager and refreshed element-picker UI.
+**muBlock** é uma adaptação visual independente de [uBlock Origin Lite](https://github.com/uBlockOrigin/uBOL-home), mantendo o motor de filtragem Manifest V3, as listas, o seletor de elementos, as permissões e a importação/exportação de dados da versão original. Não é uma versão oficial do uBlock Origin.
 
-This is **not** the official uBlock Origin or uBlock Origin Lite distribution. It does not enable Manifest V2-only functionality. The original authors retain their copyright and licensing.
+**Créditos:** o motor e as funcionalidades originais pertencem a Raymond Hill e aos colaboradores do uBlock Origin Lite. O logótipo clássico é baseado no [SVG oficial do uBlock Origin](https://github.com/gorhill/uBlock/blob/master/src/img/ublock.svg), recolorido para o vermelho `#FF0000` pedido para esta adaptação, nos termos da GPL. Autor do fork: **iamfromreallife**.
 
-## Installation
+## Instalação
 
-The latest successful [Build muBlock Chrome extension](../../actions/workflows/build-chrome.yml) action provides a downloadable **muBlock-chrome-unpacked** artifact. Extract the ZIP and select the `chrome-unpacked` directory under `chrome://extensions` → Developer mode → Load unpacked.
+Obter o ZIP **muBlock-chrome-unpacked** na [última execução do workflow de empacotamento](../../actions/workflows/build-chrome.yml). Extrair o ZIP, abrir `chrome://extensions`, ativar **Modo de programador**, clicar em **Carregar expandida** e selecionar a pasta `chrome-unpacked`.
 
-The fully unpacked distribution is also generated at `dist/chrome-unpacked/` on `main` once the build workflow succeeds.
+A distribuição completa também é publicada em `dist/chrome-unpacked/` na branch `main`.
 
-## Design
+## Aspeto e comportamento
 
-- **muBlock branding:** custom icon rendered locally at 16/32/48/64/128 px, purple-tonal surfaces, mint accents and bundled Inter fonts (the upstream package includes the OFL licence).
-- **Popup:** Material-inspired power control and an accessible four-mode segmented control, using Lite's **existing permission-aware** filtering mode handlers.
-- **Dashboard:** consistent tonal surfaces, rounded controls, semantic colors, icon-led navigation, dark mode, responsive layouts and reduced-motion support.
-- **My filters:** **one** searchable list for sandbox custom lines and picker-generated site cosmetics. A toggle opens the original CodeMirror 6 raw editor within the same workspace; the old duplicated Lite `.hostnames` interface and its presentation script are removed. Supported site selectors are parsed with Lite's own parser, and stored through the original messaging API.
-- **Element picker/zapper/unpicker:** refreshed overlay appearance and animations, while retaining original picker algorithms and event-handling modules unchanged.
+- **Cor:** vermelho puro `#FF0000` para destaques, seleções, ícones ativos e sliders; os textos sobre vermelho têm cor branca. Superfícies neutras e cinzento muito subtil nos editores.
+- **Identidade:** logótipo clássico do uBlock Origin (em vez do escudo muBlock com «m»). Ícones PNG gerados em 16, 32, 48, 64, 128, 256 e 512 px; versões desaturadas para a filtragem desligada. O `action.js` original continua a gerir a escolha dos ícones.
+- **Popup:** compacto, com botão de ativação ao lado do domínio e modos traduzidos através do sistema de localização original do Lite.
+- **Filtros personalizados:** editor de filtros gerados pelo seletor de elementos, com pesquisa em tempo real num **campo de texto multilinha totalmente editável**. Apenas as linhas correspondentes são mostradas na pesquisa, sem apagar as restantes. O realce visual usa texto branco sobre vermelho; o botão Guardar mantém o mecanismo de armazenamento do Lite.
+- **Sandbox:** editor CodeMirror separado, mantendo a sintaxe e os comandos originais.
+- **Programação:** editor de regras com CodeMirror, barra de ferramentas e apresentação uniformizados com os filtros personalizados.
+- **Dropdowns:** menus cinzentos com cantos arredondados e sombra discreta, mantendo os controlos `select` nativos e respetivos eventos no funcionamento interno do Lite.
+- **Sliders:** pista e indicador em estilo Material Expressive, sem qualquer movimento animado.
+- **Seletor de elementos:** barra minimizada de largura adequada e nome «muBlock» numa única linha, em qualquer idioma.
+- **Movimento:** animações e transições, incluindo efeitos de hover animados, desativadas.
 
-Material 3 Expressive principles center on color, shape, size, motion and containment; this project borrows those principles rather than using official Google branding.
+## Compatibilidade com dados do Lite
 
-## Import/export and compatibility
+O módulo `js/backup-restore.js` é o original do uBlock Origin Lite. Para transferir todas as definições, filtros e listas, usar a **cópia de segurança/restauro** nas Definições. O editor de filtros por domínio e o editor sandbox utilizam armazenamentos internos separados, como no Lite; editar um não modifica silenciosamente o outro.
 
-The **Settings → Backup/Restore** controls remain the unmodified upstream uBlock Origin Lite backup/restore implementation (`js/backup-restore.js`), with original data structures for filtering modes, enabled lists, sandbox filters, picker-generated filters, and user-defined DNR rules. The My filters workspace also offers `Lite backup` and `Lite restore` shortcuts to those same controls.
+## Compilação e publicação
 
-`Import text` and `Export text` are convenient text-only filter operations; for **lossless full settings + filter backup**, use the upstream Lite-compatible JSON backup. Note that supported site cosmetics and raw sandbox filters use two separate internal storage models in Lite, even though they appear in a single list in muBlock. Unrecognized filter text is kept as raw sandbox text rather than discarded.
+Os ficheiros editáveis estão em `overlay/` e `scripts/`. `scripts/apply_overlay.py` aplica a interface à distribuição Chromium oficial do Lite. `scripts/generate_icons.py` produz PNGs localmente com **CairoSVG** e **Pillow** na máquina de compilação; nenhuma dessas bibliotecas é necessária na extensão instalada.
 
-## Development
+**O GitHub Actions apenas compila, gera o ZIP, publica o artefacto e atualiza a pasta de distribuição. Não executa testes nem recolhe capturas de ecrã.** O empacotamento só é iniciado com `workflow_dispatch` ou quando é modificado `.github/RELEASE_TRIGGER` na branch `main`, depois de todos os commits pretendidos estarem concluídos. Os commits de desenvolvimento não iniciam ações automaticamente.
 
-The source of the design is in `overlay/css/`, `overlay/js/` and `overlay/img/`. The build copies the official Chromium uBO Lite distribution and applies these assets via `scripts/apply_overlay.py`. The icon PNGs are generated with Python standard library tools from `scripts/generate_icons.py`. The selected upstream commit is recorded under `dist/UPSTREAM_COMMIT.txt`.
+## Licença
 
-Filtering engine, permissions, service worker, rulesets and original picker/zapper/unpicker JavaScript remain unchanged.
-
-Run GitHub Actions to fetch upstream, build, verify file integrity, exercise an isolated Chromium extension profile, screenshot the UI and publish a ready-to-load ZIP.
-
-## License
-
-GPL-3.0-or-later, consistent with the parent extension. See `LICENSE`, `THIRD_PARTY_NOTICES.md` and upstream bundled licenses. No remote executable code, telemetry or external font service is introduced.
-
-## Search, static UI and attribution
-
-- **Filter search:** in **Custom filters**, typing filters a read-only view of matching picker-generated rules in real time. Matches are highlighted in Crayola Blue with white text. Click a result to jump back to its line in the full editable textarea. Search never deletes or rewrites the other filter lines.
-- **Two separate editors:** site filters have a tall editable textarea with the original Lite-supported Save, Revert, Import and Export operations; sandbox filters keep their own compact, native CodeMirror 6 editor and storage.
-- **Branding:** all muBlock logos and favicon/toolbar sizes use the red shield with a white lowercase **m**. The disabled/trusted-site toolbar variant is lighter and desaturated.
-- **No animations:** transitions and animations have been disabled across the extension's UI.
-- **Credits:** the **About** page opens with full credit to Raymond Hill and the uBlock Origin Lite contributors; the independent fork author is **iamfromreallife**.
-
-The unmodified Lite filtering engine and backup/restore format are preserved. Since the upstream per-site filter store does not keep creation timestamps, newly discovered picker rules are shown first through **presentation-only ordering metadata**. Existing rules without historical timestamps cannot be accurately dated.
-
-## November 2026 visual refinement
-
-- **Inline editing during search:** the live search keeps Crayola Blue/white highlights and left-aligns the results. Click a result or its pencil icon to edit that rule directly, press **Enter** to finish or **Escape** to cancel, and use the existing **Save** button to persist. Other nonmatching filters stay in the backing text area and are not deleted.
-- **Subtle custom-filter background:** near-white neutral grey in light mode, appropriately muted surface in dark mode.
-- **Consistent dropdowns:** dashboard and report dropdowns are accessible rounded grey listboxes with soft shadows. The original Lite `<select>` elements remain connected for their actual event handlers and form data.
-- **Icon source:** the redesigned gradient red shield/white **m** lives in `overlay/img/mu-logo.svg`. `scripts/generate_icons.py` uses build-only CairoSVG/Pillow to rasterize the icon at 16–512 px; it also refreshes the original Lite PNG filenames as fallbacks, including lighter desaturated off-state icons. This makes rebuilding reproducible. The extension itself needs no network resources.
+GPL-3.0-or-later. Consultar `LICENSE`, `THIRD_PARTY_NOTICES.md` e as licenças incluídas na distribuição original. Sem telemetria adicionada, código remoto ou fontes carregadas por serviços externos.
