@@ -79,3 +79,65 @@ if(muAbout&&!muAbout.querySelector('.mu-about-fork')){
   block.append(credit,upstream,author,fork);
   muAbout.prepend(block);
 }
+
+
+/* Compact, clearly separated About groups. All original links/details are
+ * moved, never recreated, so upstream destinations and handlers survive. */
+if (muAbout && !muAbout.querySelector('.mu-about-grid')) {
+  const pt = (chrome.i18n.getUILanguage() || 'en').toLowerCase().startsWith('pt');
+  const labels = pt ? {
+    intro: 'Sobre o muBlock', version: 'Versão e direitos',
+    links: 'Ligações úteis', contributors: 'Contribuidores',
+    dependencies: 'Dependências', technical: 'Informações adicionais',
+  } : {
+    intro: 'About muBlock', version: 'Version and copyright',
+    links: 'Useful links', contributors: 'Contributors',
+    dependencies: 'Dependencies', technical: 'More information',
+  };
+  const original = Array.from(muAbout.children);
+  const claimed = new Set();
+  const grid = document.createElement('div');
+  grid.className = 'mu-about-grid';
+
+  function card(key, nodes, extraClass = '') {
+    const group = nodes.filter(node => node && !claimed.has(node));
+    if (!group.length) return;
+    const section = document.createElement('section');
+    section.className = 'mu-about-group mu-about-' + key + (extraClass ? ' ' + extraClass : '');
+    section.setAttribute('aria-label', labels[key]);
+    const heading = document.createElement('h3');
+    heading.textContent = labels[key];
+    section.append(heading);
+    for (const node of group) {
+      claimed.add(node);
+      section.append(node);
+    }
+    grid.append(section);
+  }
+
+  const fork = muAbout.querySelector(':scope > .mu-about-fork');
+  const version = muAbout.querySelector(':scope > #aboutNameVer');
+  const copyright = version?.nextElementSibling?.classList.contains('liul')
+    ? version.nextElementSibling : null;
+  const contributorsLabel = original.find(el =>
+    el.querySelector('[data-i18n="aboutContributors"]'));
+  const dependenciesLabel = original.find(el =>
+    el.querySelector('[data-i18n="aboutDependencies"]'));
+  const contributorLinks = contributorsLabel?.nextElementSibling?.classList.contains('liul')
+    ? contributorsLabel.nextElementSibling : null;
+  const dependencyLinks = dependenciesLabel?.nextElementSibling?.classList.contains('liul')
+    ? dependenciesLabel.nextElementSibling : null;
+  const standaloneLinks = original.filter(el =>
+    el.classList.contains('li') && el.querySelector(':scope > a[href]'));
+
+  card('intro', [fork], 'mu-about-wide');
+  card('version', [version, copyright], 'mu-about-wide');
+  card('links', standaloneLinks);
+  card('contributors', [contributorLinks]);
+  card('dependencies', [dependencyLinks]);
+  // Retain Lite's support/diagnostics UI, including any upstream additions.
+  card('technical', original.filter(el =>
+    !claimed.has(el) && el !== contributorsLabel && el !== dependenciesLabel));
+
+  muAbout.append(grid);
+}
