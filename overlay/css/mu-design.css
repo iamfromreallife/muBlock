@@ -18,7 +18,7 @@
   font-display: swap;
 }
 :root {
-  --mu-primary: #6543d4;
+  --mu-primary: #1f75fe;
   --mu-on-primary: #fff;
   --mu-primary-container: #ece4ff;
   --mu-on-primary-container: #281657;
@@ -51,8 +51,8 @@
   font-family: var(--mu-family);
 }
 :root.dark {
-  --mu-primary: #cbbaff;
-  --mu-on-primary: #35216f;
+  --mu-primary: #86b8ff;
+  --mu-on-primary: #fff;
   --mu-primary-container: #483387;
   --mu-on-primary-container: #eee6ff;
   --mu-secondary: #d1c6e0;
@@ -233,3 +233,12 @@ a:hover { text-decoration: underline; }
 
 /* User preference: disable all UI motion. */
 :root, :root *, :root *::before, :root *::after {animation:none!important;transition:none!important;scroll-behavior:auto!important}
+
+/* Solid Crayola blue selections always have white foreground text. */
+:root {--accent-surface-1:#1f75fe;--accent-ink-1:#fff;}
+:root.dark {--accent-surface-1:#1f75fe;--accent-ink-1:#fff;}
+:root .mu-mode-btn[aria-pressed="true"],
+:root button.mu-button-primary,
+:root button.mu-primary[aria-pressed="true"],
+:root button.preferred,
+:root [aria-selected="true"][style*="background"] {color:#fff!important;}
