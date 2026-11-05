@@ -1,6 +1,8 @@
-muBlock centered dashboard navigation — 2026-11-05
-Final source on main: 59bf80698425c17a703b0dd67f38357d7817ccb4
-Center the icon, muBlock wordmark and all dashboard tabs as a single group.
-Safe centering retains horizontal scroll for narrow displays and long translations.
-One final packaging-only GitHub Release; no tests/screenshots.
-Keep only main.
+muBlock dashboard spacing and About links release — 2026-11-05
+Final source changes on main: bdd1d4ad59c0e790195f9206e027d09eb9b5a8d7
+Use identical 28px gap below navigation on all five dashboard tabs.
+Revert logo and tab navigation group to left alignment.
+Use Crayola Blue #1F75FE for About-only links.
+Give author credit and GitHub link same 4px vertical line gap.
+Publish versioned ZIP once; no automated tests or screenshot reviews.
+Only main branch.
