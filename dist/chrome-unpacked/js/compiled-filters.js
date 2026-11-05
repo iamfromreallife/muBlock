@@ -41,6 +41,7 @@ import {
 
 import { dnr } from './ext-compat.js';
 import { getFilteringModeDetails } from './mode-manager.js';
+import { getCosmeticDisabledHosts } from './mu-cosmetic-rules.js';
 import { getSandboxFilters } from './filter-manager.js';
 import { matchesFromHostnames } from './utils.js';
 import { supportsOffscreenDocument } from './ext-offscreen.js';
@@ -228,6 +229,16 @@ async function register() {
     );
     if ( importedScripts.length ) {
         toAdd.push(...importedScripts);
+    }
+    const disabledCosmeticHosts = await getCosmeticDisabledHosts();
+    if ( disabledCosmeticHosts.length ) {
+        const exceptions = matchesFromHostnames(disabledCosmeticHosts);
+        for ( const script of toAdd ) {
+            if ( script.id.endsWith('-css-specific') === false ) { continue; }
+            script.excludeMatches = [
+                ...new Set([ ...(script.excludeMatches || []), ...exceptions ]),
+            ];
+        }
     }
     if ( supportsUserScripts() && toAdd.length ) {
         try {

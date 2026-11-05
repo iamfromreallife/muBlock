@@ -468,5 +468,14 @@
   },
   "muLanguageSystem": {
     "message": "브라우저 언어 따르기"
+  },
+  "muDisableCosmeticFiltering": {
+    "message": "요소 숨김 필터링 비활성화"
+  },
+  "muCosmeticDisabledForSite": {
+    "message": "이 사이트에서 요소 숨김이 비활성화됨"
+  },
+  "muCosmeticRuleError": {
+    "message": "필터 규칙을 저장할 수 없습니다"
   }
 }

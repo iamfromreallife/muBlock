@@ -468,5 +468,14 @@
   },
   "muLanguageSystem": {
     "message": "Segui la lingua del browser"
+  },
+  "muDisableCosmeticFiltering": {
+    "message": "Disattiva il filtraggio cosmetico"
+  },
+  "muCosmeticDisabledForSite": {
+    "message": "Filtraggio cosmetico disattivato per questo sito"
+  },
+  "muCosmeticRuleError": {
+    "message": "Impossibile salvare la regola di filtraggio cosmetico"
   }
 }

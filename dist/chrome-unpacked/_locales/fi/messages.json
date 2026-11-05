@@ -468,5 +468,14 @@
   },
   "muLanguageSystem": {
     "message": "Käytä selaimen kieltä"
+  },
+  "muDisableCosmeticFiltering": {
+    "message": "Poista kosmeettinen suodatus käytöstä"
+  },
+  "muCosmeticDisabledForSite": {
+    "message": "Kosmeettinen suodatus pois käytöstä tällä sivustolla"
+  },
+  "muCosmeticRuleError": {
+    "message": "Suodatussääntöä ei voitu tallentaa"
   }
 }

@@ -468,5 +468,14 @@
   },
   "muLanguageSystem": {
     "message": "اتباع لغة المتصفح"
+  },
+  "muDisableCosmeticFiltering": {
+    "message": "تعطيل التصفية التجميلية"
+  },
+  "muCosmeticDisabledForSite": {
+    "message": "تم تعطيل التصفية التجميلية لهذا الموقع"
+  },
+  "muCosmeticRuleError": {
+    "message": "تعذّر حفظ قاعدة التصفية"
   }
 }

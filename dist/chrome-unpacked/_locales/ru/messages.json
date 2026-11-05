@@ -468,5 +468,14 @@
   },
   "muLanguageSystem": {
     "message": "Язык браузера"
+  },
+  "muDisableCosmeticFiltering": {
+    "message": "Отключить косметическую фильтрацию"
+  },
+  "muCosmeticDisabledForSite": {
+    "message": "Косметическая фильтрация отключена для сайта"
+  },
+  "muCosmeticRuleError": {
+    "message": "Не удалось сохранить правило фильтрации"
   }
 }

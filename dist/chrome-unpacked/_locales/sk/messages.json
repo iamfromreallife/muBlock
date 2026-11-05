@@ -468,5 +468,14 @@
   },
   "muLanguageSystem": {
     "message": "Použiť jazyk prehliadača"
+  },
+  "muDisableCosmeticFiltering": {
+    "message": "Vypnúť kozmetické filtrovanie"
+  },
+  "muCosmeticDisabledForSite": {
+    "message": "Kozmetické filtrovanie je na webe vypnuté"
+  },
+  "muCosmeticRuleError": {
+    "message": "Pravidlo filtrovania nemožno uložiť"
   }
 }

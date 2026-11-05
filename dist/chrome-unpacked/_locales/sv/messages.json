@@ -468,5 +468,14 @@
   },
   "muLanguageSystem": {
     "message": "Följ webbläsarens språk"
+  },
+  "muDisableCosmeticFiltering": {
+    "message": "Inaktivera kosmetisk filtrering"
+  },
+  "muCosmeticDisabledForSite": {
+    "message": "Kosmetisk filtrering är inaktiverad på webbplatsen"
+  },
+  "muCosmeticRuleError": {
+    "message": "Det gick inte att spara filterregeln"
   }
 }

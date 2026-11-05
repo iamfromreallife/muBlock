@@ -39,6 +39,8 @@ import { registerToolbarIconToggler } from './action.js';
 
 /******************************************************************************/
 
+import { getCosmeticDisabledHosts } from './mu-cosmetic-rules.js';
+
 const resourceDetailPromises = new Map();
 
 function getScriptletDetails() {
@@ -336,6 +338,17 @@ registerContentScripts.register = async function register() {
         registerPreventPopup(context),
         registerToolbarIconToggler(context),
     ]);
+
+    const disabledCosmeticHosts = await getCosmeticDisabledHosts();
+    if ( disabledCosmeticHosts.length !== 0 ) {
+        const exceptions = ut.matchesFromHostnames(disabledCosmeticHosts);
+        for ( const script of toAdd ) {
+            if ( /^css-(generic|specific|user)/.test(script.id) === false ) { continue; }
+            script.excludeMatches = [
+                ...new Set([ ...(script.excludeMatches || []), ...exceptions ]),
+            ];
+        }
+    }
 
     ubolLog(`Unregistered all content (css/js)`);
     try {

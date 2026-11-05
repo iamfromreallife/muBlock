@@ -468,5 +468,14 @@
   },
   "muLanguageSystem": {
     "message": "跟随浏览器语言"
+  },
+  "muDisableCosmeticFiltering": {
+    "message": "禁用元素隐藏过滤"
+  },
+  "muCosmeticDisabledForSite": {
+    "message": "已在此网站禁用元素隐藏过滤"
+  },
+  "muCosmeticRuleError": {
+    "message": "无法保存过滤规则"
   }
 }

@@ -84,6 +84,10 @@ export async function backupToObject(currentConfig) {
     if ( typeof dnrRules === 'string' && dnrRules.length !== 0 ) {
         out.dnrRules = dnrRules.split(/\n+/);
     }
+    const cosmeticExceptions = await localRead('muBlockCosmeticDisabledHosts');
+    if ( Array.isArray(cosmeticExceptions) && cosmeticExceptions.length !== 0 ) {
+        out.muBlockCosmeticDisabledHosts = cosmeticExceptions;
+    }
     return out;
 }
 
@@ -211,5 +215,9 @@ export async function restoreFromObject(targetConfig) {
         await localRemove('userDnrRules');
     }
     await sendMessage({ what: 'updateUserDnrRules' });
+    await sendMessage({
+        what: 'muRestoreCosmeticFiltering',
+        hostnames: targetConfig.muBlockCosmeticDisabledHosts ?? [],
+    });
 
 }

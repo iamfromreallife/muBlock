@@ -468,5 +468,14 @@
   },
   "muLanguageSystem": {
     "message": "Browsertaal volgen"
+  },
+  "muDisableCosmeticFiltering": {
+    "message": "Cosmetische filtering uitschakelen"
+  },
+  "muCosmeticDisabledForSite": {
+    "message": "Cosmetische filtering op deze website uitgeschakeld"
+  },
+  "muCosmeticRuleError": {
+    "message": "Kan de regel niet opslaan"
   }
 }

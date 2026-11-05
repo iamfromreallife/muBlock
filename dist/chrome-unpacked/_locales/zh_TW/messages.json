@@ -468,5 +468,14 @@
   },
   "muLanguageSystem": {
     "message": "跟隨瀏覽器語言"
+  },
+  "muDisableCosmeticFiltering": {
+    "message": "停用元素隱藏過濾"
+  },
+  "muCosmeticDisabledForSite": {
+    "message": "已在此網站停用元素隱藏過濾"
+  },
+  "muCosmeticRuleError": {
+    "message": "無法儲存過濾規則"
   }
 }

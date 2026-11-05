@@ -468,5 +468,14 @@
   },
   "muLanguageSystem": {
     "message": "ブラウザーの言語を使用"
+  },
+  "muDisableCosmeticFiltering": {
+    "message": "要素の非表示を無効にする"
+  },
+  "muCosmeticDisabledForSite": {
+    "message": "このサイトで要素の非表示が無効です"
+  },
+  "muCosmeticRuleError": {
+    "message": "フィルタリング設定を保存できません"
   }
 }

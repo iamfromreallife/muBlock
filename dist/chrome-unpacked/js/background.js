@@ -139,6 +139,8 @@ import { toggleToolbarIcon } from './action.js';
 
 /******************************************************************************/
 
+import { isCosmeticDisabled, setCosmeticDisabled, restoreCosmeticDisabledHosts } from './mu-cosmetic-rules.js';
+
 const UBOL_ORIGIN = runtime.getURL('').replace(/\/$/, '').toLowerCase();
 const canShowBlockedCount = typeof dnr.setExtensionActionOptions === 'function';
 
@@ -370,6 +372,7 @@ async function onMessage(request, sender) {
 
     case 'injectCustomFilters':
         if ( frameId === false ) { return; }
+        if ( await isCosmeticDisabled(request.hostname) ) { return; }
         return injectCustomFilters(tabId, frameId, request.hostname);
 
     default:
@@ -385,6 +388,20 @@ async function onMessage(request, sender) {
     if ( isTrustedOrigin === false ) { return; }
 
     switch ( request.what ) {
+
+    case 'muGetCosmeticFiltering':
+        return isCosmeticDisabled(request.hostname);
+
+    case 'muSetCosmeticFiltering': {
+        const result = await setCosmeticDisabled(request.hostname, request.disabled);
+        await Promise.all([registerContentScripts(), registerUserScripts()]);
+        return result;
+    }
+
+    case 'muRestoreCosmeticFiltering':
+        await restoreCosmeticDisabledHosts(request.hostnames);
+        await Promise.all([registerContentScripts(), registerUserScripts()]);
+        return true;
 
     case 'applyRulesets': {
         await applyRulesets(request.enabledRulesets);
