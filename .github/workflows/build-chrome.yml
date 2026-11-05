@@ -120,12 +120,36 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          # GitHub sometimes returns HTTP 500 while finalizing a release,
+          # leaving its asset in a draft. Create/upload once, then retry only
+          # the publish transition rather than creating duplicate releases.
+          title="muBlock $MUBLOCK_VERSION — build $GITHUB_RUN_NUMBER"
           gh release create "$MUBLOCK_TAG" "dist/$MUBLOCK_ARCHIVE" \
             --repo "$GITHUB_REPOSITORY" \
-            --title "muBlock $MUBLOCK_VERSION — build $GITHUB_RUN_NUMBER" \
+            --title "$title" \
             --notes-file dist/RELEASE_NOTES.md \
             --target "$(git rev-parse HEAD)" \
-            --latest
+            --draft
+          release_id="$(gh api "repos/$GITHUB_REPOSITORY/releases?per_page=100" \
+            --jq '.[] | select(.tag_name == env.MUBLOCK_TAG) | .id' | head -n 1)"
+          if [[ -z "$release_id" ]]; then
+            echo "The created draft release could not be found." >&2
+            exit 1
+          fi
+          published=0
+          for delay in 2 4 8 16 32; do
+            if gh api -X PATCH "repos/$GITHUB_REPOSITORY/releases/$release_id" \
+                -F draft=false -f make_latest=true -f name="$title" >/dev/null; then
+              published=1
+              break
+            fi
+            echo "Transient GitHub release publication failure; retrying in ${delay}s"
+            sleep "$delay"
+          done
+          if [[ "$published" != 1 ]]; then
+            echo "Could not publish release after retries; ZIP remains available in Actions artifacts." >&2
+            exit 1
+          fi
       - name: Record last successfully published muBlock commit
         run: |
           set -euo pipefail
