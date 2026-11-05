@@ -1,0 +1,79 @@
+/* muBlock Material Expressive sliders — static motion-free controls. */
+:root input[type="range"] {
+  --mu-range-progress: 50%;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  box-sizing: border-box;
+  height: 32px !important;
+  min-height: 32px !important;
+  min-width: 90px;
+  padding: 0 !important;
+  margin: 4px 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 999px;
+  cursor: pointer;
+  accent-color: #ff0000 !important;
+  transition: none !important;
+  animation: none !important;
+}
+:root input[type="range"]::-webkit-slider-runnable-track {
+  box-sizing: border-box;
+  height: 10px !important;
+  border-radius: 999px !important;
+  border: 0 !important;
+  background: linear-gradient(
+    90deg, #ff0000 0 var(--mu-range-progress),
+    var(--mu-surface-high) var(--mu-range-progress) 100%
+  ) !important;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.035);
+}
+:root input[type="range"]::-webkit-slider-thumb {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  box-sizing: border-box;
+  width: 17px !important;
+  height: 28px !important;
+  margin-top: -9px !important;
+  border: 3px solid var(--mu-surface) !important;
+  border-radius: 9px !important;
+  background: #ff0000 !important;
+  box-shadow: 0 0 0 1px rgb(158 0 0 / 0.20),
+              0 2px 5px rgb(32 0 0 / 0.12) !important;
+  transform: none !important;
+  transition: none !important;
+}
+:root input[type="range"]::-moz-range-track {
+  height: 10px !important;
+  background: var(--mu-surface-high) !important;
+  border-radius: 999px;
+  border: 0;
+}
+:root input[type="range"]::-moz-range-progress {
+  background: #ff0000 !important;
+  height: 10px;
+  border-radius: 999px;
+}
+:root input[type="range"]::-moz-range-thumb {
+  width: 17px !important;
+  height: 28px !important;
+  border-radius: 9px !important;
+  box-sizing: border-box;
+  border: 3px solid var(--mu-surface) !important;
+  background: #ff0000 !important;
+  box-shadow: 0 0 0 1px rgb(158 0 0 / .20) !important;
+}
+:root input[type="range"]:focus-visible {
+  outline: 3px solid #ff0000 !important;
+  outline-offset: 5px !important;
+}
+:root input[type="range"]:disabled {
+  opacity: .38 !important;
+  cursor: not-allowed !important;
+}
+:root input[type="range"]:hover,
+:root input[type="range"]:hover::-webkit-slider-thumb {
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
