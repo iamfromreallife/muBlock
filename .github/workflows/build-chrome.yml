@@ -136,14 +136,14 @@ jobs:
             git commit -m "Record last published muBlock build $GITHUB_RUN_NUMBER"
             git push origin HEAD:main
           fi
-      - name: Prune obsolete branches and preserve current prompt branch
+      - name: Keep only main by deleting all other remote branches
         run: |
           set -euo pipefail
-          keep="$(cat .github/CURRENT_WORK_BRANCH)"
-          if [[ ! "$keep" =~ ^[A-Za-z0-9._/-]+$ ]] || [[ "$keep" == "main" ]]; then exit 1; fi
+          # Every task and release finishes with one single surviving branch.
+          # Run only AFTER successfully publishing the GitHub Release and ZIP.
           git ls-remote --heads origin | sed 's#.*refs/heads/##' |
           while IFS= read -r old; do
-            if [[ "$old" != "main" && "$old" != "$keep" ]]; then
+            if [[ "$old" != "main" ]]; then
               git push origin --delete "$old"
             fi
           done
