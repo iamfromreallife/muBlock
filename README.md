@@ -7,7 +7,7 @@ It is **not** an official uBlock Origin release. Credit for the original filteri
 ## Direct download and installation
 
 <!-- MU_INSTALL_START -->
-[**Download muBlock_2026.1103.1743.zip directly**](https://github.com/iamfromreallife/muBlock/releases/download/v2026.1103.1743-build.53/muBlock_2026.1103.1743.zip)
+[**Download muBlock_2026.1103.1743.zip directly**](https://github.com/iamfromreallife/muBlock/releases/download/v2026.1103.1743-build.54/muBlock_2026.1103.1743.zip)
 <!-- MU_INSTALL_END -->
 
 **The link above is replaced automatically with a direct ZIP download link after each completed build.** The file is named **muBlock_VERSION.zip**, where VERSION is read from the bundled upstream uBlock Origin Lite manifest.
