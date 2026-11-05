@@ -1139,9 +1139,9 @@ body > header {
   display:flex!important;
   flex-direction:row!important;
   flex-wrap:nowrap!important;
-  /* Center logo plus tabs as one group; safe alignment preserves access
-     to the first tab when long translations overflow horizontally. */
-  justify-content:safe center!important;
+  /* Align the logo and tabs to the left edge of the dashboard content.
+     Keep horizontal scrolling available for long translated labels. */
+  justify-content:flex-start!important;
   align-items:center;
   gap:clamp(3px,.45vw,7px)!important;
   width:100%;
@@ -1257,4 +1257,44 @@ section[data-pane="rulesets"] > #lists {
   section[data-pane="rulesets"] > #lists {
     padding:12px 10px 15px!important;
   }
+}
+
+
+/* Keep the same header-to-content gap on EVERY dashboard tab. The Settings
+ * pane already used 28px; the Filter Lists and About 12px overrides created
+ * visibly inconsistent spacing. Applied after all previous pane overrides. */
+body[data-pane] > section[data-pane] {
+  padding-top:28px!important;
+  margin-top:0!important;
+}
+
+/* About-only Crayola blue (#1F75FE). Do not change muBlock's maroon accent,
+ * selected navigation states, icon colors or filter controls elsewhere. */
+section[data-pane="about"] .body a,
+section[data-pane="about"] .body a:link,
+section[data-pane="about"] .body a:visited,
+section[data-pane="about"] .body a:hover,
+section[data-pane="about"] .body a:focus-visible {
+  color:#1F75FE!important;
+  text-decoration-color:#1F75FE!important;
+}
+
+/* Attribution lines must have the same compact 4px vertical gap, including
+ * the author line followed by the GitHub link. The fork block currently
+ * contains: credit paragraph, upstream link, author paragraph, fork link. */
+section[data-pane="about"] .mu-about-fork {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:4px;
+}
+section[data-pane="about"] .mu-about-fork > p,
+section[data-pane="about"] .mu-about-fork > a {
+  box-sizing:border-box;
+  margin:0!important;
+  padding:0!important;
+  line-height:1.45!important;
+}
+section[data-pane="about"] .mu-about-fork > a {
+  display:block;
 }
