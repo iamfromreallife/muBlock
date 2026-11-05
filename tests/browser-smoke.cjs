@@ -63,6 +63,8 @@ async function main(){
      await page.waitForSelector('#mu-site-search-results .mu-search-match mark');
      assert.equal(await page.locator('#mu-site-search-results .mu-search-match').count(),1);
      assert.equal(await page.locator('#mu-site-textarea').isVisible(),false);
+     fs.mkdirSync('test-artifacts',{recursive:true});
+     await page.screenshot({path:'test-artifacts/search-results.png',fullPage:true});
      const align=await page.locator('.mu-search-text').first().evaluate(el=>
        getComputedStyle(el).textAlign);
      assert(['left','start'].includes(align),'Search results are not left aligned');
@@ -149,6 +151,7 @@ async function main(){
      await trigger.click();
      const menu=page.locator('.mu-select-menu:not([hidden])');
      await menu.waitFor({state:'visible'});
+     await page.screenshot({path:'test-artifacts/open-dropdown.png',fullPage:true});
      const menuStyle=await menu.evaluate(el=>{
        const cs=getComputedStyle(el);
        return {radius:parseFloat(cs.borderTopLeftRadius),shadow:cs.boxShadow};
