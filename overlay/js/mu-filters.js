@@ -91,7 +91,10 @@ if(pane&&sandbox&&!pane.querySelector('#mu-site-textarea')){
      const data=await browser.storage.local.get(ORDER_KEY);
      recentOrder=Array.isArray(data?.[ORDER_KEY])?data[ORDER_KEY]:null;
    }
-   const old=Array.isArray(recentOrder)?recentOrder.filter(id=>live.has(id)):[];
+   // Keep known identifiers across Lite's temporary removeAll/addMany during
+   // a backup restore. Only present filters are displayed, so stale IDs never
+   // appear in the editor or affect its backing store.
+   const old=Array.isArray(recentOrder)?recentOrder.slice():[];
    const known=new Set(old);
    // Lite does not provide historical creation timestamps. New picker rules
    // are placed first while older records keep their saved presentation order.
