@@ -531,12 +531,6 @@ body[data-pane="filters"]:not(.busy)>#mu-filters{display:flex;}
   padding:5px 11px;min-height:30px;border-radius:10px;
   font:600 11.5px/1.2 var(--mu-family);
 }
-/* Do not leave a separator or empty gutter below the ruleset-search header. */
-body[data-pane="rulesets"]>header{padding-bottom:0!important;border-bottom:0!important;margin-bottom:0!important;}
-body[data-pane="rulesets"]>section[data-pane="rulesets"]{
-  padding-top:0!important;margin-top:0!important;border-top:0!important;
-}
-body[data-pane="rulesets"] #lists{margin-top:0!important;padding-top:0!important;}
 .mu-about-upstream{font:500 13px/1.65 var(--mu-family);max-width:850px;}
 .mu-about-fork{margin-top:0;margin-bottom:18px;padding:15px 16px;border-radius:14px;background:var(--mu-primary-container);}
 .mu-about-fork a{color:var(--mu-primary);}
@@ -1028,7 +1022,6 @@ section[data-pane="rulesets"] > #lists {
 /* Compact About: distinct titled sections, a two-column layout at desktop
  * widths, tight link spacing and no loss of Lite's legal/technical details. */
 body[data-pane="about"] > section[data-pane="about"] {
-  padding-top:12px!important;
   padding-bottom:28px!important;
 }
 section[data-pane="about"] > .body {
@@ -1197,9 +1190,6 @@ body > header {
  * #lists is Lite's existing list container; the UI script prepends Lite's
  * existing search panel, with IDs/events and compiled rules left untouched.
  * The import controls remain adjacent to #lists as the upstream expects. */
-body[data-pane="rulesets"] > section[data-pane="rulesets"] {
-  padding-top:12px!important;
-}
 section[data-pane="rulesets"] > #lists {
   box-sizing:border-box!important;
   display:block;
@@ -1260,12 +1250,32 @@ section[data-pane="rulesets"] > #lists {
 }
 
 
-/* Keep the same header-to-content gap on EVERY dashboard tab. The Settings
- * pane already used 28px; the Filter Lists and About 12px overrides created
- * visibly inconsistent spacing. Applied after all previous pane overrides. */
+/* One shared horizontal gutter ensures the logo starts at precisely the
+ * same x-position as the outer edge of every dashboard card. */
+:root { --mu-dashboard-gutter:max(16px,2.7vw); }
+body[data-pane] > header,
+body[data-pane] > section[data-pane] {
+  padding-inline:var(--mu-dashboard-gutter)!important;
+}
+body[data-pane] > header {
+  /* Filter Lists formerly removed its header bottom padding, making the
+     first card 10px closer to the navigation than on all other tabs. */
+  padding-top:13px!important;
+  padding-bottom:10px!important;
+  margin-bottom:0!important;
+}
+/* Equal header-to-panel gap across Settings, Filter Lists, Custom Filters,
+ * Developer and About. No pane-specific zero/12px overrides remain. */
 body[data-pane] > section[data-pane] {
   padding-top:28px!important;
   margin-top:0!important;
+}
+@media(max-width:760px) {
+  :root { --mu-dashboard-gutter:12px; }
+  body[data-pane] > header {
+    padding-top:10px!important;
+    padding-bottom:10px!important;
+  }
 }
 
 /* About-only Crayola blue (#1F75FE). Do not change muBlock's maroon accent,
