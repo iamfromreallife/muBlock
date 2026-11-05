@@ -1,5 +1,6 @@
-muBlock dashboard one-line navigation release — 2026-11-05
-All finalized UI changes committed to main at: 4c4ae0c9d027e20b7bdbc401a2238d2d6cad1c90
-Dashboard max width increased from 1000px to 1100px.
-Never wrap localized dashboard navigation tabs; horizontally scroll on constrained windows.
-Only main branch. Packaging-only GitHub Release; no tests/screenshots.
+muBlock unified filter lists layout — 2026-11-05
+Source finalized on main at: c3a8d86dac2e1d1d106da5636712fc844472f8eb
+Move rule count and list search into the existing full-width #lists card.
+Apply shared elevation, full-width group sizing, preserve native Lite list handlers.
+Package once after source changes; no automated tests or screenshot reviews.
+Keep only the main branch.
