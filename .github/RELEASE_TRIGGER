@@ -1,7 +1,8 @@
-muBlock dashboard header and Filter Lists spacing alignment — 2026-11-05
-Final source on main: 124602569ebec04ca538f4fb0585d9741f0767f7
-Use shared left gutter between muBlock logo/nav and every settings card.
-Remove legacy Filter Lists header padding reduction and 0px/12px top offsets.
-Keep all dashboard panels the same 28px below the navigation.
-Publish single versioned package, no automated tests or screenshot reviews.
+muBlock per-site Disable cosmetic filtering feature — 2026-11-05
+All feature source changes finalized on main at: ac7cc5fe44957e7a5360ff9e7cf4144ad6bbb366
+Popup switch below Remove a custom filter. Persistent hostname exceptions.
+Disable Lite stock, custom, sandbox and imported cosmetic CSS registrations per website.
+Preserve DNR network filtering, filtering strength and independent scriptlets.
+Include exceptions in Lite-compatible backup and restore.
+Publish one final versioned ZIP release, no tests or screenshot reviews.
 Only main branch.
