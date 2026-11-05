@@ -47,3 +47,10 @@ GPL-3.0-or-later, consistent with the parent extension. See `LICENSE`, `THIRD_PA
 - **Credits:** the **About** page opens with full credit to Raymond Hill and the uBlock Origin Lite contributors; the independent fork author is **iamfromreallife**.
 
 The unmodified Lite filtering engine and backup/restore format are preserved. Since the upstream per-site filter store does not keep creation timestamps, newly discovered picker rules are shown first through **presentation-only ordering metadata**. Existing rules without historical timestamps cannot be accurately dated.
+
+## November 2026 visual refinement
+
+- **Inline editing during search:** the live search keeps Crayola Blue/white highlights and left-aligns the results. Click a result or its pencil icon to edit that rule directly, press **Enter** to finish or **Escape** to cancel, and use the existing **Save** button to persist. Other nonmatching filters stay in the backing text area and are not deleted.
+- **Subtle custom-filter background:** near-white neutral grey in light mode, appropriately muted surface in dark mode.
+- **Consistent dropdowns:** dashboard and report dropdowns are accessible rounded grey listboxes with soft shadows. The original Lite `<select>` elements remain connected for their actual event handlers and form data.
+- **Icon source:** the redesigned gradient red shield/white **m** lives in `overlay/img/mu-logo.svg`. `scripts/generate_icons.py` uses build-only CairoSVG/Pillow to rasterize the icon at 16–512 px; it also refreshes the original Lite PNG filenames as fallbacks, including lighter desaturated off-state icons. This makes rebuilding reproducible. The extension itself needs no network resources.
