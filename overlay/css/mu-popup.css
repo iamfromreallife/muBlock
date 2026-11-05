@@ -231,3 +231,97 @@ body.nodata #mu-filtering-state { opacity: .65; }
 @media (prefers-reduced-motion: reduce) {
   :root.desktop main { animation: none; }
 }
+
+/* Compact popup: 320 px wide, with filtering toggle alongside hostname. */
+:root.desktop body,:root.mobile body {
+  box-sizing:border-box;width:320px;min-width:316px;max-width:320px;
+  padding:8px 11px 11px;overflow-x:hidden;
+  background:var(--mu-background);font:12.5px/1.35 var(--mu-family);
+}
+:root.desktop main,:root.mobile main {width:100%;min-width:0;max-width:none;gap:7px;}
+#mu-popup-header {
+  display:flex;align-items:center;justify-content:space-between;
+  gap:8px;height:36px;padding:0 3px 3px;min-width:0;
+}
+.mu-pop-brand{display:inline-flex;align-items:center;gap:8px;font:800 17px/1 var(--mu-family);}
+.mu-pop-brand img{width:26px;height:26px;}
+.mu-header-actions{display:flex;gap:3px;align-items:center;}
+.mu-header-tool.fa-icon{
+  display:inline-flex;visibility:visible;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:12px;padding:0;font-size:17px;
+  color:var(--mu-primary);fill:var(--mu-primary);cursor:pointer;
+}
+.mu-header-tool:not(.enabled),.mu-header-tool .caption{display:none!important;}
+.mu-header-tool:hover{background:var(--mu-primary-container);}
+#mu-sitebar {
+  display:flex;align-items:center;gap:8px;min-height:46px;
+  padding:5px 6px 5px 12px;box-sizing:border-box;
+  background:var(--mu-surface);border-radius:17px;
+}
+#hostname {
+  box-sizing:border-box;flex:1 1 auto;min-width:0;min-height:0;max-height:none;
+  display:block;background:transparent;border:0;padding:0;margin:0;
+  font:650 12.5px/1.35 var(--mu-family);color:var(--mu-text);
+  text-align:start;overflow-wrap:anywhere;word-break:break-word;
+}
+#mu-power {
+  flex:0 0 38px;width:38px;height:38px;border:0;border-radius:13px;
+  padding:0;display:inline-flex;align-items:center;justify-content:center;
+  cursor:pointer;background:var(--mu-primary);color:#fff;box-shadow:none;
+}
+#mu-power .mu-icon{width:21px;height:21px;}
+#mu-power .mu-icon svg{stroke-width:2.3;}
+#mu-power.off{background:var(--mu-surface-high);color:var(--mu-text-muted);}
+#mu-power:disabled{opacity:.43;cursor:not-allowed;}
+#mu-modes-wrap{
+  box-sizing:border-box;min-width:0;padding:10px 9px 9px;
+  background:var(--mu-surface);border-radius:17px;box-shadow:none;
+}
+#mu-modes-wrap .mu-section-title{
+  margin:0 4px 7px;color:var(--mu-text-muted);
+  font:650 11px/1.2 var(--mu-family);
+}
+#mu-mode-buttons {
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;
+  padding:3px;border-radius:15px;background:var(--mu-surface-low);
+}
+.mu-mode-btn{
+  min-width:0;min-height:52px;padding:5px 2px;border:0;
+  background:transparent;border-radius:12px;color:var(--mu-text-muted);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;font:600 10px/1.12 var(--mu-family);cursor:pointer;
+}
+.mu-mode-btn .mu-mode-name{display:block;max-width:100%;overflow-wrap:break-word;text-align:center;}
+.mu-mode-btn .mu-icon{width:17px;height:17px;}
+.mu-mode-btn[aria-pressed="true"]{
+  background:#1f75fe;color:#fff!important;border-radius:11px;box-shadow:none;
+}
+.mu-mode-btn:hover:not([aria-pressed="true"]){background:var(--mu-surface-high);}
+.mu-mode-btn:disabled{opacity:.4;cursor:not-allowed;}
+.filteringModeSlider{
+  position:fixed!important;top:-5000px!important;left:-5000px!important;
+  opacity:0!important;pointer-events:none!important;
+}
+#filteringModeText,.toolRibbon.globalTools{display:none!important;}
+:root.desktop .toolMenu,:root.mobile .toolMenu{
+  box-sizing:border-box;margin:0;padding:8px 8px 7px;background:var(--mu-surface);
+  border:0;border-radius:17px;display:grid;grid-template-columns:1fr;gap:0;
+}
+.toolMenu>label{
+  margin:0;padding:4px 6px 6px;font:700 11.5px/1.2 var(--mu-family);
+}
+:root.desktop .toolMenu .tool,:root.mobile .toolMenu .tool{
+  box-sizing:border-box;display:flex;align-items:center;gap:9px;
+  padding:7px 8px;min-height:32px;border-radius:10px;
+  text-align:start;font:500 12px/1.25 var(--mu-family);color:var(--mu-text);
+}
+.toolMenu .tool:not(.enabled){display:none!important;}
+.toolMenu .tool .fa-icon{
+  font-size:16px;color:var(--mu-primary);fill:var(--mu-primary);
+}
+.toolMenu .tool:hover{background:var(--mu-surface-low);}
+body.nodata #mu-power,body.nodata .mu-mode-btn{opacity:.4;pointer-events:none;}
+/* User setting: absolutely no animations, including in custom popup controls. */
+:root,:root *,:root *::before,:root *::after{
+ animation:none!important;transition:none!important;scroll-behavior:auto!important;
+}
