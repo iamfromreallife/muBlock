@@ -1,6 +1,3 @@
-muBlock unified filter lists layout — 2026-11-05
-Source finalized on main at: c3a8d86dac2e1d1d106da5636712fc844472f8eb
-Move rule count and list search into the existing full-width #lists card.
-Apply shared elevation, full-width group sizing, preserve native Lite list handlers.
-Package once after source changes; no automated tests or screenshot reviews.
-Keep only the main branch.
+muBlock combined Filter Lists search and results release — retry 2026-11-05
+Resilient GitHub Release step committed on main: 13150e07c99f38024a925f56d54c59fba473e04c
+Repackage one unified full-width Filter Lists card; no tests or screenshot reviews.
