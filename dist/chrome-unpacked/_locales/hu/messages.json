@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Válasszon alább egy szűrőt, hogy kiemelje az egyező elemeket a weboldalon. Kattintson a kuka ikonra egy szűrő eltávolításához.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Bővítmény nyelve"
+  },
+  "muLanguageSystem": {
+    "message": "A böngésző nyelvének használata"
   }
 }

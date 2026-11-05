@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "ویب صفحے میں مماثل عناصر کو نمایاں کرنے کے لیے نیچے دیے گئے فلٹر کو منتخب کریں۔ فلٹر کو ہٹانے کے لیے کوڑے دان پر کلک کریں۔",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

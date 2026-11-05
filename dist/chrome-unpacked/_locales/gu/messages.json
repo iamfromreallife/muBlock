@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "વેબ પેજમાં મેળ ખાતા તત્વોને હાઇલાઇટ કરવા નીચે ફિલ્ટર પસંદ કરો. ફિલ્ટર દૂર કરવા કચરાપેટી પર ક્લિક કરો.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

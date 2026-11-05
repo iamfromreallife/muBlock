@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "აირჩიეთ ქვემოთ ფილტრი შესაბამისი ნაწილების მოსანიშნად ვებგვერდზე. დაწკაპეთ სანაგვე ყუთი ფილტრის მოსაცილებლად.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

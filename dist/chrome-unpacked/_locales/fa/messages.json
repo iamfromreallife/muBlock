@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "یک فیلتر را در زیر انتخاب کنید تا عناصر منطبق در صفحه وب برجسته شوند. روی سطل زباله کلیک کنید تا یک فیلتر حذف شود.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

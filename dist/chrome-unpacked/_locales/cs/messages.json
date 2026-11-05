@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Výběrem níže uvedeného filtru zvýrazníte odpovídající prvky na webové stránce. Klepnutím na koš filtr odeberete.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Jazyk rozšíření"
+  },
+  "muLanguageSystem": {
+    "message": "Použít jazyk prohlížeče"
   }
 }

@@ -1,0 +1,46 @@
+/* The first row under Behaviour: extension-wide UI language. */
+section[data-pane="settings"] #mu-extension-language {
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  flex-wrap:wrap;
+  gap:10px 18px;
+  padding:3px 0 14px;
+  margin:0 0 9px;
+  border-bottom:1px solid var(--mu-outline);
+}
+#mu-extension-language label {
+  flex:0 1 180px;
+  min-width:115px;
+  margin:0;
+  font:650 13px/1.35 var(--mu-family);
+  color:var(--mu-text);
+}
+#mu-extension-language .mu-select-wrap {
+  flex:0 1 350px;
+  width:min(350px,100%);
+  max-width:100%;
+  min-width:min(200px,100%);
+}
+#mu-extension-language .mu-select-trigger {
+  width:100%;
+  min-width:0;
+  min-height:39px;
+  padding:7px 12px;
+  border-radius:13px!important;
+  background:var(--mu-surface-low)!important;
+  box-shadow:0 2px 9px rgb(0 0 0 / .045)!important;
+}
+#mu-extension-language > select {
+  min-width:220px;
+  max-width:350px;
+  background:var(--mu-surface-low);
+  color:var(--mu-text);
+  border-radius:13px;
+  padding:8px 11px;
+}
+@media(max-width:580px){
+  #mu-extension-language {gap:8px;}
+  #mu-extension-language label {flex:0 0 100%;}
+  #mu-extension-language .mu-select-wrap{flex:1 1 auto;}
+}

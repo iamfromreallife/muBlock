@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Seleccionar un filtre çai-jos per metre en relèu los elements correspondents dins la pagina web. Clicar sus la corbèla per suprimir un filtre.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

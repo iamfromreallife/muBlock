@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Hautatu beheko iragazki bat web orrian bat datozen elementuak nabarmentzeko. Egin klik zakarrontzian iragazki bat kentzeko.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Välj ett filter nedan för att markera matchande element på webbsidan. Klicka på papperskorgen för att ta bort ett filter.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Tilläggets språk"
+  },
+  "muLanguageSystem": {
+    "message": "Följ webbläsarens språk"
   }
 }

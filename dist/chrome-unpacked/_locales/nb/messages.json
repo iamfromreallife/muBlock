@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Velg et filter nedenfor for å fremheve samsvarende elementer på nettsiden. Klikk på papirkurven for å fjerne et filter.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Utvidelsens språk"
+  },
+  "muLanguageSystem": {
+    "message": "Følg nettleserens språk"
   }
 }

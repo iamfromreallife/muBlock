@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "下のフィルターを選択すると、ウェブページ内の一致する要素がハイライトされます。フィルタを削除するには、ゴミ箱をクリックしてください。",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "拡張機能の言語"
+  },
+  "muLanguageSystem": {
+    "message": "ブラウザーの言語を使用"
   }
 }

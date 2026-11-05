@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "वेब पृष्ठ में मिलान तत्वों को हाइलाइट करने के लिए नीचे एक फ़िल्टर चुनें। फ़िल्टर हटाने के लिए कूड़ेदान पर क्लिक करें।",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "एक्सटेंशन की भाषा"
+  },
+  "muLanguageSystem": {
+    "message": "ब्राउज़र की भाषा का उपयोग करें"
   }
 }

@@ -1,3 +1,4 @@
+import { muGetMessage } from './mu-language.js';
 /*******************************************************************************
 
     uBlock Origin - a comprehensive, efficient content blocker
@@ -27,7 +28,7 @@ const i18n =
         ? self.browser.i18n
         : self.chrome.i18n;
 
-const i18n$ = (...args) => i18n.getMessage(...args);
+const i18n$ = (...args) => muGetMessage(...args);
 
 /******************************************************************************/
 

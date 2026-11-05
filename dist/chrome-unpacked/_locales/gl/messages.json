@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Escolle un filtro para destacar os elementos que representa na páxina web. Preme no caldeiro do lixo para eliminar un filtro.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

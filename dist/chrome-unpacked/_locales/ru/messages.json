@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Выберите фильтр ниже, чтобы подсветить соответствующие элементы на странице. Нажмите на корзину для удаления фильтра.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Язык расширения"
+  },
+  "muLanguageSystem": {
+    "message": "Язык браузера"
   }
 }

@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Изберете филтер подолу за да ги означите соодветните елементи на веб-страницата. Кликнете на кантата за отстранување на филтер.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

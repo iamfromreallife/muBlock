@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Pilih penapis di bawah untuk menyerlahkan elemen yang sepadan dalam laman web. Klik tong sampah untuk mengalih keluar penapis.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Choisissez un filtre ci-dessous pour surligner les éléments correspondants dans la page Web. Cliquez sur l'icône de poubelle pour supprimer un filtre.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Langue de l’extension"
+  },
+  "muLanguageSystem": {
+    "message": "Suivre la langue du navigateur"
   }
 }

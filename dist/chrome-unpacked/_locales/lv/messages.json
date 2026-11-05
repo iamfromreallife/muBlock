@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Zemāk jāatlasa atlasītājs, lai tīmekļa lapā izceltu atbilstošos elementus. Klikšķināt uz atkritnes, lai noņemtu aizturētāju.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

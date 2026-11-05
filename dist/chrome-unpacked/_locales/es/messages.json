@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Selecciona un filtro abajo para resaltar los elementos coincidentes en la página web. Haz clic en la papelera para eliminar un filtro.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Idioma de la extensión"
+  },
+  "muLanguageSystem": {
+    "message": "Seguir el idioma del navegador"
   }
 }

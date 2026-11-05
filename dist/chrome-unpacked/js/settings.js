@@ -1,3 +1,4 @@
+import { muGetMessage } from './mu-language.js';
 /*******************************************************************************
 
     uBlock Origin Lite - a comprehensive, MV3-compliant content blocker
@@ -183,7 +184,7 @@ async function restoreSettings() {
 }
 
 async function resetSettings() {
-    const response = self.confirm(i18n.getMessage('resetToDefaultConfirm'));
+    const response = self.confirm(muGetMessage('resetToDefaultConfirm'));
     if ( response !== true ) { return; }
     dom.cl.add(dom.body, 'busy');
     const api = await import('./backup-restore.js');

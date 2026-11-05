@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Chagua kichujio hapa chini ili kuangazia vipengele vinavyolingana kwenye ukurasa wa wavuti. Bonyeza pipa la taka ili kuondoa kichujio.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Selektearje hjirûnder in filter om oerienkommende eleminten yn de webside te markearjen. Klik op it jiskefet om in filter fuort te smiten.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

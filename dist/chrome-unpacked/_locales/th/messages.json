@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "เลือกตัวกรองด้านล่างเพื่อไฮไลต์องค์ประกอบที่ตรงกันในหน้าเว็บ คลิกที่ไอคอนถังขยะเพื่อลบตัวกรอง",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "ภาษาของส่วนขยาย"
+  },
+  "muLanguageSystem": {
+    "message": "ใช้ภาษาของเบราว์เซอร์"
   }
 }

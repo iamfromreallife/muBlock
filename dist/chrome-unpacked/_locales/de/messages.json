@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Das Auswählen eines unten stehenden Filters hebt übereinstimmende Elemente auf der Webseite hervor. Auf den Mülleimer klicken, um einen Filter zu entfernen.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Sprache der Erweiterung"
+  },
+  "muLanguageSystem": {
+    "message": "Browsersprache verwenden"
   }
 }

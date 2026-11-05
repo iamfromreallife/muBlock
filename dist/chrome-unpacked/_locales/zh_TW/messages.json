@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "選取下方的過濾器，以突顯網頁中符合條件的元素。按一下回收桶可移除過濾器。",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "擴充功能語言"
+  },
+  "muLanguageSystem": {
+    "message": "跟隨瀏覽器語言"
   }
 }

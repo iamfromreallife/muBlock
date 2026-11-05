@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "选择下面的过滤器以突出显示网页中匹配的元素。点击垃圾桶可移除过滤器。",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "扩展程序语言"
+  },
+  "muLanguageSystem": {
+    "message": "跟随浏览器语言"
   }
 }

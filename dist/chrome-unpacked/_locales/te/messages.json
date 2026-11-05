@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "వెబ్ పేజీలో సరిపోలే మూలకాలను హైలైట్ చేయడానికి క్రింద ఒక ఫిల్టర్‌ను ఎంచుకోండి. ఫిల్టర్‌ను తొలగించడానికి చెత్త డబ్బాపై క్లిక్ చేయండి.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Chọn một bộ lọc bên dưới để đánh dấu các phần tử phù hợp trong trang web. Nhấp vào thùng rác để xóa bộ lọc.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Ngôn ngữ tiện ích"
+  },
+  "muLanguageSystem": {
+    "message": "Theo ngôn ngữ trình duyệt"
   }
 }

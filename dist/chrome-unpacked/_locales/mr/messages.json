@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "वेब पृष्ठावर जुळणारे एलिमेंट हायलाइट करण्यासाठी खालील फिल्टर निवडा. फिल्टर काढण्यासाठी कचरापेटीवर क्लिक करा.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }

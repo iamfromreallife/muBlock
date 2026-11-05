@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Odaberite filter u nastavku kako biste istaknuli odgovarajuće elemente na web stranici. Kliknite koš za smeće kako biste uklonili filter.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Jezik proširenja"
+  },
+  "muLanguageSystem": {
+    "message": "Prati jezik preglednika"
   }
 }

@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "아래의 필터를 선택하면 웹페이지의 일치하는 요소가 강조 표시됩니다. 필터를 삭제하려면 휴지통을 클릭합니다.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "확장 프로그램 언어"
+  },
+  "muLanguageSystem": {
+    "message": "브라우저 언어 따르기"
   }
 }

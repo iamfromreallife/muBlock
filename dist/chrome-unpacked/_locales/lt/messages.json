@@ -462,5 +462,11 @@
   "unpickerUsage": {
     "message": "Pasirinkite filtrą žemiau, kad paryškintumėte atitinkančius elementus tinklalapyje. Spustelėkite šiukšliadėžę, kad pašalintumėte filtrą.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muLanguageLabel": {
+    "message": "Extension language"
+  },
+  "muLanguageSystem": {
+    "message": "Follow browser language"
   }
 }
