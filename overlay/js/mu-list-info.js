@@ -1,12 +1,13 @@
+import { activeLocale } from './mu-language.js';
 /* Lightweight informational labels for uBO Lite filter-list entries.
  * The original filter-lists.js owns every list, checkbox and runtime action.
  * List-specific versions are intentionally not displayed. Descriptions
  * follow the original home icon in Lite's native iconbar.
  */
 const container = document.querySelector('#lists');
-const pt = (chrome.i18n.getUILanguage() || 'en').toLowerCase().startsWith('pt');
-const es = (chrome.i18n.getUILanguage() || '').toLowerCase().startsWith('es');
-const fr = (chrome.i18n.getUILanguage() || '').toLowerCase().startsWith('fr');
+const pt = (activeLocale || 'en').toLowerCase().startsWith('pt');
+const es = (activeLocale || '').toLowerCase().startsWith('es');
+const fr = (activeLocale || '').toLowerCase().startsWith('fr');
 
 const infoById = {
   'ublock-filters': [
