@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Valige allolev filter, et tõsta esile veebilehel kattuvad elemendid. Filtri eemaldamiseks klõpsake prügikasti.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Appearance"
+  },
+  "muAppearanceFont": {
+    "message": "Font"
+  },
+  "muAppearanceFontSize": {
+    "message": "Font size"
+  },
+  "muAppearanceTheme": {
+    "message": "Theme"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Follow System"
+  },
+  "muAppearanceLight": {
+    "message": "Light"
+  },
+  "muAppearanceDark": {
+    "message": "Dark"
+  },
+  "muAppearanceSystemFont": {
+    "message": "System default"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monospace"
   }
 }

@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Selecciona un filtro abajo para resaltar los elementos coincidentes en la página web. Haz clic en la papelera para eliminar un filtro.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Apariencia"
+  },
+  "muAppearanceFont": {
+    "message": "Fuente"
+  },
+  "muAppearanceFontSize": {
+    "message": "Tamaño de fuente"
+  },
+  "muAppearanceTheme": {
+    "message": "Tema"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Seguir el sistema"
+  },
+  "muAppearanceLight": {
+    "message": "Claro"
+  },
+  "muAppearanceDark": {
+    "message": "Oscuro"
+  },
+  "muAppearanceSystemFont": {
+    "message": "Predeterminada del sistema"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monoespaciada"
   }
 }

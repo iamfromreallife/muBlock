@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Pilih filter di bawah ini untuk menyorot elemen yang cocok di halaman web. Klik ikon tempat sampah untuk menghapus filter.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Tampilan"
+  },
+  "muAppearanceFont": {
+    "message": "Font"
+  },
+  "muAppearanceFontSize": {
+    "message": "Ukuran font"
+  },
+  "muAppearanceTheme": {
+    "message": "Tema"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Ikuti sistem"
+  },
+  "muAppearanceLight": {
+    "message": "Terang"
+  },
+  "muAppearanceDark": {
+    "message": "Gelap"
+  },
+  "muAppearanceSystemFont": {
+    "message": "Bawaan sistem"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monospace"
   }
 }

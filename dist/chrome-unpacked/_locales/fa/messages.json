@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "یک فیلتر را در زیر انتخاب کنید تا عناصر منطبق در صفحه وب برجسته شوند. روی سطل زباله کلیک کنید تا یک فیلتر حذف شود.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Appearance"
+  },
+  "muAppearanceFont": {
+    "message": "Font"
+  },
+  "muAppearanceFontSize": {
+    "message": "Font size"
+  },
+  "muAppearanceTheme": {
+    "message": "Theme"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Follow System"
+  },
+  "muAppearanceLight": {
+    "message": "Light"
+  },
+  "muAppearanceDark": {
+    "message": "Dark"
+  },
+  "muAppearanceSystemFont": {
+    "message": "System default"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monospace"
   }
 }

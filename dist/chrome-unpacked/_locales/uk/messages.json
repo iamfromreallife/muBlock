@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Виберіть фільтр нижче, щоб підсвітити відповідні елементи на сторінці. Натисніть на кошик для видалення фільтра.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Вигляд"
+  },
+  "muAppearanceFont": {
+    "message": "Шрифт"
+  },
+  "muAppearanceFontSize": {
+    "message": "Розмір шрифту"
+  },
+  "muAppearanceTheme": {
+    "message": "Тема"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Як у системі"
+  },
+  "muAppearanceLight": {
+    "message": "Світла"
+  },
+  "muAppearanceDark": {
+    "message": "Темна"
+  },
+  "muAppearanceSystemFont": {
+    "message": "Системний шрифт"
+  },
+  "muAppearanceMonospace": {
+    "message": "Моноширинний"
   }
 }

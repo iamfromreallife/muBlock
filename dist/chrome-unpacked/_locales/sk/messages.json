@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Vyberte filter na zvýraznenie zodpovedajúcich prvkov na webovej stránke. Ak chcete filter odstrániť, kliknite na kôš.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Vzhľad"
+  },
+  "muAppearanceFont": {
+    "message": "Písmo"
+  },
+  "muAppearanceFontSize": {
+    "message": "Veľkosť písma"
+  },
+  "muAppearanceTheme": {
+    "message": "Motív"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Podľa systému"
+  },
+  "muAppearanceLight": {
+    "message": "Svetlý"
+  },
+  "muAppearanceDark": {
+    "message": "Tmavý"
+  },
+  "muAppearanceSystemFont": {
+    "message": "Systémové písmo"
+  },
+  "muAppearanceMonospace": {
+    "message": "Neproporcionálne"
   }
 }

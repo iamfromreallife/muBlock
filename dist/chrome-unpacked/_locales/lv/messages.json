@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Zemāk jāatlasa atlasītājs, lai tīmekļa lapā izceltu atbilstošos elementus. Klikšķināt uz atkritnes, lai noņemtu aizturētāju.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Appearance"
+  },
+  "muAppearanceFont": {
+    "message": "Font"
+  },
+  "muAppearanceFontSize": {
+    "message": "Font size"
+  },
+  "muAppearanceTheme": {
+    "message": "Theme"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Follow System"
+  },
+  "muAppearanceLight": {
+    "message": "Light"
+  },
+  "muAppearanceDark": {
+    "message": "Dark"
+  },
+  "muAppearanceSystemFont": {
+    "message": "System default"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monospace"
   }
 }

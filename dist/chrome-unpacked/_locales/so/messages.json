@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Dooro shaandho hoose si aad u iftiimiso qaybaha u dhigma ee bogga websaydhka. Guji qashinka si aad uga saarto shaandho.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Appearance"
+  },
+  "muAppearanceFont": {
+    "message": "Font"
+  },
+  "muAppearanceFontSize": {
+    "message": "Font size"
+  },
+  "muAppearanceTheme": {
+    "message": "Theme"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Follow System"
+  },
+  "muAppearanceLight": {
+    "message": "Light"
+  },
+  "muAppearanceDark": {
+    "message": "Dark"
+  },
+  "muAppearanceSystemFont": {
+    "message": "System default"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monospace"
   }
 }

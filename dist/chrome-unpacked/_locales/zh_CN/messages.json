@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "选择下面的过滤器以突出显示网页中匹配的元素。点击垃圾桶可移除过滤器。",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "外观"
+  },
+  "muAppearanceFont": {
+    "message": "字体"
+  },
+  "muAppearanceFontSize": {
+    "message": "字体大小"
+  },
+  "muAppearanceTheme": {
+    "message": "主题"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "跟随系统"
+  },
+  "muAppearanceLight": {
+    "message": "浅色"
+  },
+  "muAppearanceDark": {
+    "message": "深色"
+  },
+  "muAppearanceSystemFont": {
+    "message": "系统默认"
+  },
+  "muAppearanceMonospace": {
+    "message": "等宽字体"
   }
 }

@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Odaberite filter u nastavku kako biste istaknuli odgovarajuće elemente na web stranici. Kliknite koš za smeće kako biste uklonili filter.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Izgled"
+  },
+  "muAppearanceFont": {
+    "message": "Font"
+  },
+  "muAppearanceFontSize": {
+    "message": "Veličina fonta"
+  },
+  "muAppearanceTheme": {
+    "message": "Tema"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Prati sustav"
+  },
+  "muAppearanceLight": {
+    "message": "Svijetla"
+  },
+  "muAppearanceDark": {
+    "message": "Tamna"
+  },
+  "muAppearanceSystemFont": {
+    "message": "Zadani font sustava"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monospace"
   }
 }

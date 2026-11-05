@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Välj ett filter nedan för att markera matchande element på webbsidan. Klicka på papperskorgen för att ta bort ett filter.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Utseende"
+  },
+  "muAppearanceFont": {
+    "message": "Typsnitt"
+  },
+  "muAppearanceFontSize": {
+    "message": "Teckenstorlek"
+  },
+  "muAppearanceTheme": {
+    "message": "Tema"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Följ systemet"
+  },
+  "muAppearanceLight": {
+    "message": "Ljust"
+  },
+  "muAppearanceDark": {
+    "message": "Mörkt"
+  },
+  "muAppearanceSystemFont": {
+    "message": "Systemstandard"
+  },
+  "muAppearanceMonospace": {
+    "message": "Fast bredd"
   }
 }

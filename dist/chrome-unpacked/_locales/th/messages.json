@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "เลือกตัวกรองด้านล่างเพื่อไฮไลต์องค์ประกอบที่ตรงกันในหน้าเว็บ คลิกที่ไอคอนถังขยะเพื่อลบตัวกรอง",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "รูปลักษณ์"
+  },
+  "muAppearanceFont": {
+    "message": "แบบอักษร"
+  },
+  "muAppearanceFontSize": {
+    "message": "ขนาดแบบอักษร"
+  },
+  "muAppearanceTheme": {
+    "message": "ธีม"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "ตามระบบ"
+  },
+  "muAppearanceLight": {
+    "message": "สว่าง"
+  },
+  "muAppearanceDark": {
+    "message": "มืด"
+  },
+  "muAppearanceSystemFont": {
+    "message": "ค่าเริ่มต้นของระบบ"
+  },
+  "muAppearanceMonospace": {
+    "message": "ความกว้างคงที่"
   }
 }

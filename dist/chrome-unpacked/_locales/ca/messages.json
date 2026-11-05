@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Seleccioneu un filtre a continuació per a ressaltar els elements coincidents de la pàgina web. Feu clic a la paperera per a eliminar un filtre.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Aparença"
+  },
+  "muAppearanceFont": {
+    "message": "Tipus de lletra"
+  },
+  "muAppearanceFontSize": {
+    "message": "Mida de la lletra"
+  },
+  "muAppearanceTheme": {
+    "message": "Tema"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Segueix el sistema"
+  },
+  "muAppearanceLight": {
+    "message": "Clar"
+  },
+  "muAppearanceDark": {
+    "message": "Fosc"
+  },
+  "muAppearanceSystemFont": {
+    "message": "Tipus de lletra del sistema"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monoespaiada"
   }
 }

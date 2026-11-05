@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Seleccionar un filtre çai-jos per metre en relèu los elements correspondents dins la pagina web. Clicar sus la corbèla per suprimir un filtre.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Appearance"
+  },
+  "muAppearanceFont": {
+    "message": "Font"
+  },
+  "muAppearanceFontSize": {
+    "message": "Font size"
+  },
+  "muAppearanceTheme": {
+    "message": "Theme"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Follow System"
+  },
+  "muAppearanceLight": {
+    "message": "Light"
+  },
+  "muAppearanceDark": {
+    "message": "Dark"
+  },
+  "muAppearanceSystemFont": {
+    "message": "System default"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monospace"
   }
 }

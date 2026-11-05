@@ -1,0 +1,223 @@
+/* muBlock appearance controls — data stored separately from Lite filtering. */
+:root {
+  --mu-font-scale:1;
+  --mu-font-px:13px;
+}
+:root,
+:root body,
+:root body button,
+:root body input,
+:root body textarea,
+:root body select,
+:root body option,
+:root body label,
+:root body summary,
+:root body p,
+:root body a:not(.fa-icon) {
+  font-family:var(--mu-family)!important;
+}
+/* Use absolute sizes multiplied by the selected user scale, avoiding
+ * recursive em-scaling and keeping icon glyph families untouched. */
+:root body {
+  font-size:calc(13px * var(--mu-font-scale))!important;
+}
+:root body :is(p,label,legend,summary,button,select,option,input,textarea) {
+  font-size:calc(13px * var(--mu-font-scale))!important;
+}
+:root body :is(.tabButton,.listEntry,.listname,.tool,.mu-filter-meta,
+                 .mu-mode-name,.mu-pop-caption,.mu-section-title,
+                 .mu-about-author,.mu-filter-primary,.mu-editor-note,
+                 .mu-search-text,.mu-appearance-label) {
+  font-size:calc(12px * var(--mu-font-scale))!important;
+}
+:root body :is(h1) {font-size:calc(29px * var(--mu-font-scale))!important;}
+:root body :is(h2) {font-size:calc(23px * var(--mu-font-scale))!important;}
+:root body :is(h3) {font-size:calc(17px * var(--mu-font-scale))!important;}
+:root body :is(#mu-appearance h3) {font-size:calc(18px * var(--mu-font-scale))!important;}
+:root body :is(.mu-brand-word,.mu-pop-brand) {
+  font-size:calc(19px * var(--mu-font-scale))!important;
+}
+:root body .cm-editor .cm-content,
+:root body .cm-editor .cm-gutters,
+:root body #mu-site-textarea,
+:root body #mu-filtered-textarea,
+:root body #mu-filtered-highlight {
+  font-size:calc(12.5px * var(--mu-font-scale))!important;
+}
+
+/* About: current manifest version, white on red and clear left alignment. */
+section[data-pane="about"] #aboutNameVer {
+  box-sizing:border-box;
+  display:block;
+  width:100%;
+  margin:0 0 15px;
+  padding:13px 17px!important;
+  background:#ff0000!important;
+  color:#fff!important;
+  border-radius:13px;
+  font-weight:700;
+  line-height:1.5;
+  text-align:left!important;
+  overflow-wrap:anywhere;
+}
+section[data-pane="about"] #aboutNameVer + .liul,
+section[data-pane="about"] #aboutNameVer + .liul > .li {
+  box-sizing:border-box;
+  padding-left:0!important;
+  padding-inline-start:0!important;
+  margin-left:0!important;
+  margin-inline-start:0!important;
+  text-align:left!important;
+}
+section[data-pane="about"] .body a,
+section[data-pane="about"] .body a:link,
+section[data-pane="about"] .body a:visited {
+  color:#ff0000!important;
+  text-decoration-color:#ff0000;
+}
+section[data-pane="about"] .body a:hover {
+  color:#ff0000!important;
+  text-decoration-color:#ff0000;
+}
+
+/* All square selection corners become soft Material shapes. */
+section[data-pane="settings"] :is(.input.checkbox,.input.radio),
+section[data-pane="rulesets"] .input.checkbox,
+body :is(.input.checkbox,.input.radio) {
+  border-radius:7px!important;
+  overflow:hidden;
+}
+section[data-pane="settings"] input[type="checkbox"],
+section[data-pane="settings"] input[type="radio"],
+section[data-pane="rulesets"] input[type="checkbox"] {
+  accent-color:#ff0000!important;
+}
+section[data-pane="settings"] :is(input[type="checkbox"],input[type="radio"]) + svg,
+section[data-pane="rulesets"] input[type="checkbox"] + svg {
+  border-radius:6px!important;
+}
+#defaultFilteringMode .filteringModeCard,
+#defaultFilteringMode .filteringModeSlider .filteringModeButton {
+  border-radius:18px!important;
+}
+#defaultFilteringMode .filteringModeSlider .filteringModeButton > div {
+  border-radius:8px!important;
+}
+
+/* Settings appearance card, directly below the upstream Behavior card. */
+#mu-appearance.mu-appearance-card {
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  max-width:none;
+  background:var(--mu-surface);
+  border-radius:22px;
+  padding:17px 22px 20px;
+  margin:0 0 13px;
+  box-shadow:0 3px 14px rgb(var(--mu-shadow) / .045);
+}
+#mu-appearance h3 {
+  margin:0 0 9px!important;
+  padding:0;
+  font-weight:750;
+  color:var(--mu-text);
+}
+#mu-appearance .mu-appearance-row {
+  display:grid;
+  grid-template-columns:minmax(110px,190px) minmax(230px,1fr);
+  align-items:center;
+  column-gap:17px;
+  min-height:62px;
+  padding:10px 4px;
+  border-bottom:1px solid var(--mu-outline);
+}
+#mu-appearance .mu-appearance-row:last-child {
+  border-bottom:0;
+  padding-bottom:3px;
+}
+#mu-appearance .mu-appearance-label {
+  color:var(--mu-text);
+  font-weight:650;
+  line-height:1.4;
+}
+#mu-appearance .mu-select-wrap {
+  min-width:220px;
+  width:min(370px,100%);
+}
+#mu-appearance #mu-appearance-font {
+  color:var(--mu-text);
+}
+#mu-appearance .mu-appearance-size-controls {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  width:min(390px,100%);
+}
+#mu-appearance #mu-appearance-size {
+  box-sizing:border-box;
+  flex:1 1 auto;
+  min-width:120px;
+  max-width:310px;
+  accent-color:#ff0000!important;
+}
+#mu-appearance #mu-appearance-size-value {
+  display:inline-flex;
+  justify-content:flex-end;
+  min-width:43px;
+  color:var(--mu-text-muted);
+  font-weight:650;
+  font-variant-numeric:tabular-nums;
+}
+#mu-appearance .mu-theme-options {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:5px;
+  max-width:470px;
+  padding:5px;
+  border-radius:16px;
+  background:var(--mu-surface-low);
+}
+#mu-appearance .mu-theme-option {
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:43px;
+  max-width:none;
+  padding:7px 13px!important;
+  border:1px solid transparent!important;
+  border-radius:12px!important;
+  background:transparent!important;
+  color:var(--mu-text)!important;
+  font-weight:650!important;
+  line-height:1.25;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:none!important;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  transition:none!important;
+  animation:none!important;
+}
+#mu-appearance .mu-theme-option:hover:not(:disabled) {
+  background:var(--mu-surface-high)!important;
+  transform:none!important;
+}
+#mu-appearance .mu-theme-option[aria-pressed="true"],
+#mu-appearance .mu-theme-option[aria-pressed="true"]:hover {
+  background:#ff0000!important;
+  color:#fff!important;
+  border-radius:13px!important;
+}
+@media(max-width:720px){
+  #mu-appearance.mu-appearance-card {padding:14px 15px;}
+  #mu-appearance .mu-appearance-row {
+    grid-template-columns:1fr;
+    row-gap:8px;
+    min-height:auto;
+    padding:10px 1px 15px;
+  }
+  #mu-appearance .mu-select-wrap{width:100%;min-width:0;}
+  #mu-appearance .mu-theme-options{max-width:100%;}
+}

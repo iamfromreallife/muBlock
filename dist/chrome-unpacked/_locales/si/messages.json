@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "වෙබ් පිටුවේ ගැලපෙන මූලද්‍රව්‍ය උද්දීපනය කිරීමට පහත පෙරහනක් තෝරන්න. පෙරහනක් ඉවත් කිරීමට කුණු කූඩය ක්ලික් කරන්න.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Appearance"
+  },
+  "muAppearanceFont": {
+    "message": "Font"
+  },
+  "muAppearanceFontSize": {
+    "message": "Font size"
+  },
+  "muAppearanceTheme": {
+    "message": "Theme"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Follow System"
+  },
+  "muAppearanceLight": {
+    "message": "Light"
+  },
+  "muAppearanceDark": {
+    "message": "Dark"
+  },
+  "muAppearanceSystemFont": {
+    "message": "System default"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monospace"
   }
 }

@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Výběrem níže uvedeného filtru zvýrazníte odpovídající prvky na webové stránce. Klepnutím na koš filtr odeberete.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Vzhled"
+  },
+  "muAppearanceFont": {
+    "message": "Písmo"
+  },
+  "muAppearanceFontSize": {
+    "message": "Velikost písma"
+  },
+  "muAppearanceTheme": {
+    "message": "Motiv"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Podle systému"
+  },
+  "muAppearanceLight": {
+    "message": "Světlý"
+  },
+  "muAppearanceDark": {
+    "message": "Tmavý"
+  },
+  "muAppearanceSystemFont": {
+    "message": "Systémové písmo"
+  },
+  "muAppearanceMonospace": {
+    "message": "Neproporcionální"
   }
 }

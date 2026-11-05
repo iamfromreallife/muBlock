@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Alege un filtru de mai jos pentru a evidenția elementele cu potriviri în pagina web. Clic pe [Coș de gunoi] pentru a îndepărta un filtru.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Aspect"
+  },
+  "muAppearanceFont": {
+    "message": "Font"
+  },
+  "muAppearanceFontSize": {
+    "message": "Dimensiunea fontului"
+  },
+  "muAppearanceTheme": {
+    "message": "Temă"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Urmează sistemul"
+  },
+  "muAppearanceLight": {
+    "message": "Luminos"
+  },
+  "muAppearanceDark": {
+    "message": "Întunecat"
+  },
+  "muAppearanceSystemFont": {
+    "message": "Font implicit de sistem"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monospațiat"
   }
 }

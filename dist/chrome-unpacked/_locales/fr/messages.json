@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Choisissez un filtre ci-dessous pour surligner les éléments correspondants dans la page Web. Cliquez sur l'icône de poubelle pour supprimer un filtre.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Apparence"
+  },
+  "muAppearanceFont": {
+    "message": "Police"
+  },
+  "muAppearanceFontSize": {
+    "message": "Taille de police"
+  },
+  "muAppearanceTheme": {
+    "message": "Thème"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Suivre le système"
+  },
+  "muAppearanceLight": {
+    "message": "Clair"
+  },
+  "muAppearanceDark": {
+    "message": "Sombre"
+  },
+  "muAppearanceSystemFont": {
+    "message": "Police du système"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monospace"
   }
 }

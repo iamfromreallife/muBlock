@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Wybierz filtr poniżej, aby wyróżnić pasujące elementy na stronie internetowej. Kliknij kosz, aby usunąć filtr.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Wygląd"
+  },
+  "muAppearanceFont": {
+    "message": "Czcionka"
+  },
+  "muAppearanceFontSize": {
+    "message": "Rozmiar czcionki"
+  },
+  "muAppearanceTheme": {
+    "message": "Motyw"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Zgodny z systemem"
+  },
+  "muAppearanceLight": {
+    "message": "Jasny"
+  },
+  "muAppearanceDark": {
+    "message": "Ciemny"
+  },
+  "muAppearanceSystemFont": {
+    "message": "Czcionka systemowa"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monospace"
   }
 }

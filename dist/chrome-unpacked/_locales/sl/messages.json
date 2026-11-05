@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Spodaj izberite filter, da označite ustrezne elemente na spletni strani. Kliknite koš za odstranitev filtra.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Videz"
+  },
+  "muAppearanceFont": {
+    "message": "Pisava"
+  },
+  "muAppearanceFontSize": {
+    "message": "Velikost pisave"
+  },
+  "muAppearanceTheme": {
+    "message": "Tema"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Sledi sistemu"
+  },
+  "muAppearanceLight": {
+    "message": "Svetla"
+  },
+  "muAppearanceDark": {
+    "message": "Temna"
+  },
+  "muAppearanceSystemFont": {
+    "message": "Sistemska pisava"
+  },
+  "muAppearanceMonospace": {
+    "message": "Enakoširinska"
   }
 }

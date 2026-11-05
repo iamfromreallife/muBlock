@@ -462,5 +462,32 @@
   "unpickerUsage": {
     "message": "Selecteer hieronder een filter om overeenkomende elementen in de webpagina te markeren. Klik op de prullenbak om een filter te verwijderen.",
     "description": "Summary description on how to use the tool to remove custom filters"
+  },
+  "muAppearanceTitle": {
+    "message": "Uiterlijk"
+  },
+  "muAppearanceFont": {
+    "message": "Lettertype"
+  },
+  "muAppearanceFontSize": {
+    "message": "Tekengrootte"
+  },
+  "muAppearanceTheme": {
+    "message": "Thema"
+  },
+  "muAppearanceFollowSystem": {
+    "message": "Systeem volgen"
+  },
+  "muAppearanceLight": {
+    "message": "Licht"
+  },
+  "muAppearanceDark": {
+    "message": "Donker"
+  },
+  "muAppearanceSystemFont": {
+    "message": "Systeemlettertype"
+  },
+  "muAppearanceMonospace": {
+    "message": "Monospace"
   }
 }
