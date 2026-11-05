@@ -22,6 +22,7 @@ ASSETS = (
     "css/mu-select.css",
     "css/mu-slider.css",
     "css/mu-language.css",
+    "js/mu-cosmetic-rules.js",
     "js/mu-popup.js",
     "js/mu-dashboard.js",
     "js/mu-filters.js",
@@ -51,6 +52,11 @@ def main(extension: Path) -> None:
             raise RuntimeError(f"Invalid/missing or conflicting overlay: {asset}")
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dst)
+
+    # A minimal, fail-closed adapter integrates muBlock's persistent cosmetic
+    # exceptions into Lite's existing cosmetic CSS registration and backup UI.
+    from mu_cosmetic_patch import patch_cosmetic_filtering
+    patch_cosmetic_filtering(extension)
 
     # Only replace Lite's legacy custom-filter presentation. The CodeMirror
     # engine, picker, and original filtering backend remain untouched.
