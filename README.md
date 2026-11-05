@@ -23,6 +23,7 @@ Find previous packages under [GitHub Releases](https://github.com/iamfromreallif
 ## What's included
 
 - Original uBlock Origin Lite filtering modes, rulesets, and MV3 filtering engine.
+- **Per-site Disable cosmetic filtering:** a persistent switch below Remove a custom filter in the popup. It adds a hostname rule (including subdomains) that suppresses Lite's stock, custom, sandbox and imported cosmetic CSS filters for that website while leaving network blocking, scriptlets, filtering modes and permissions unchanged. The rule is backed up and restored with Lite-compatible settings exports; a tab reload applies changes immediately.
 - A compact, localized popup with power controls alongside the site name, and a separate bottom Settings footer showing the actual bundled Lite version in muted text.
 - **Extension language:** the first Behaviour setting offers the browser default and the Lite UI languages bundled with the installed release. The selected locale is stored locally and takes effect in open extension pages immediately via reload; browser-owned Chrome menus and extension names remain controlled by Chrome. Missing muBlock-only translations fall back to English.
 - **Popup labels:** the filtering-mode heading uses black text in light mode, and both that heading and the no-website message capitalize their first letter correctly for the selected language.
