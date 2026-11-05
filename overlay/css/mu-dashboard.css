@@ -1139,7 +1139,9 @@ body > header {
   display:flex!important;
   flex-direction:row!important;
   flex-wrap:nowrap!important;
-  justify-content:flex-start;
+  /* Center logo plus tabs as one group; safe alignment preserves access
+     to the first tab when long translations overflow horizontally. */
+  justify-content:safe center!important;
   align-items:center;
   gap:clamp(3px,.45vw,7px)!important;
   width:100%;
