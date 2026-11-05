@@ -2,7 +2,7 @@
 
 Emblem artwork: https://github.com/gorhill/uBlock/blob/master/src/img/ublock.svg
 Copyright original uBlock Origin authors; GPL-3.0-or-later.
-muBlock changes only its red shield fill to the user-selected #FF0000.
+muBlock changes only its red shield fill to the user-selected #800000.
 """
 from __future__ import annotations
 
@@ -35,7 +35,7 @@ def generate(folder: Path) -> None:
         Path(__file__).resolve().parents[1] / "overlay/img/mu-logo.svg"
     ).read_text("utf-8")
     # Muted icon is also the original shield shape, in desaturated light grey.
-    disabled_svg = svg.replace("#ff0000", "#bac0c9")
+    disabled_svg = svg.replace("#800000", "#bac0c9")
     for size in SIZES:
         artwork = render(svg, size)
         # Original Lite filename is deliberate: its original action.js
