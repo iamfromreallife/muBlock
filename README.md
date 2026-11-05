@@ -37,21 +37,11 @@ Os ficheiros editáveis estão em `overlay/` e `scripts/`. `scripts/apply_overla
 
 GPL-3.0-or-later. Consultar `LICENSE`, `THIRD_PARTY_NOTICES.md` e as licenças incluídas na distribuição original. Sem telemetria adicionada, código remoto ou fontes carregadas por serviços externos.
 
-## Appearance settings (November 2026)
+## Ajustes de interface — novembro de 2026
 
-Below Behavior / Comportamento, Settings now includes **Appearance / Aparência**:
+- Removido o módulo experimental de **Aparência** (fontes, tamanhos e escolha manual de tema), regressando à tipografia e ao tema que existiam antes desta funcionalidade. O Lite continua a acompanhar o esquema de cores do sistema.
+- Eliminada a linha divisória do cabeçalho em todas as abas: Definições, Listas de filtros, Filtros personalizados, Programação e Acerca.
+- Botão de **Definições** no popup ampliado para 48 × 44 px, com fundo vermelho #FF0000 e ícone branco, mantendo os eventos originais do Lite e sem efeitos de hover animados.
+- Mantidos o destaque da versão na página Acerca, o alinhamento dos créditos e os cantos arredondados anteriormente solicitados.
 
-- Font: Inter, system font, Segoe UI, Arial, Verdana, Tahoma, Trebuchet MS, Georgia, Times New Roman and monospace. The selection applies to the extension's pages.
-- Font size: 11–18 px, chosen using a static Material slider; text sizes scale across the extension UI.
-- Theme: Follow System, Light and Dark. System theme tracks the OS colour setting.
-- Preferences are saved in extension-local Chrome storage and synchronized between pages. Lite backup/restore remains compatible and unchanged.
-
-Appearance messages are added to each upstream locale file. Native translations cover Portuguese (Portugal/Brazil), English, Spanish, French, German and several dozen others; remaining languages fall back to English, without modifying their upstream translations.
-
-The About page displays **muBlock - based on uBlock Origin Lite [version]**, reading version directly from the untouched upstream manifest (not a hardcoded value). This line is white on red; copyright is left aligned; About links use red.
-
-The power button retains its rounded-square shape on mouse hover. Only the actual enabled/disabled colour changes when filtering mode changes.
-
-### Branch and release policy
-
-Keep only main and the current task branch specified in .github/CURRENT_WORK_BRANCH. The final GitHub Actions packaging run removes superseded branches. CI does not execute tests or capture screenshots. It starts only on a manual dispatch or on the final .github/RELEASE_TRIGGER commit after all source changes are finished. Obsolete test scripts were removed.
+Mantém-se a política de compilação final: apenas um GitHub Actions por pedido, depois da integração de todo o código, sem executar testes nem capturar screenshots. O repositório conserva apenas a branch `main` e a branch indicada em `.github/CURRENT_WORK_BRANCH`.
