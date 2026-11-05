@@ -384,11 +384,11 @@ body.nodata #mu-power,body.nodata .mu-mode-btn{opacity:.4;pointer-events:none;}
   display:inline-flex!important;
   align-items:center!important;
   justify-content:center!important;
-  flex:0 0 48px!important;
-  min-width:48px!important;
-  width:48px!important;
-  height:44px!important;
-  min-height:44px!important;
+  flex:0 0 44px!important;
+  min-width:44px!important;
+  width:44px!important;
+  height:40px!important;
+  min-height:40px!important;
   margin:0!important;
   padding:0!important;
   background:#ff0000!important;
@@ -414,10 +414,24 @@ body.nodata #mu-power,body.nodata .mu-mode-btn{opacity:.4;pointer-events:none;}
   outline-offset:3px;
 }
 #mu-popup-header {
-  min-height:47px!important;
+  min-height:43px!important;
   height:auto!important;
   padding-bottom:4px!important;
 }
 #mu-popup-header .mu-pop-brand {
   min-width:0;
+}
+
+
+/* Exactly the same hover surface as Settings > Filter lists. No motion. */
+:root.desktop .toolMenu .tool.enabled:hover,
+:root.mobile .toolMenu .tool.enabled:hover,
+:root.desktop .toolMenu .tool.enabled:focus-visible,
+:root.mobile .toolMenu .tool.enabled:focus-visible {
+  background:var(--mu-primary-container)!important;
+  color:var(--mu-text)!important;
+  border-radius:10px!important;
+  transform:none!important;
+  animation:none!important;
+  transition:none!important;
 }
