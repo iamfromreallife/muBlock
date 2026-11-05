@@ -1,6 +1,5 @@
-muBlock full-size element picker restored — 2026-11-05
-Final source commit: e6fc5d12de54dab37ba389c44b6ffabf242ff3c4
-Revert all condensed picker size/height/spacing/toolbar/candidate-list overrides.
-Preserve previous 512px picker width, brand #800000, selection behaviour and functions.
-Package on main once after commits; no tests or screenshot review.
-Keep main branch only.
+muBlock unpicker selected-trash icon correction
+Completed source commit: 2240484b2d80a41fbc20b1a3a710567d0c03bf58
+Selected maroon row: bin SVG white via currentColor; inactive rows unchanged.
+Publish versioned muBlock ZIP on main, no tests or screenshot review.
+Leave only the main branch.
