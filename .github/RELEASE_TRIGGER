@@ -1,5 +1,8 @@
-muBlock corrected incremental release — 2026-11-05
-Language dropdown and popup capitalization merged: 954fce55887ab05f6d8ea4d093b47a9e81d098da
-Release notes start at .github/LAST_PUBLISHED_COMMIT, never full history.
-Corrected packaging-only GitHub Release, no tests or screenshot reviews.
-Keep main and feat/extension-language-popup-labels-20261105.
+muBlock maroon accent / save-icon sync / picker width — final source release
+Repository: iamfromreallife/muBlock
+All modifications finalized on main at: ab7dc47e7a41c2044e45690523ad88544236a97d
+Recolor all UI and active shield icons to #800000; disabled icons remain grey.
+Synchronize sandbox Save icon fill to the dynamic Save text color.
+Restore element picker 512px horizontal width while keeping compact vertical dimensions.
+Remove ALL remote branches except main after successful package Release.
+Package only: no automated tests or screenshots.
