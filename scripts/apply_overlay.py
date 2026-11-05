@@ -19,9 +19,11 @@ ASSETS = (
     "css/mu-popup.css",
     "css/mu-dashboard.css",
     "css/mu-picker.css",
+    "css/mu-select.css",
     "js/mu-popup.js",
     "js/mu-dashboard.js",
     "js/mu-filters.js",
+    "js/mu-select.js",
     "img/mu-logo.svg",
 )
 
@@ -122,6 +124,18 @@ def main(extension: Path) -> None:
             html = html.replace("</head>", '<link rel="stylesheet" href="css/mu-design.css">\n</head>')
         page.write_text(html, "utf-8")
 
+    # Style every dropdown in dashboard and report, but keep the native
+    # <select> and its existing Lite event handlers as the source of truth.
+    insert_once(dashboard, "</head>",
+                '<link rel="stylesheet" href="css/mu-select.css">')
+    insert_once(dashboard, "</body>",
+                '<script src="js/mu-select.js" type="module"></script>')
+    report = extension / "report.html"
+    insert_once(report, "</head>",
+                '<link rel="stylesheet" href="css/mu-select.css">')
+    insert_once(report, "</body>",
+                '<script src="js/mu-select.js" type="module"></script>')
+
     manifest_path = extension / "manifest.json"
     manifest = json.loads(manifest_path.read_text("utf-8"))
     manifest["name"] = "muBlock"
@@ -130,7 +144,7 @@ def main(extension: Path) -> None:
     manifest["action"]["default_title"] = "muBlock"
     manifest["action"]["default_icon"] = {str(size): f"img/mu-toolbar-{size}.png"
                                          for size in (16,32,64,128)}
-    manifest["icons"] = {str(size): f"img/mu-{size}.png" for size in (16,32,48,64,128)}
+    manifest["icons"] = {str(size): f"img/mu-{size}.png" for size in (16,32,48,64,128,256,512)}
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", "utf-8")
 
     for localization in (extension / "_locales").glob("*/messages.json"):
@@ -140,6 +154,8 @@ def main(extension: Path) -> None:
 
     from generate_icons import generate
     generate(extension / "img")
+    # Legacy vector icon fallbacks must also use the new brand artwork.
+    shutil.copy2(extension / "img/mu-logo.svg", extension / "img/ublock.svg")
     print(f"muBlock UI overlay applied: {extension}")
 
 if __name__ == "__main__":
