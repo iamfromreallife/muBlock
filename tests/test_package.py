@@ -18,10 +18,11 @@ UI_PAGES = {
 }
 UI_ASSETS = {
     'css/mu-design.css','css/mu-popup.css','css/mu-dashboard.css',
-    'css/mu-picker.css','js/mu-popup.js','js/mu-dashboard.js','js/mu-filters.js',
+    'css/mu-picker.css','css/mu-select.css',
+    'js/mu-popup.js','js/mu-dashboard.js','js/mu-filters.js','js/mu-select.js',
     'img/mu-logo.svg'
 }
-ICONS = {'img/mu-%d.png' % size for size in (16,32,48,64,128)}
+ICONS = {'img/mu-%d.png' % size for size in (16,32,48,64,128,256,512)}
 TOOLBAR_ICONS = {f'img/mu-toolbar{state}-{size}.png'
     for state in ('', '-off') for size in (16,32,64,128)}
 NEW_FILES = UI_ASSETS | ICONS | TOOLBAR_ICONS
@@ -34,7 +35,9 @@ class PackageIntegrity(unittest.TestCase):
 
     def test_all_files_and_filtering_engine_preserved(self):
         self.assertEqual(self.actual,self.originals | NEW_FILES)
-        exempt = UI_PAGES | {'manifest.json','js/action.js'}
+        exempt = (UI_PAGES | {'manifest.json','js/action.js','img/ublock.svg'} |
+            {f'img/icon_{size}.png' for size in (16,32,64,128,512)} |
+            {f'img/icon_{size}_off.png' for size in (16,32,64,128)})
         for rel in self.originals:
             if rel in exempt or (rel.startswith('_locales/') and rel.endswith('/messages.json')):
                 continue
@@ -54,7 +57,7 @@ class PackageIntegrity(unittest.TestCase):
             self.assertEqual(old.get(name),new.get(name),name)
         for item in new['declarative_net_request']['rule_resources']:
             self.assertTrue((EXTENSION/item['path'].lstrip('/')).is_file(),item['path'])
-        for size in (16,32,48,64,128):
+        for size in (16,32,48,64,128,256,512):
             self.assertTrue((EXTENSION/new['icons'][str(size)]).is_file())
         # Branding is the only allowed change to these metadata fields.
         old.pop('name');old.pop('short_name');old.pop('description');
@@ -117,6 +120,37 @@ class PackageIntegrity(unittest.TestCase):
         for page in ('dashboard.html','matched-rules.html','report.html','strictblock.html'):
             html=(EXTENSION/page).read_text()
             self.assertIn('img/mu-64.png',html)
+
+    def test_rebranded_legacy_icon_fallbacks(self):
+        from struct import unpack
+        for size in (16,32,64,128,512):
+            brand=(EXTENSION/f'img/mu-{size}.png').read_bytes()
+            legacy=(EXTENSION/f'img/icon_{size}.png').read_bytes()
+            self.assertEqual(brand,legacy,'Old toolbar icon remains at %dpx'%size)
+            self.assertEqual(unpack('>II',brand[16:24]),(size,size))
+        for size in (16,32,64,128):
+            self.assertEqual((EXTENSION/f'img/icon_{size}_off.png').read_bytes(),
+                             (EXTENSION/f'img/mu-toolbar-off-{size}.png').read_bytes())
+        self.assertEqual((EXTENSION/'img/ublock.svg').read_bytes(),
+                         (EXTENSION/'img/mu-logo.svg').read_bytes())
+
+    def test_dropdown_and_inline_search_sources(self):
+        dashboard=(EXTENSION/'dashboard.html').read_text()
+        report=(EXTENSION/'report.html').read_text()
+        for html in (dashboard,report):
+            self.assertIn('mu-select.js',html)
+            self.assertIn('mu-select.css',html)
+        selector=(EXTENSION/'js/mu-select.js').read_text()
+        self.assertIn("role','combobox'",selector)
+        self.assertIn("new Event('change'",selector)
+        search=(EXTENSION/'js/mu-filters.js').read_text()
+        self.assertIn('mu-search-inline-editor',search)
+        self.assertIn('replaceEditableLine',search)
+        self.assertIn('renderSearch',search)
+        self.assertIn('mu-search-match',search)
+        css=(EXTENSION/'css/mu-dashboard.css').read_text()
+        self.assertIn('text-align:left!important',css)
+        self.assertIn('--mu-editor-neutral',css)
 
     def test_unified_my_filters_without_duplicate_legacy_editor(self):
         dash = (EXTENSION/'dashboard.html').read_text()
