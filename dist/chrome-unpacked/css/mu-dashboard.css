@@ -1189,3 +1189,70 @@ body > header {
     padding-inline:9px!important;
   }
 }
+
+
+/* Filter Lists: one unified full-width surface for count, search and groups.
+ * #lists is Lite's existing list container; the UI script prepends Lite's
+ * existing search panel, with IDs/events and compiled rules left untouched.
+ * The import controls remain adjacent to #lists as the upstream expects. */
+body[data-pane="rulesets"] > section[data-pane="rulesets"] {
+  padding-top:12px!important;
+}
+section[data-pane="rulesets"] > #lists {
+  box-sizing:border-box!important;
+  display:block;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0;
+  margin:0!important;
+  padding:18px clamp(12px,2vw,22px) 22px!important;
+  background:var(--mu-surface)!important;
+  border:0!important;
+  border-radius:var(--mu-radius-lg)!important;
+  box-shadow:0 3px 18px rgb(var(--mu-shadow) / .045)!important;
+}
+#lists > [data-pane-related="rulesets"] {
+  box-sizing:border-box;
+  display:block;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  padding:0 0 15px!important;
+  margin:0 0 8px!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+#lists > [data-pane-related="rulesets"] > p {
+  padding:0;
+  margin:0 0 10px;
+}
+#lists > [data-pane-related="rulesets"] > p:last-child {
+  margin-bottom:0;
+}
+#lists > [data-pane-related="rulesets"] #findInLists {
+  box-sizing:border-box;
+  width:min(100%,440px);
+  max-width:100%;
+}
+#lists > .listEntries {
+  box-sizing:border-box;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  margin:0;
+  padding:0;
+}
+#lists > .listEntries > .listEntry[data-role="rootnode"] {
+  box-sizing:border-box;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  margin-inline:0!important;
+}
+@media (max-width:740px) {
+  section[data-pane="rulesets"] > #lists {
+    padding:12px 10px 15px!important;
+  }
+}
