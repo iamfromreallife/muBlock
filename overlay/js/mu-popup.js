@@ -64,6 +64,87 @@ if(main&&slider&&hostname&&!document.querySelector('#mu-sitebar')){
  }
  main.append(footer);
 
+ // Per-site cosmetic CSS filtering switch. It uses a real persisted
+ // background rule; network blocking and site filtering mode are unchanged.
+ const localTools=document.querySelector('.toolMenu.localTools');
+ const unpicker=document.getElementById('gotoUnpicker');
+ if(localTools&&unpicker&&!document.getElementById('mu-cosmetic-toggle')){
+   const cosmetic=document.createElement('button');
+   cosmetic.id='mu-cosmetic-toggle';
+   cosmetic.type='button';
+   cosmetic.className='tool enabled';
+   cosmetic.setAttribute('role','switch');
+   cosmetic.setAttribute('aria-checked','false');
+   cosmetic.setAttribute('aria-label',tr('muDisableCosmeticFiltering'));
+   cosmetic.innerHTML=icon(
+     '<path d="M3 3l18 18"/><path d="M10.6 5.2A10.5 10.5 0 0 1 12 5c4.7 0 8.4 3 10 7a12 12 0 0 1-3.2 4.4"/><path d="M6.3 6.3A12 12 0 0 0 2 12c1.6 4 5.3 7 10 7a10 10 0 0 0 3.7-.6"/><path d="M9.7 9.7a3.2 3.2 0 0 0 4.6 4.6"/>'
+   );
+   const label=document.createElement('span');
+   label.className='mu-cosmetic-label';
+   label.textContent=tr('muDisableCosmeticFiltering');
+   const status=document.createElement('span');
+   status.className='mu-cosmetic-check';
+   status.setAttribute('aria-hidden','true');
+   status.textContent='✓';
+   cosmetic.append(label,status);
+   unpicker.after(cosmetic);
+
+   let tabId=null,site='',isDisabled=false,pending=false;
+   function renderCosmetic(){
+     cosmetic.disabled=pending||!site;
+     cosmetic.setAttribute('aria-checked',String(isDisabled));
+     cosmetic.classList.toggle('mu-cosmetic-active',isDisabled);
+     cosmetic.title=isDisabled
+       ? tr('muCosmeticDisabledForSite')
+       : tr('muDisableCosmeticFiltering');
+   }
+   async function loadCosmetic(){
+     try{
+       const [tab]=await chrome.tabs.query({
+         active:true,currentWindow:true
+       });
+       if(!tab||typeof tab.id!=='number')return;
+       const url=new URL(tab.url||'');
+       if(!/^https?:$/.test(url.protocol)||!url.hostname)return;
+       tabId=tab.id;
+       site=url.hostname;
+       pending=true;renderCosmetic();
+       isDisabled=Boolean(await chrome.runtime.sendMessage({
+         what:'muGetCosmeticFiltering',hostname:site
+       }));
+     }catch(reason){
+       console.error('muBlock: cosmetic exception lookup failed',reason);
+       site='';
+     }finally{
+       pending=false;renderCosmetic();
+     }
+   }
+   cosmetic.addEventListener('click',async()=>{
+     if(pending||!site)return;
+     pending=true;renderCosmetic();
+     try{
+       const result=await chrome.runtime.sendMessage({
+         what:'muSetCosmeticFiltering',hostname:site,disabled:!isDisabled
+       });
+       if(!result||typeof result.disabled!=='boolean'){
+         throw new Error('Could not save the site cosmetic rule');
+       }
+       const changed=result.disabled!==isDisabled;
+       isDisabled=result.disabled;
+       if(changed&&Number.isInteger(tabId)){
+         await chrome.tabs.reload(tabId);
+       }
+     }catch(reason){
+       console.error('muBlock: cosmetic exception update failed',reason);
+       cosmetic.title=tr('muCosmeticRuleError');
+     }finally{
+       pending=false;renderCosmetic();
+     }
+   });
+   renderCosmetic();
+   loadCosmetic();
+ }
+
  let active=null,last=2;
  function select(n){
    if(document.body.classList.contains('busy')||document.body.classList.contains('nodata'))return;
