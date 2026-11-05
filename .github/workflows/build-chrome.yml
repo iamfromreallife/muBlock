@@ -80,15 +80,21 @@ jobs:
             git commit -m "Publish muBlock $MUBLOCK_VERSION (build $GITHUB_RUN_NUMBER)"
             git push origin HEAD:main
           fi
-      - name: Generate release notes with only new commits since previous release
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Generate release notes from the last successfully published commit
         run: |
           set -euo pipefail
-          # Use the latest published release rather than a list ordered by
-          # display date; resolve its tag explicitly and reject stale refs.
-          previous="$(gh api "repos/$GITHUB_REPOSITORY/releases/latest" \
-            --jq '.tag_name' 2>/dev/null || true)"
+          # GitHub Releases API endpoints may be unavailable for this repo.
+          # A repo-tracked SHA provides a stable, verified release baseline.
+          previous_sha="$(tr -d '[:space:]' < .github/LAST_PUBLISHED_COMMIT)"
+          if [[ ! "$previous_sha" =~ ^[a-f0-9]{40}$ ]]; then
+            echo "Invalid last-published commit SHA" >&2
+            exit 1
+          fi
+          git cat-file -e "$previous_sha^{commit}"
+          if ! git merge-base --is-ancestor "$previous_sha" HEAD; then
+            echo "Last published commit is not an ancestor of the current build" >&2
+            exit 1
+          fi
           {
             echo "## muBlock $MUBLOCK_VERSION"
             echo
@@ -96,24 +102,14 @@ jobs:
             echo "Upstream uBlock Origin Lite commit: $(cat dist/UPSTREAM_COMMIT.txt)"
             echo "GitHub Actions run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
             echo
-            echo "### New commits in this build"
+            echo "### New commits since the previous published build"
             echo
-            if [[ -n "$previous" ]]; then
-              git fetch --force origin "refs/tags/$previous:refs/tags/$previous"
-              previous_sha="$(git rev-parse "$previous^{commit}")"
-              if ! git merge-base --is-ancestor "$previous_sha" HEAD; then
-                echo "Previous release tag is not an ancestor of HEAD" >&2
-                exit 1
-              fi
-              if [[ "$(git rev-list --count "$previous_sha..HEAD")" -gt 0 ]]; then
-                git log --reverse --format='- [%h](https://github.com/'"$GITHUB_REPOSITORY"'/commit/%H) %s' "$previous_sha..HEAD"
-              else
-                echo "- No new commits since the preceding release."
-              fi
+            if [[ "$(git rev-list --count "$previous_sha..HEAD")" -gt 0 ]]; then
+              git log --reverse --format='- [%h](https://github.com/'"$GITHUB_REPOSITORY"'/commit/%H) %s' \
+                --invert-grep --grep='^Publish muBlock ' \
+                --grep='^Record last published muBlock ' "$previous_sha..HEAD"
             else
-              # Initial-release fallback: report only the current commit.
-              # Never silently insert the repository's full commit history.
-              git log -1 --format='- [%h](https://github.com/'"$GITHUB_REPOSITORY"'/commit/%H) %s'
+              echo "- No new source commits."
             fi
             echo
             echo "### Credits"
@@ -130,6 +126,16 @@ jobs:
             --notes-file dist/RELEASE_NOTES.md \
             --target "$(git rev-parse HEAD)" \
             --latest
+      - name: Record last successfully published muBlock commit
+        run: |
+          set -euo pipefail
+          published_sha="$(git rev-parse HEAD)"
+          printf '%s\n' "$published_sha" > .github/LAST_PUBLISHED_COMMIT
+          git add .github/LAST_PUBLISHED_COMMIT
+          if ! git diff --cached --quiet; then
+            git commit -m "Record last published muBlock build $GITHUB_RUN_NUMBER"
+            git push origin HEAD:main
+          fi
       - name: Prune obsolete branches and preserve current prompt branch
         run: |
           set -euo pipefail
