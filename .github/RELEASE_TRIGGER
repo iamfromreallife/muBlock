@@ -1,3 +1,5 @@
-muBlock appearance release — 2026-11-05
-All requested source changes merged: 8b0d980e3dc10c1f6d6c98692368be08a18c9bec
-Packaging only. No tests or screenshots. Prune old branches, keep main and feat/appearance-version-about-20261105.
+muBlock UI cleanup release — 2026-11-05
+Merged source commit: 97ae45ab92f593229b8c6f3cf5504395019adf5a
+Revert appearance module; remove all dashboard separators; enlarge popup settings button.
+One packaging-only run; do not run tests or screenshot reviews.
+Prune old branches; preserve main and fix/remove-appearance-separators-popup-settings-20261105.
