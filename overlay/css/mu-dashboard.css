@@ -511,7 +511,7 @@ body[data-pane="filters"]:not(.busy)>#mu-filters{display:flex;}
 .mu-search-text{min-width:0;overflow-wrap:anywhere;white-space:pre-wrap;}
 .mu-search-match mark{
   padding:1px 2px;border-radius:3px;box-decoration-break:clone;
-  background:#ff0000!important;color:#fff!important;
+  background:#800000!important;color:#fff!important;
 }
 .mu-search-empty{padding:22px;text-align:center;color:var(--mu-text-muted);}
 #mu-filters .mu-site-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:11px;}
@@ -555,7 +555,7 @@ body[data-pane="rulesets"] #dashboard-nav [data-pane="rulesets"],
 body[data-pane="filters"] #dashboard-nav [data-pane="filters"],
 body[data-pane="develop"] #dashboard-nav [data-pane="develop"],
 body[data-pane="about"] #dashboard-nav [data-pane="about"] {
-  background:#ff0000!important;
+  background:#800000!important;
   color:#fff!important;
 }
 #dashboard-nav .tabButton[aria-selected="true"] .mu-icon,
@@ -609,7 +609,7 @@ body[data-pane="about"] #dashboard-nav [data-pane="about"] {
   cursor:text;
 }
 #mu-filters .mu-search-text mark {
-  background:#ff0000!important;color:#fff!important;
+  background:#800000!important;color:#fff!important;
   border-radius:3px;padding:1px 2px;
 }
 #mu-filters .mu-search-edit-button {
@@ -634,7 +634,7 @@ body[data-pane="about"] #dashboard-nav [data-pane="about"] {
   margin:-4px 0;padding:9px 10px!important;
   text-align:left!important;white-space:pre;resize:vertical;overflow:auto;
   background:var(--mu-surface)!important;color:var(--mu-text)!important;
-  border:1.5px solid #ff0000!important;border-radius:9px!important;
+  border:1.5px solid #800000!important;border-radius:9px!important;
   font:12.5px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;
 }
 #mu-filters .mu-search-match.editing .mu-search-edit-button {
@@ -682,7 +682,7 @@ body[data-pane="about"] #dashboard-nav [data-pane="about"] {
   pointer-events:none;
 }
 #mu-filtered-highlight mark{
-  background:#ff0000;
+  background:#800000;
   color:#fff;
   border-radius:2px;
 }
@@ -695,20 +695,20 @@ body[data-pane="about"] #dashboard-nav [data-pane="about"] {
   background:transparent !important;
   color:transparent !important;
   -webkit-text-fill-color:transparent !important;
-  caret-color:#ff0000 !important;
+  caret-color:#800000 !important;
   border:0 !important;
   outline-offset:-3px;
   box-shadow:none !important;
 }
 #mu-filtered-textarea::selection{
-  background:rgb(255 0 0 / .20);
+  background:rgb(128 0 0 / .20);
   color:transparent;
 }
 #mu-filtered-textarea::placeholder{
   color:var(--mu-text-muted) !important;
   -webkit-text-fill-color:var(--mu-text-muted) !important;
 }
-#mu-filtered-textarea:focus{outline:2px solid #ff0000!important;}
+#mu-filtered-textarea:focus{outline:2px solid #800000!important;}
 /* Developer rules editor is a compact rounded card, matching Custom filters. */
 body[data-pane="develop"] section[data-pane="develop"]>div,
 section[data-pane="develop"]>div{
@@ -755,18 +755,18 @@ section[data-pane="develop"] .cm-gutters{
   padding-right:4px;
 }
 section[data-pane="develop"] .cm-activeLine{
-  background:rgb(255 0 0 / .035);
+  background:rgb(128 0 0 / .035);
 }
 section[data-pane="develop"] .cm-activeLineGutter{
-  background:rgb(255 0 0 / .07);
+  background:rgb(128 0 0 / .07);
   color:var(--mu-text);
 }
 section[data-pane="develop"] .cm-content{
   padding:12px 9px 18px;
-  caret-color:#ff0000;
+  caret-color:#800000;
 }
 section[data-pane="develop"] .cm-selectionBackground{
-  background:rgb(255 0 0 / .15)!important;
+  background:rgb(128 0 0 / .15)!important;
 }
 section[data-pane="develop"] .cm-panel{
   display:flex;
@@ -790,7 +790,7 @@ section[data-pane="develop"] .cm-panel button{
   color:var(--mu-on-secondary-container);
 }
 section[data-pane="develop"] .cm-panel button:first-of-type:not(:disabled){
-  background:#ff0000!important;color:#fff!important;
+  background:#800000!important;color:#fff!important;
 }
 section[data-pane="develop"] .cm-panel button:disabled{opacity:.42;}
 section[data-pane="develop"] .cm-tooltip{
@@ -839,7 +839,7 @@ section[data-pane="about"] #aboutNameVer {
   width:100%;
   margin:0 0 15px;
   padding:13px 17px!important;
-  background:#ff0000!important;
+  background:#800000!important;
   color:#fff!important;
   border-radius:13px;
   font-weight:700;
@@ -860,8 +860,8 @@ section[data-pane="about"] .body a,
 section[data-pane="about"] .body a:link,
 section[data-pane="about"] .body a:visited,
 section[data-pane="about"] .body a:hover {
-  color:#ff0000!important;
-  text-decoration-color:#ff0000;
+  color:#800000!important;
+  text-decoration-color:#800000;
 }
 
 /* Retain the rounded selection corners requested in the earlier version. */
@@ -874,7 +874,7 @@ body :is(.input.checkbox,.input.radio) {
 section[data-pane="settings"] input[type="checkbox"],
 section[data-pane="settings"] input[type="radio"],
 section[data-pane="rulesets"] input[type="checkbox"] {
-  accent-color:#ff0000!important;
+  accent-color:#800000!important;
 }
 section[data-pane="settings"] :is(input[type="checkbox"],input[type="radio"]) + svg,
 section[data-pane="rulesets"] input[type="checkbox"] + svg {
@@ -1100,4 +1100,21 @@ section[data-pane="about"] .mu-about-group hr {
   section[data-pane="about"] .mu-about-grid {grid-template-columns:1fr;}
   section[data-pane="about"] .mu-about-wide {grid-column:auto;}
   section[data-pane="rulesets"] > #lists {padding:10px 12px;}
+}
+
+
+/* Keep the Lite sandbox Save glyph in sync with its label in all states.
+ * The icon and its internal SVG inherit the dynamic button foreground.
+ * This includes disabled/dirty/saved CSS changes without extra JS observers. */
+#sandboxEditor #sandboxSave .fa-icon,
+#sandboxEditor #sandboxSave .fa-icon > svg,
+#sandboxEditor #sandboxSave .fa-icon > svg > path,
+#sandboxEditor #sandboxSave .fa-icon > svg > use {
+  color:inherit!important;
+  fill:currentColor!important;
+  opacity:1!important;
+  filter:none!important;
+}
+#sandboxEditor #sandboxSave .fa-icon > svg > path {
+  stroke:none!important;
 }
