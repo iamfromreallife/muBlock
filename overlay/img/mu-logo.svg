@@ -1,5 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="muBlock">
-  <path d="M64 5C43 18 26 19 12 23v40c0 29 18 48 52 60 34-12 52-31 52-60V23C99 19 85 17 64 5Z" fill="#c1172a"/>
-  <path d="M64 13C45 24 30 25 20 29v34c0 24 14 41 44 52 30-11 44-28 44-52V29C95 25 80 23 64 13Z" fill="#eb2637"/>
-  <path d="M36 81V58c0-10 6-14 14-14 8 0 12 5 14 12 2-7 7-12 15-12 9 0 13 6 13 14v23" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <defs>
+    <linearGradient id="shield" x1="0" y1="0" x2="0.86" y2="1">
+      <stop offset="0" stop-color="#ff5264"/>
+      <stop offset="0.46" stop-color="#e5203b"/>
+      <stop offset="1" stop-color="#a90026"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".28"/>
+      <stop offset=".8" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path d="M64 5 C78 12 94 17 111 21 L111 66 C111 95 91 111 64 124 C37 111 17 95 17 66 L17 21 C34 17 50 12 64 5Z" fill="#96051e"/>
+  <path d="M64 11 C78 18 92 22 105 25 L105 65 C105 90 89 105 64 117 C39 105 23 90 23 65 L23 25 C36 22 50 18 64 11Z" fill="url(#shield)"/>
+  <path d="M64 14 C78 21 92 25 101 27 L101 55 C76 52 53 39 27 37 L27 27 C40 24 53 20 64 14Z" fill="url(#gloss)"/>
+  <path d="M39 84 V59 C39 49 44 45 51 45 C59 45 63 51 64 57 C67 49 72 45 80 45 C88 45 92 51 92 60 V84" stroke="#fff" stroke-width="12.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>
