@@ -46,3 +46,35 @@ def add_language_messages(bundle:dict, locale:str)->None:
     label, system=LABELS.get(locale, LABELS["en"])
     bundle["muLanguageLabel"]={"message":label}
     bundle["muLanguageSystem"]={"message":system}
+    cosmetic, disabled, error = COSMETIC_LABELS.get(locale, COSMETIC_LABELS["en"])
+    bundle["muDisableCosmeticFiltering"] = {"message": cosmetic}
+    bundle["muCosmeticDisabledForSite"] = {"message": disabled}
+    bundle["muCosmeticRuleError"] = {"message": error}
+
+
+# (Switch label, tooltip when enabled, error on failed save).
+COSMETIC_LABELS = {
+    "en": ("Disable cosmetic filtering", "Cosmetic filtering disabled for this website", "Could not save the cosmetic filtering rule"),
+    "en_GB": ("Disable cosmetic filtering", "Cosmetic filtering disabled for this website", "Could not save the cosmetic filtering rule"),
+    "pt_PT": ("Desativar filtragem cosmética", "Filtragem cosmética desativada neste website", "Não foi possível guardar a regra de filtragem cosmética"),
+    "pt_BR": ("Desativar filtragem cosmética", "Filtragem cosmética desativada neste site", "Não foi possível salvar a regra de filtragem cosmética"),
+    "es": ("Desactivar filtrado cosmético", "Filtrado cosmético desactivado en este sitio", "No se pudo guardar la regla de filtrado cosmético"),
+    "fr": ("Désactiver le filtrage cosmétique", "Filtrage cosmétique désactivé pour ce site", "Impossible d’enregistrer la règle de filtrage cosmétique"),
+    "de": ("Kosmetische Filterung deaktivieren", "Kosmetische Filterung für diese Website deaktiviert", "Regel zur kosmetischen Filterung konnte nicht gespeichert werden"),
+    "it": ("Disattiva il filtraggio cosmetico", "Filtraggio cosmetico disattivato per questo sito", "Impossibile salvare la regola di filtraggio cosmetico"),
+    "nl": ("Cosmetische filtering uitschakelen", "Cosmetische filtering op deze website uitgeschakeld", "Kan de regel niet opslaan"),
+    "pl": ("Wyłącz filtrowanie kosmetyczne", "Filtrowanie kosmetyczne wyłączone dla tej witryny", "Nie można zapisać reguły filtrowania"),
+    "ru": ("Отключить косметическую фильтрацию", "Косметическая фильтрация отключена для сайта", "Не удалось сохранить правило фильтрации"),
+    "uk": ("Вимкнути косметичну фільтрацію", "Косметичну фільтрацію вимкнено для сайту", "Не вдалося зберегти правило фільтрації"),
+    "ja": ("要素の非表示を無効にする", "このサイトで要素の非表示が無効です", "フィルタリング設定を保存できません"),
+    "ko": ("요소 숨김 필터링 비활성화", "이 사이트에서 요소 숨김이 비활성화됨", "필터 규칙을 저장할 수 없습니다"),
+    "zh_CN": ("禁用元素隐藏过滤", "已在此网站禁用元素隐藏过滤", "无法保存过滤规则"),
+    "zh_TW": ("停用元素隱藏過濾", "已在此網站停用元素隱藏過濾", "無法儲存過濾規則"),
+    "ar": ("تعطيل التصفية التجميلية", "تم تعطيل التصفية التجميلية لهذا الموقع", "تعذّر حفظ قاعدة التصفية"),
+    "tr": ("Kozmetik filtrelemeyi devre dışı bırak", "Bu sitede kozmetik filtreleme devre dışı", "Filtre kuralı kaydedilemedi"),
+    "cs": ("Vypnout kosmetické filtrování", "Kosmetické filtrování je na webu vypnuto", "Pravidlo filtrování nelze uložit"),
+    "sk": ("Vypnúť kozmetické filtrovanie", "Kozmetické filtrovanie je na webe vypnuté", "Pravidlo filtrovania nemožno uložiť"),
+    "da": ("Deaktiver kosmetisk filtrering", "Kosmetisk filtrering deaktiveret for dette websted", "Filterreglen kunne ikke gemmes"),
+    "sv": ("Inaktivera kosmetisk filtrering", "Kosmetisk filtrering är inaktiverad på webbplatsen", "Det gick inte att spara filterregeln"),
+    "fi": ("Poista kosmeettinen suodatus käytöstä", "Kosmeettinen suodatus pois käytöstä tällä sivustolla", "Suodatussääntöä ei voitu tallentaa"),
+}
