@@ -6,9 +6,9 @@
 :root#ubol-picker,
 :root#ubol-unpicker,
 :root#ubol-zapper {
-  --ubol-overlay-fill: rgba(122,76,242,.14);
-  --ubol-overlay-border: #9767ff;
-  --ubol-overlay-canvas: rgba(40,20,74,.27);
+  --ubol-overlay-fill: rgba(255,0,0,.12);
+  --ubol-overlay-border: #ff0000;
+  --ubol-overlay-canvas: rgba(48,0,0,.20);
   font-family: var(--mu-family);
 }
 :root#ubol-picker aside,
@@ -209,10 +209,64 @@
 :root#ubol-picker.preview #toolbar #preview,
 :root#ubol-picker #toolbar #create:not(:disabled),
 :root#ubol-picker #candidateFilters span[aria-selected="true"]{
-  background:#1f75fe!important;color:#fff!important;border-color:#1f75fe!important;
+  background:#ff0000!important;color:#fff!important;border-color:#ff0000!important;
 }
 :root#ubol-picker #candidateFilters ul > li > span.on * {color:#fff!important;}
 :root#ubol-picker svg#overlay {animation:none!important;transition:none!important;}
 :root#ubol-picker,*,:root#ubol-picker *::before,:root#ubol-picker *::after {
   animation:none!important;transition:none!important;
+}
+
+
+/* Compact picker header: the name is constant in every locale, on one line. */
+:root#ubol-picker aside #windowbar #move::after,
+:root#ubol-unpicker aside #windowbar #move::after {
+  content:"muBlock" !important;
+  display:inline-block!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  flex-shrink:0!important;
+  max-width:none!important;
+  min-width:max-content!important;
+  text-align:center;
+}
+:root#ubol-picker.minimized aside,
+:root#ubol-unpicker.minimized aside {
+  box-sizing:border-box;
+  min-width:max-content!important;
+  width:max-content!important;
+  max-width:calc(100vw - 14px)!important;
+  padding:6px!important;
+}
+:root#ubol-picker.minimized aside #windowbar,
+:root#ubol-unpicker.minimized aside #windowbar {
+  box-sizing:border-box;
+  display:flex!important;
+  align-items:center;
+  gap:7px;
+  width:max-content;
+  min-width:max-content;
+  max-width:100%;
+  white-space:nowrap!important;
+}
+:root#ubol-picker.minimized aside #windowbar #move,
+:root#ubol-unpicker.minimized aside #windowbar #move{
+  flex:0 0 auto;
+  width:max-content!important;
+  min-width:max-content!important;
+  white-space:nowrap!important;
+}
+:root#ubol-picker #candidateFilters .on,
+:root#ubol-unpicker .customFilter.on,
+:root#ubol-picker #toolbar #create:not(:disabled) {
+  background:#ff0000!important;
+  color:#fff!important;
+}
+:root#ubol-picker :is(button,span):hover,
+:root#ubol-unpicker :is(button,span):hover,
+:root#ubol-zapper aside>div:hover {
+  animation:none!important;
+  transition:none!important;
+  transform:none!important;
 }
