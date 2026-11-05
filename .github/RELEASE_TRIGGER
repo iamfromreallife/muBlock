@@ -1,8 +1,6 @@
-muBlock per-site Disable cosmetic filtering feature — 2026-11-05
-All feature source changes finalized on main at: ac7cc5fe44957e7a5360ff9e7cf4144ad6bbb366
-Popup switch below Remove a custom filter. Persistent hostname exceptions.
-Disable Lite stock, custom, sandbox and imported cosmetic CSS registrations per website.
-Preserve DNR network filtering, filtering strength and independent scriptlets.
-Include exceptions in Lite-compatible backup and restore.
-Publish one final versioned ZIP release, no tests or screenshot reviews.
-Only main branch.
+muBlock YouTube playback startup fix — release trigger — 2026-11-05
+Source commit: 1191708c00cdece6261c03f2b6161350fae70610
+Scope: keep the scoped YouTube player-request patch and scriptlet loader from muBlock_YouTubeFIX_Clean_2026.1103.1743.zip.
+Build with the existing overlay so the fix survives future upstream refreshes.
+Preserve current theme, per-site cosmetic-filtering switch, settings, filter engine, and all unrelated files.
+Publish one versioned muBlock ZIP GitHub Release with change notes.
