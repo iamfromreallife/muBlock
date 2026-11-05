@@ -40,30 +40,20 @@ if (nav && !nav.querySelector('.mu-brand-word')) {
 }
 document.title = 'muBlock — Settings';
 
+/* The actual source of truth is the upstream Lite manifest copied by the
+ * build. Its version is never hardcoded or changed by the muBlock overlay. */
 const about = document.querySelector('#aboutNameVer');
 if (about) {
-  const observer = new MutationObserver(() => {
-    if (about.textContent.includes('uBO Lite')) {
-      about.textContent = about.textContent.replaceAll('uBO Lite','muBlock');
-    }
+  const manifest = chrome.runtime.getManifest();
+  const expected = 'muBlock - based on uBlock Origin Lite ' + manifest.version;
+  const syncVersion = () => {
+    if (about.textContent !== expected) about.textContent = expected;
+  };
+  new MutationObserver(syncVersion).observe(about, {
+    childList: true, characterData: true, subtree: true
   });
-  observer.observe(about,{childList:true});
+  syncVersion();
 }
-
-const settingsBackup = document.querySelector(
-  'section[data-pane="settings"] button:has([data-i18n="backupButton"])'
-);
-if (settingsBackup) {
-  const card = settingsBackup.closest('div');
-  if (card && !card.querySelector('.mu-backup-note')) {
-    const note = document.createElement('p');
-    note.className = 'mu-backup-note';
-    note.textContent = 'Backup files use uBlock Origin Lite’s original format and can be restored with its existing data importer.';
-    note.style.cssText = 'font-size:12px;color:var(--mu-text-muted);margin:12px 0 0';
-    card.append(note);
-  }
-}
-
 
 /* Attribution at the beginning of About; Lite authors receive full credit. */
 const muAbout=document.querySelector('section[data-pane="about"] .body');

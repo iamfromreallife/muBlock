@@ -21,11 +21,13 @@ ASSETS = (
     "css/mu-picker.css",
     "css/mu-select.css",
     "css/mu-slider.css",
+    "css/mu-appearance.css",
     "js/mu-popup.js",
     "js/mu-dashboard.js",
     "js/mu-filters.js",
     "js/mu-select.js",
     "js/mu-slider.js",
+    "js/mu-appearance.js",
     "img/mu-logo.svg",
 )
 
@@ -144,6 +146,21 @@ def main(extension: Path) -> None:
         insert_once(page, "</body>",
                     '<script src="js/mu-slider.js" type="module"></script>')
 
+    # Appearance is a purely UI-level setting, injected into every extension
+    # page; it never changes the original Lite filtering runtime.
+    for name in (
+        "popup.html", "dashboard.html", "picker-ui.html",
+        "unpicker-ui.html", "zapper-ui.html", "report.html",
+        "matched-rules.html", "strictblock.html",
+    ):
+        page = extension / name
+        if not page.exists():
+            continue
+        insert_once(page, "</head>",
+                    '<link rel="stylesheet" href="css/mu-appearance.css">')
+        insert_once(page, "</body>",
+                    '<script src="js/mu-appearance.js" type="module"></script>')
+
     manifest_path = extension / "manifest.json"
     manifest = json.loads(manifest_path.read_text("utf-8"))
     manifest["name"] = "muBlock"
@@ -155,9 +172,11 @@ def main(extension: Path) -> None:
     manifest["icons"] = {str(size): f"img/icon_{size}.png" for size in (16,32,48,64,128,256,512)}
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", "utf-8")
 
+    from mu_appearance_i18n import merge_messages
     for localization in (extension / "_locales").glob("*/messages.json"):
         data = json.loads(localization.read_text("utf-8"))
         data["extName"]["message"] = "muBlock"
+        merge_messages(data, localization.parent.name)
         localization.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", "utf-8")
 
     from generate_icons import generate

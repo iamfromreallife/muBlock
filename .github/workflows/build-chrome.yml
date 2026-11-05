@@ -63,3 +63,20 @@ jobs:
             git commit -m "Publish finalized muBlock Chrome extension"
             git push origin HEAD:main
           fi
+
+      - name: Prune superseded branches, keeping main and active prompt branch
+        if: github.ref == 'refs/heads/main'
+        run: |
+          set -euo pipefail
+          keep="$(cat .github/CURRENT_WORK_BRANCH)"
+          if [[ ! "$keep" =~ ^[A-Za-z0-9._/-]+$ ]] || [[ "$keep" == "main" ]]; then
+            echo "Invalid current work branch: $keep"
+            exit 1
+          fi
+          git ls-remote --heads origin | sed 's#.*refs/heads/##' |
+          while IFS= read -r old; do
+            if [[ "$old" != "main" && "$old" != "$keep" ]]; then
+              echo "Removing superseded branch: $old"
+              git push origin --delete "$old"
+            fi
+          done
