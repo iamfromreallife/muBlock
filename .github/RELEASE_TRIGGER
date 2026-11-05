@@ -1,7 +1,7 @@
-muBlock compact-picker + narrow-dashboard release — 2026-11-05
-Final merged source commit: 101af6d0cf850535fa21ce0f479ef8b181cfdef6
-Compact expanded element picker, 200px narrower dashboard in all tabs.
-Remove duplicate contributors/dependencies headings from About.
-Single packaging-only GitHub Release with the versioned ZIP and included commits.
-No tests or screenshots.
-Keep main and feat/compact-picker-narrow-dashboard-about-20261105.
+muBlock selectable UI language + popup labels — 2026-11-05
+Final merged implementation commit: 954fce55887ab05f6d8ea4d093b47a9e81d098da
+Add Extension language as first Behaviour option, using bundled Lite translations.
+Capitalize Filtering mode and No website; black heading in light theme.
+Publish only the new commits since the previous GitHub Release.
+One final packaging-only GitHub Action, no tests or screenshots.
+Keep main and feat/extension-language-popup-labels-20261105.
