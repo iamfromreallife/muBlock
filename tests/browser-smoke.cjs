@@ -86,13 +86,22 @@ async function main(){
      await search.fill('newest-edited');
      assert.equal(await page.locator('.mu-search-match').count(),1);
      await page.locator('#mu-site-save:not([disabled])').click();
-     const edited=await page.evaluate(async()=>{
-       const {sendMessage}=await import('./js/ext.js');
-       const data=await sendMessage({what:'getAllCustomFilters'});
-       return data.some(([h,selectors])=>h==='example.test' &&
-          selectors.includes('.newest-edited') && !selectors.includes('.newest'));
-     });
-     assert(edited,'Inline edits must persist in Lite storage');
+     try {
+       await page.waitForFunction(async()=>{
+         const {sendMessage}=await import('./js/ext.js');
+         const sites=await sendMessage({what:'getAllCustomFilters'});
+         return sites.some(([host,rules])=>host==='example.test' &&
+           rules.includes('.newest-edited') && !rules.includes('.newest'));
+       },null,{timeout:12000});
+     } catch(error) {
+       const detail=await page.evaluate(async()=>{
+         const {sendMessage}=await import('./js/ext.js');
+         return {text:document.querySelector('#mu-site-textarea')?.value,
+           status:document.querySelector('#mu-site-status')?.textContent,
+           saved:await sendMessage({what:'getAllCustomFilters'})};
+       });
+       throw new Error('Inline edit was not persisted: '+JSON.stringify(detail)+'; '+String(error));
+     }
      await search.fill('not-present-anywhere');
      assert.equal(await page.locator('#mu-site-search-results .mu-search-match').count(),0);
      await search.fill('');
