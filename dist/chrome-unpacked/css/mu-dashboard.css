@@ -887,3 +887,31 @@ section[data-pane="rulesets"] input[type="checkbox"] + svg {
 #defaultFilteringMode .filteringModeSlider .filteringModeButton > div {
   border-radius:8px!important;
 }
+
+
+/* Extra information under every uBO Lite list, never part of the list name
+ * or checkbox label. The list remains fully interactive and unchanged. */
+#lists .listEntry[data-role="leaf"] > .mu-list-info {
+  box-sizing:border-box;
+  margin:0 8px 5px 32px!important;
+  padding:0;
+  color:color-mix(in srgb, var(--mu-text) 54%, var(--mu-surface))!important;
+  background:transparent!important;
+  font:400 11.25px/1.45 var(--mu-family)!important;
+  font-weight:400!important;
+  letter-spacing:normal;
+  text-align:start;
+  white-space:normal!important;
+  overflow-wrap:anywhere;
+  word-break:normal;
+  pointer-events:none;
+}
+#lists .listEntry[data-role="leaf"] {
+  padding-bottom:7px;
+}
+@media(max-width:680px) {
+  #lists .listEntry[data-role="leaf"] > .mu-list-info {
+    margin-inline-start:30px!important;
+    margin-inline-end:4px!important;
+  }
+}
