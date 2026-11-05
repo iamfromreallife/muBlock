@@ -1,8 +1,7 @@
-muBlock dashboard spacing and About links release — 2026-11-05
-Final source changes on main: bdd1d4ad59c0e790195f9206e027d09eb9b5a8d7
-Use identical 28px gap below navigation on all five dashboard tabs.
-Revert logo and tab navigation group to left alignment.
-Use Crayola Blue #1F75FE for About-only links.
-Give author credit and GitHub link same 4px vertical line gap.
-Publish versioned ZIP once; no automated tests or screenshot reviews.
+muBlock dashboard header and Filter Lists spacing alignment — 2026-11-05
+Final source on main: 124602569ebec04ca538f4fb0585d9741f0767f7
+Use shared left gutter between muBlock logo/nav and every settings card.
+Remove legacy Filter Lists header padding reduction and 0px/12px top offsets.
+Keep all dashboard panels the same 28px below the navigation.
+Publish single versioned package, no automated tests or screenshot reviews.
 Only main branch.
