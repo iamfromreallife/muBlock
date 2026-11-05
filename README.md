@@ -29,7 +29,7 @@ Find previous packages under [GitHub Releases](https://github.com/iamfromreallif
 - The original full-size uBlock Origin Lite element-picker layout (including its normal height, spacing, controls, and candidate list), retaining muBlock's maroon colours and visual styling.
 - A clean maroon (**#800000**) and neutral UI with the classic uBlock Origin shield, including matching toolbar and disabled-state icon variants.
 - Rounded dashboard cards and subtle shadows shared by Settings, Filter Lists, Custom Filters, Developer Tools, and About.
-- Dashboard tabs limited to a 1,000px-wide responsive layout instead of the previous 1,200px maximum.
+- All dashboard tabs use a responsive **1,100px maximum width**. Navigation labels stay on a single line across locales; when translations are too long for a narrow viewport, the navigation scrolls horizontally instead of wrapping.
 - **Custom Filters:** a large editable area for cosmetic rules added by the element picker, shown newest first, with live search in an editable multiline filter view.
 - A separate sandbox editor preserving Lite's CodeMirror and storage behavior; the Save icon inherits the Save label's live foreground color.
 - **Filter Lists:** a short grey description directly after each list's original home icon, with no misleading list-version numbers.
