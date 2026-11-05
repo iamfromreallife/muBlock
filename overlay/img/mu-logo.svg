@@ -1,17 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="muBlock">
-  <defs>
-    <linearGradient id="shield" x1="0" y1="0" x2="0.86" y2="1">
-      <stop offset="0" stop-color="#ff5264"/>
-      <stop offset="0.46" stop-color="#e5203b"/>
-      <stop offset="1" stop-color="#a90026"/>
-    </linearGradient>
-    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#fff" stop-opacity=".28"/>
-      <stop offset=".8" stop-color="#fff" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-  <path d="M64 5 C78 12 94 17 111 21 L111 66 C111 95 91 111 64 124 C37 111 17 95 17 66 L17 21 C34 17 50 12 64 5Z" fill="#96051e"/>
-  <path d="M64 11 C78 18 92 22 105 25 L105 65 C105 90 89 105 64 117 C39 105 23 90 23 65 L23 25 C36 22 50 18 64 11Z" fill="url(#shield)"/>
-  <path d="M64 14 C78 21 92 25 101 27 L101 55 C76 52 53 39 27 37 L27 27 C40 24 53 20 64 14Z" fill="url(#gloss)"/>
-  <path d="M39 84 V59 C39 49 44 45 51 45 C59 45 63 51 64 57 C67 49 72 45 80 45 C88 45 92 51 92 60 V84" stroke="#fff" stroke-width="12.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Official uBlock Origin emblem from gorhill/uBlock, GPL-3.0-or-later;
+     shield recolored to muBlock's requested accent #FF0000. -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   viewBox="0 0 128 128"
+   height="128"
+   width="128">
+  <g
+     style="display:inline;opacity:1">
+    <g
+       style="fill:#ff0000;fill-opacity:1;stroke:#ffffff;stroke-width:1.62100744;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       transform="matrix(0.6778654,0,0,0.56141828,-241.07537,-247.27712)" />
+    <g
+       transform="matrix(-0.6945203,0,0,0.56109687,375.02964,-247.42947)"
+       style="fill:#ff0000;fill-opacity:1;stroke:#ffffff;stroke-width:1.60191178000000001;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;stroke-linejoin:round">
+      <path
+         d="m 447.83376,669.09921 c -80.63119,-57.03115 -80.63119,-57.03115 -80.63119,-199.60903 34.55623,0 46.07497,0 80.63119,-28.51558 m 0,228.12461 c 80.6312,-57.03115 80.6312,-57.03115 80.6312,-199.60903 -34.55623,0 -46.07497,0 -80.6312,-28.51558"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1.60191178;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+  </g>
+  <g
+     transform="translate(-17.872548,-17.32535)"
+     style="display:inline">
+    <ellipse
+       transform="matrix(1.3333335,0,0,1.3333334,-42.290862,-31.108461)"
+       ry="12"
+       rx="11.999999"
+       cy="81.325356"
+       cx="102.12254"
+       style="fill:none;stroke:#ffffff;stroke-width:5.99999952;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;" />
+    <g
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.99999996999999996;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       transform="scale(1.0018026,0.99820067)">
+      <path
+         d="m 81.72523,81.471945 c 0,11.019828 -4.991003,16.028841 -15.97121,16.028841 -10.980207,0 -15.97121,-5.009013 -15.97121,-16.028841 l 0,-24.043262 7.985605,0 0,24.043262 c 0,7.012618 0.9982,8.014421 7.985605,8.014421 6.987404,0 7.985605,-1.001803 7.985605,-8.014421 l 0,-24.043262 7.985605,0 z"
+         style="fill:#ffffff;stroke:#ffffff;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;" />
+    </g>
+  </g>
 </svg>
