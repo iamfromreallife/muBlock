@@ -281,3 +281,15 @@
   transition:none!important;
   scroll-behavior:auto!important;
 }
+
+
+/* White delete glyph only on the selected maroon unpicker filter row.
+ * Font Awesome injects an SVG: inherit the row's white foreground. */
+:root#ubol-unpicker .customFilter.on > .remove.fa-icon,
+:root#ubol-unpicker .customFilter.on > .remove.fa-icon > svg,
+:root#ubol-unpicker .customFilter.on > .remove.fa-icon > svg path,
+:root#ubol-unpicker .customFilter.on > .remove.fa-icon > svg use {
+  color:#fff!important;
+  fill:currentColor!important;
+  stroke:currentColor!important;
+}
