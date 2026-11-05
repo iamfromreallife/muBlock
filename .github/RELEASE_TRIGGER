@@ -1,5 +1,5 @@
-muBlock UI cleanup release — 2026-11-05
-Merged source commit: 97ae45ab92f593229b8c6f3cf5504395019adf5a
-Revert appearance module; remove all dashboard separators; enlarge popup settings button.
-One packaging-only run; do not run tests or screenshot reviews.
-Prune old branches; preserve main and fix/remove-appearance-separators-popup-settings-20261105.
+muBlock popup and filter-list descriptions release — 2026-11-05
+Merged source: 44838c39bd337e983a359cb0fcd51c13b232d6a4
+Settings button 44x40; list-match hover colour; accurate Lite bundle version and list purpose descriptions.
+One final packaging-only action, no tests or screenshots.
+Keep branches main and fix/popup-hover-filterlist-metadata-20261105.
