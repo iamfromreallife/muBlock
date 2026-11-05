@@ -41,6 +41,18 @@ if (nav && !nav.querySelector('.mu-brand-word')) {
 }
 document.title = 'muBlock — Settings';
 
+/* The ruleset count/search and groups share ONE full-width card.
+ * Lite's original #findInLists, #lists, and event listeners remain in place;
+ * only their DOM layout changes. Import-controls remain siblings of #lists,
+ * preserving Lite's original #lists + aside visibility rules. */
+const rulesetList = document.getElementById('lists');
+const rulesetSearch = document.querySelector('header [data-pane-related="rulesets"]');
+if (rulesetList && rulesetSearch &&
+    !rulesetList.querySelector(':scope > [data-pane-related="rulesets"]')) {
+  rulesetList.prepend(rulesetSearch);
+}
+
+
 /* The actual source of truth is the upstream Lite manifest copied by the
  * build. Its version is never hardcoded or changed by the muBlock overlay. */
 const about = document.querySelector('#aboutNameVer');
