@@ -1,69 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   version="1.1"
-   viewBox="0 0 128 128"
-   height="128"
-   width="128"
-   id="svg86"
-   sodipodi:docname="ublock.svg"
-   inkscape:export-filename="../../platform/mv3/extension/img/icon_16.png"
-   inkscape:export-xdpi="12"
-   inkscape:export-ydpi="12"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <defs
-     id="defs90" />
-  <sodipodi:namedview
-     id="namedview88"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     showgrid="true"
-     inkscape:zoom="5.6734271"
-     inkscape:cx="-1.6744729"
-     inkscape:cy="76.232583"
-     inkscape:window-width="2560"
-     inkscape:window-height="1377"
-     inkscape:window-x="0"
-     inkscape:window-y="40"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg86">
-    <inkscape:grid
-       type="xygrid"
-       id="grid250"
-       spacingx="1"
-       spacingy="1"
-       empspacing="8" />
-  </sodipodi:namedview>
-  <g
-     style="display:inline;opacity:1"
-     id="g76">
-    <g
-       style="fill:#800000;fill-opacity:1;stroke:#ffffff;stroke-width:1.62100744;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
-       transform="matrix(0.6778654,0,0,0.56141828,-241.07537,-247.27712)"
-       id="g70" />
-    <g
-       transform="matrix(-0.6945203,0,0,0.56109687,375.02964,-247.42947)"
-       style="fill:#800000;fill-opacity:1;stroke:#ffffff;stroke-width:1.60191178000000001;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;stroke-linejoin:round"
-       id="g74">
-      <path
-         d="m 447.83376,669.09921 c -80.63119,-57.03115 -80.63119,-57.03115 -80.63119,-199.60903 34.55623,0 46.07497,0 80.63119,-28.51558 m 0,228.12461 c 80.6312,-57.03115 80.6312,-57.03115 80.6312,-199.60903 -34.55623,0 -46.07497,0 -80.6312,-28.51558"
-         style="fill:#800000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1.60191178;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-         id="path72" />
-    </g>
-  </g>
-  <rect
-     style="fill:#fefefe;fill-opacity:1;stroke-width:0.550132"
-     id="rect304"
-     width="63.999996"
-     height="12"
-     x="32"
-     y="58" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="muBlock">
+  <defs>
+    <linearGradient id="shield" x1="0" y1="0" x2="0.86" y2="1">
+      <stop offset="0" stop-color="#ff5264"/>
+      <stop offset="0.46" stop-color="#e5203b"/>
+      <stop offset="1" stop-color="#a90026"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".28"/>
+      <stop offset=".8" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path d="M64 5 C78 12 94 17 111 21 L111 66 C111 95 91 111 64 124 C37 111 17 95 17 66 L17 21 C34 17 50 12 64 5Z" fill="#96051e"/>
+  <path d="M64 11 C78 18 92 22 105 25 L105 65 C105 90 89 105 64 117 C39 105 23 90 23 65 L23 25 C36 22 50 18 64 11Z" fill="url(#shield)"/>
+  <path d="M64 14 C78 21 92 25 101 27 L101 55 C76 52 53 39 27 37 L27 27 C40 24 53 20 64 14Z" fill="url(#gloss)"/>
+  <path d="M39 84 V59 C39 49 44 45 51 45 C59 45 63 51 64 57 C67 49 72 45 80 45 C88 45 92 51 92 60 V84" stroke="#fff" stroke-width="12.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>
