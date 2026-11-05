@@ -24,6 +24,8 @@ Find previous packages under [GitHub Releases](https://github.com/iamfromreallif
 
 - Original uBlock Origin Lite filtering modes, rulesets, and MV3 filtering engine.
 - A compact, localized popup with power controls alongside the site name, and a separate bottom Settings footer showing the actual bundled Lite version in muted text.
+- **Extension language:** the first Behaviour setting offers the browser default and the Lite UI languages bundled with the installed release. The selected locale is stored locally and takes effect in open extension pages immediately via reload; browser-owned Chrome menus and extension names remain controlled by Chrome. Missing muBlock-only translations fall back to English.
+- **Popup labels:** the filtering-mode heading uses black text in light mode, and both that heading and the no-website message capitalize their first letter correctly for the selected language.
 - An element picker with a narrower, shorter floating panel, compact selectors and controls, and scrollable candidate lists even when fully expanded.
 - A clean red-and-neutral UI with the classic uBlock Origin shield.
 - Rounded dashboard cards and subtle shadows shared by Settings, Filter Lists, Custom Filters, Developer Tools, and About.
@@ -48,7 +50,7 @@ Open **Actions → Build and publish muBlock → Run workflow** to build manuall
 2. Applies the muBlock interface overlay.
 3. Produces **muBlock_VERSION.zip**, with VERSION taken from the actual bundled manifest.
 4. Uploads the ZIP as an Actions artifact and publishes a [GitHub Release](https://github.com/iamfromreallife/MV3uBlockOrigin/releases).
-5. Includes **all commits since the previous release** in the release description, with clickable commit links and the upstream Lite source commit.
+5. Includes **only the new commits since the previous release** in the release description, with clickable commit links and the upstream Lite source commit.
 6. Updates this README's direct download URL.
 7. Keeps only main and the active task branch recorded in **.github/CURRENT_WORK_BRANCH**.
 
