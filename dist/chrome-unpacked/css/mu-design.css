@@ -18,14 +18,14 @@
   font-display: swap;
 }
 :root {
-  --mu-primary: #ff0000;
+  --mu-primary: #800000;
   --mu-on-primary: #fff;
   --mu-primary-container: #ffe8e8;
-  --mu-on-primary-container: #790000;
+  --mu-on-primary-container: #800000;
   --mu-secondary: #53657d;
   --mu-secondary-container: #f3eff0;
   --mu-on-secondary-container: #3d2b2d;
-  --mu-tertiary: #ff0000;
+  --mu-tertiary: #800000;
   --mu-tertiary-container: #ffe4e4;
   --mu-background: #faf9f9;
   --mu-surface: #fff;
@@ -51,14 +51,14 @@
   font-family: var(--mu-family);
 }
 :root.dark {
-  --mu-primary: #ff0000;
+  --mu-primary: #800000;
   --mu-on-primary: #fff;
   --mu-primary-container: #4e2929;
   --mu-on-primary-container: #ffe0e0;
   --mu-secondary: #d1c6e0;
   --mu-secondary-container: #3b3032;
   --mu-on-secondary-container: #f8ecee;
-  --mu-tertiary: #74dfbd;
+  --mu-tertiary: #800000;
   --mu-tertiary-container: #165a50;
   --mu-background: #191719;
   --mu-surface: #282428;
@@ -234,18 +234,18 @@ a:hover { text-decoration: underline; }
 /* User preference: disable all UI motion. */
 :root, :root *, :root *::before, :root *::after {animation:none!important;transition:none!important;scroll-behavior:auto!important}
 
-/* Solid Crayola blue selections always have white foreground text. */
-:root {--accent-surface-1:#ff0000;--accent-ink-1:#fff;}
-:root.dark {--accent-surface-1:#ff0000;--accent-ink-1:#fff;}
+/* Solid maroon selections always have white foreground text. */
+:root {--accent-surface-1:#800000;--accent-ink-1:#fff;}
+:root.dark {--accent-surface-1:#800000;--accent-ink-1:#fff;}
 :root .mu-mode-btn[aria-pressed="true"],
 :root button.mu-button-primary,
 :root button.mu-primary[aria-pressed="true"],
 :root button.preferred,
 :root [aria-selected="true"][style*="background"] {color:#fff!important;}
 
-/* Brand-accurate pure-red interactive accent; no hover motion anywhere. */
+/* Consistent maroon interactive accent; no hover motion anywhere. */
 :root,:root.dark {
-  --accent-surface-1:#ff0000;
+  --accent-surface-1:#800000;
   --accent-ink-1:#fff;
 }
 :root *, :root *::before, :root *::after {
@@ -260,6 +260,6 @@ button:hover,[role="button"]:hover,.tool:hover,.tabButton:hover,
 }
 :root button.preferred,:root .mu-button.mu-button-primary,
 :root .mu-mode-btn[aria-pressed="true"] {
-  background:#ff0000 !important;
+  background:#800000 !important;
   color:#fff !important;
 }

@@ -6,8 +6,8 @@
 :root#ubol-picker,
 :root#ubol-unpicker,
 :root#ubol-zapper {
-  --ubol-overlay-fill: rgba(255,0,0,.12);
-  --ubol-overlay-border: #ff0000;
+  --ubol-overlay-fill: rgba(128,0,0,.12);
+  --ubol-overlay-border: #800000;
   --ubol-overlay-canvas: rgba(48,0,0,.20);
   font-family: var(--mu-family);
 }
@@ -209,7 +209,7 @@
 :root#ubol-picker.preview #toolbar #preview,
 :root#ubol-picker #toolbar #create:not(:disabled),
 :root#ubol-picker #candidateFilters span[aria-selected="true"]{
-  background:#ff0000!important;color:#fff!important;border-color:#ff0000!important;
+  background:#800000!important;color:#fff!important;border-color:#800000!important;
 }
 :root#ubol-picker #candidateFilters ul > li > span.on * {color:#fff!important;}
 :root#ubol-picker svg#overlay {animation:none!important;transition:none!important;}
@@ -260,7 +260,7 @@
 :root#ubol-picker #candidateFilters .on,
 :root#ubol-unpicker .customFilter.on,
 :root#ubol-picker #toolbar #create:not(:disabled) {
-  background:#ff0000!important;
+  background:#800000!important;
   color:#fff!important;
 }
 :root#ubol-picker :is(button,span):hover,
@@ -276,9 +276,9 @@
  * selection logic; only reduce the panel's visual dimensions and spacing. */
 :root#ubol-picker:not(.minimized) aside {
   box-sizing:border-box;
-  width:min(26rem,calc(100vw - 12px))!important;
+  width:min(32rem,calc(100vw - 12px))!important;
   min-width:min(20rem,calc(100vw - 12px))!important;
-  max-width:min(26rem,calc(100vw - 12px))!important;
+  max-width:min(32rem,calc(100vw - 12px))!important;
   max-height:min(520px,calc(100svh - 12px))!important;
   overflow-x:hidden;
   overflow-y:auto;

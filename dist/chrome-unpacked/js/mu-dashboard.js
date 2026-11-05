@@ -75,7 +75,7 @@ if(muAbout&&!muAbout.querySelector('.mu-about-fork')){
   author.className='mu-about-author';
   author.textContent=(pt?'Autor desta versão: ':'Fork author: ')+'iamfromreallife';
   const fork=document.createElement('a');
-  fork.href='https://github.com/iamfromreallife/MV3uBlockOrigin';
+  fork.href='https://github.com/iamfromreallife/muBlock';
   fork.target='_blank';fork.rel='noopener noreferrer';fork.textContent='muBlock · GitHub';
   block.append(credit,upstream,author,fork);
   muAbout.prepend(block);

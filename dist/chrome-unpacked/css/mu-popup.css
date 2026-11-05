@@ -294,7 +294,7 @@ body.nodata #mu-filtering-state { opacity: .65; }
 .mu-mode-btn .mu-mode-name{display:block;max-width:100%;overflow-wrap:break-word;text-align:center;}
 .mu-mode-btn .mu-icon{width:17px;height:17px;}
 .mu-mode-btn[aria-pressed="true"]{
-  background:#ff0000;color:#fff!important;border-radius:11px;box-shadow:none;
+  background:#800000;color:#fff!important;border-radius:11px;box-shadow:none;
 }
 .mu-mode-btn:hover:not([aria-pressed="true"]){background:var(--mu-surface-high);}
 .mu-mode-btn:disabled{opacity:.4;cursor:not-allowed;}
@@ -357,7 +357,7 @@ body.nodata #mu-power,body.nodata .mu-mode-btn{opacity:.4;pointer-events:none;}
 #mu-power:not(.off):not(:disabled),
 #mu-power:not(.off):hover:not(:disabled),
 #mu-power:not(.off):active:not(:disabled) {
-  background:#ff0000!important;
+  background:#800000!important;
   color:#fff!important;
 }
 #mu-power.off,#mu-power.off:hover {
@@ -391,12 +391,12 @@ body.nodata #mu-power,body.nodata .mu-mode-btn{opacity:.4;pointer-events:none;}
   min-height:40px!important;
   margin:0!important;
   padding:0!important;
-  background:#ff0000!important;
+  background:#800000!important;
   color:#fff!important;
   fill:#fff!important;
   border:0!important;
   border-radius:15px!important;
-  box-shadow:0 3px 9px rgb(255 0 0 / .17)!important;
+  box-shadow:0 3px 9px rgb(128 0 0 / .17)!important;
   font-size:23px!important;
   cursor:pointer;
   transform:none!important;
@@ -410,7 +410,7 @@ body.nodata #mu-power,body.nodata .mu-mode-btn{opacity:.4;pointer-events:none;}
   color:#fff!important;
 }
 #mu-popup-footer #gotoDashboard:focus-visible {
-  outline:2px solid #ff0000!important;
+  outline:2px solid #800000!important;
   outline-offset:3px;
 }
 #mu-popup-header {
