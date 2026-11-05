@@ -24,12 +24,14 @@ Find previous packages under [GitHub Releases](https://github.com/iamfromreallif
 
 - Original uBlock Origin Lite filtering modes, rulesets, and MV3 filtering engine.
 - A compact, localized popup with power controls alongside the site name, and a separate bottom Settings footer showing the actual bundled Lite version in muted text.
+- An element picker with a narrower, shorter floating panel, compact selectors and controls, and scrollable candidate lists even when fully expanded.
 - A clean red-and-neutral UI with the classic uBlock Origin shield.
 - Rounded dashboard cards and subtle shadows shared by Settings, Filter Lists, Custom Filters, Developer Tools, and About.
+- Dashboard tabs limited to a 1,000px-wide responsive layout instead of the previous 1,200px maximum.
 - **Custom Filters:** a large editable area for cosmetic rules added by the element picker, shown newest first, with live search in an editable multiline filter view.
 - A separate sandbox editor preserving Lite's CodeMirror and storage behavior.
 - **Filter Lists:** a short grey description directly after each list's original home icon, with no misleading list-version numbers.
-- A compact About tab with distinct titled groups for attribution, version, useful links, contributors, dependencies, and technical details.
+- A compact About tab with distinct titled groups for attribution, version, useful links, contributors, dependencies, and technical details, without duplicate upstream headings.
 - Original uBlock Origin Lite configuration backups and imports/exports.
 
 muBlock adds no replacement filtering engine, telemetry, or remotely loaded code.

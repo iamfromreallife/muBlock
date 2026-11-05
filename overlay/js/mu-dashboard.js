@@ -139,5 +139,11 @@ if (muAbout && !muAbout.querySelector('.mu-about-grid')) {
   card('technical', original.filter(el =>
     !claimed.has(el) && el !== contributorsLabel && el !== dependenciesLabel));
 
-  muAbout.append(grid);
+  // The original About labels were used only to identify/move the upstream
+  // link groups. Their own content is now represented by our card headings;
+  // leaving them in the source container caused two stray titles above the
+  // redesigned About page and an unnecessary empty left column.
+  contributorsLabel?.remove();
+  dependenciesLabel?.remove();
+  muAbout.replaceChildren(grid);
 }
