@@ -94,18 +94,9 @@ def main(extension: Path) -> None:
             "<title>uBO Lite Zapper</title>", f"<title>muBlock — {page.split('-')[0]}</title>"
         ), "utf-8")
 
-    # Lite's action.js changes toolbar icons at runtime for trusted sites.
-    # Replace only its icon asset paths, leaving all filtering logic intact.
-    toolbar_module = extension / "js" / "action.js"
-    action_source = toolbar_module.read_text("utf-8")
-    for size in (16, 32, 64, 128):
-        for suffix, state in (("", ""), ("_off", "-off")):
-            original_icon = f"/img/icon_{size}{suffix}.png"
-            replacement_icon = f"/img/mu-toolbar{state}-{size}.png"
-            if original_icon not in action_source:
-                raise RuntimeError(f"Upstream action icon path changed: {original_icon}")
-            action_source = action_source.replace(original_icon, replacement_icon)
-    toolbar_module.write_text(action_source, "utf-8")
+    # Original Lite action.js is intentionally left unchanged. The icon
+    # renderer writes the official UBO emblem under its stock filenames so
+    # Lite's enabled/disabled runtime icon-switching works as designed.
 
     # Replace the remaining page favicons and static brand artwork.
     dashboard_html = dashboard.read_text("utf-8")
@@ -117,7 +108,7 @@ def main(extension: Path) -> None:
     for name in ("dashboard.html", "matched-rules.html", "report.html", "strictblock.html"):
         page = extension / name
         html = page.read_text("utf-8")
-        html = html.replace('href="img/icon_64.png"', 'href="img/mu-64.png"')
+        html = html.replace('href="img/mu-64.png"', 'href="img/icon_64.png"')
         if name != "dashboard.html":
             if "</head>" not in html:
                 raise RuntimeError(f"Missing head close in {name}")
@@ -142,9 +133,9 @@ def main(extension: Path) -> None:
     manifest["short_name"] = "muBlock"
     manifest["description"] = "muBlock — expressive, privacy-first filtering powered by uBlock Origin Lite."
     manifest["action"]["default_title"] = "muBlock"
-    manifest["action"]["default_icon"] = {str(size): f"img/mu-toolbar-{size}.png"
+    manifest["action"]["default_icon"] = {str(size): f"img/icon_{size}.png"
                                          for size in (16,32,64,128)}
-    manifest["icons"] = {str(size): f"img/mu-{size}.png" for size in (16,32,48,64,128,256,512)}
+    manifest["icons"] = {str(size): f"img/icon_{size}.png" for size in (16,32,48,64,128,256,512)}
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", "utf-8")
 
     for localization in (extension / "_locales").glob("*/messages.json"):
@@ -154,7 +145,7 @@ def main(extension: Path) -> None:
 
     from generate_icons import generate
     generate(extension / "img")
-    # Legacy vector icon fallbacks must also use the new brand artwork.
+    # Replace Lite's legacy vector with the original uBlock Origin logo.
     shutil.copy2(extension / "img/mu-logo.svg", extension / "img/ublock.svg")
     print(f"muBlock UI overlay applied: {extension}")
 
