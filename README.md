@@ -32,7 +32,7 @@ Find previous packages under [GitHub Releases](https://github.com/iamfromreallif
 - All dashboard tabs use a responsive **1,100px maximum width**. Navigation labels stay on a single line across locales; when translations are too long for a narrow viewport, the navigation scrolls horizontally instead of wrapping.
 - **Custom Filters:** a large editable area for cosmetic rules added by the element picker, shown newest first, with live search in an editable multiline filter view.
 - A separate sandbox editor preserving Lite's CodeMirror and storage behavior; the Save icon inherits the Save label's live foreground color.
-- **Filter Lists:** a short grey description directly after each list's original home icon, with no misleading list-version numbers.
+- **Filter Lists:** one unified, full-width dashboard card containing the rule count, search field and filter groups, with a short grey description directly after each list's original home icon. No misleading list-version numbers.
 - A compact About tab with distinct titled groups for attribution, version, useful links, contributors, dependencies, and technical details, without duplicate upstream headings.
 - Original uBlock Origin Lite configuration backups and imports/exports.
 
