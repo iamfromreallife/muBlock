@@ -293,3 +293,14 @@
   fill:currentColor!important;
   stroke:currentColor!important;
 }
+
+/* Picker only: remove the white outline around the slider thumb while
+ * preserving its maroon fill, native dragging, and current value range.
+ * Keep vendor pseudo-elements in separate rules so Chrome and Firefox
+ * both parse the rule appropriate for their rendering engines. */
+:root#ubol-picker input#slider::-webkit-slider-thumb {
+  border: 0 !important;
+}
+:root#ubol-picker input#slider::-moz-range-thumb {
+  border: 0 !important;
+}
