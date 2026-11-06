@@ -1,7 +1,9 @@
-muBlock dashboard alignment and Developer Tools dropdown styling — 2026-11-06
-Source commit: 7375d00da00573aec4b96efb295597aa88fe6121
-Filter Lists: reduce gap between Find lists and first list group to match Custom filters.
-Custom filters: match Find lists search width (440px) and show live result count immediately after the field.
-Developer Tools: match dropdown trigger surface to search input background while preserving native select behavior.
-Preserve all muBlock features including the YouTube startup-lag fix, per-site cosmetic-filtering rules, and custom theme.
-Release one versioned extension ZIP through the existing packaging workflow.
+muBlock localized filter dashboard headings and dynamic custom-filter count — 2026-11-06
+Source commit: 631d457132bc5ecd7beabed28b0d9179b3c884f6
+Filter Lists: add native-locale heading above existing network-rule stats and search.
+Make Filter Lists and Custom Filters search inputs exactly match in width, height, color, border and typography.
+My filters: display a localized live custom-filter count below the Custom filters title.
+Live count updates when the custom-filter editor changes, after save, revert, import and storage reload.
+Compile new count translations for every upstream locale, with explicit singular/plural translations where provided.
+Preserve YouTube player fix, cosmetic-filtering exceptions, custom theme and all filtering behavior.
+Publish one new muBlock ZIP through the existing workflow.
