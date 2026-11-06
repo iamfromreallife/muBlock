@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Не удалось сохранить правило фильтрации"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 пользовательский фильтр"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 пользовательских фильтров"
   }
 }

@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Det gick inte att spara filterregeln"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 anpassat filter"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 anpassade filter"
   }
 }

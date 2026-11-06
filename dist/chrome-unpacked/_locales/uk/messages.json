@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Не вдалося зберегти правило фільтрації"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 власний фільтр"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 власних фільтрів"
   }
 }

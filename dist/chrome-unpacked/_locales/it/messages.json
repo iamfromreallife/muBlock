@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Impossibile salvare la regola di filtraggio cosmetico"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 filtro personalizzato"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 filtri personalizzati"
   }
 }

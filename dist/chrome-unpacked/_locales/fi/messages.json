@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Suodatussääntöä ei voitu tallentaa"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 mukautettu suodatin"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 mukautettua suodatinta"
   }
 }

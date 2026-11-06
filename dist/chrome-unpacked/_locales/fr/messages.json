@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Impossible d’enregistrer la règle de filtrage cosmétique"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 filtre personnalisé"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 filtres personnalisés"
   }
 }

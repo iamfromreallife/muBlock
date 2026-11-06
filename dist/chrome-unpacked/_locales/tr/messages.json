@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Filtre kuralı kaydedilemedi"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 özel filtre"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 özel filtre"
   }
 }

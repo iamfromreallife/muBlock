@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Could not save the cosmetic filtering rule"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 ഇഷ്ടാനുസൃത ഫിൽറ്ററുകൾ"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 ഇഷ്ടാനുസൃത ഫിൽറ്ററുകൾ"
   }
 }

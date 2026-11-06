@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "無法儲存過濾規則"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 條自訂過濾規則"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 條自訂過濾規則"
   }
 }

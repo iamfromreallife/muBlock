@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Could not save the cosmetic filtering rule"
+  },
+  "muCustomFilterCountOne": {
+    "message": "ตัวกรองกำหนดเอง $1 รายการ"
+  },
+  "muCustomFilterCountOther": {
+    "message": "ตัวกรองกำหนดเอง $1 รายการ"
   }
 }

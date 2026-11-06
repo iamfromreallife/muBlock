@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "フィルタリング設定を保存できません"
+  },
+  "muCustomFilterCountOne": {
+    "message": "カスタムフィルター $1 件"
+  },
+  "muCustomFilterCountOther": {
+    "message": "カスタムフィルター $1 件"
   }
 }

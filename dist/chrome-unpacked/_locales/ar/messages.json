@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "تعذّر حفظ قاعدة التصفية"
+  },
+  "muCustomFilterCountOne": {
+    "message": "فلتر مخصص واحد ($1)"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 فلاتر مخصصة"
   }
 }

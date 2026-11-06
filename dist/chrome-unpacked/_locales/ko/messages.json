@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "필터 규칙을 저장할 수 없습니다"
+  },
+  "muCustomFilterCountOne": {
+    "message": "사용자 지정 필터 $1개"
+  },
+  "muCustomFilterCountOther": {
+    "message": "사용자 지정 필터 $1개"
   }
 }

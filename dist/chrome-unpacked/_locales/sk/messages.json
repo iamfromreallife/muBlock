@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Pravidlo filtrovania nemožno uložiť"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 vlastný filter"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 vlastných filtrov"
   }
 }

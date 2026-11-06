@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Kan de regel niet opslaan"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 aangepast filter"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 aangepaste filters"
   }
 }

@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Filterreglen kunne ikke gemmes"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 tilpasset filter"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 tilpassede filtre"
   }
 }

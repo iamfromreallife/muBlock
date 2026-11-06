@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Nie można zapisać reguły filtrowania"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 filtr niestandardowy"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 filtrów niestandardowych"
   }
 }

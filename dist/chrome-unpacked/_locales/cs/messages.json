@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "Pravidlo filtrování nelze uložit"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 vlastní filtr"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 vlastních filtrů"
   }
 }

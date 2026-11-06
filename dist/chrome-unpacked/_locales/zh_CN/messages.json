@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "无法保存过滤规则"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 条自定义过滤规则"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 条自定义过滤规则"
   }
 }

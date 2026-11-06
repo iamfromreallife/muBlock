@@ -477,5 +477,11 @@
   },
   "muCosmeticRuleError": {
     "message": "No se pudo guardar la regla de filtrado cosmético"
+  },
+  "muCustomFilterCountOne": {
+    "message": "$1 filtro personalizado"
+  },
+  "muCustomFilterCountOther": {
+    "message": "$1 filtros personalizados"
   }
 }
