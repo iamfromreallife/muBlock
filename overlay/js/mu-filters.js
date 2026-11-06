@@ -38,7 +38,8 @@ if(pane&&sandbox&&!pane.querySelector('#mu-site-textarea')){
  const title=document.createElement('h2');title.textContent=tr('customFiltersPageName');
  const total=document.createElement('p');total.id='mu-custom-filter-total';
  total.setAttribute('role','status');total.setAttribute('aria-live','polite');
- site.append(title,total);
+ const headingRow=document.createElement('div');headingRow.className='mu-filter-heading-row';
+ headingRow.append(title,total);site.append(headingRow);
  const searchGroup=document.createElement('div');searchGroup.className='mu-site-search';
  const search=document.createElement('input');search.id='mu-site-search';search.type='search';
  search.placeholder=t.search;search.autocomplete='off';search.spellcheck=false;

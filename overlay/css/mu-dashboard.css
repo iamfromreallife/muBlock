@@ -1354,17 +1354,33 @@ section[data-pane="about"] .mu-about-fork > a {
 
 /* Matched titles, count text, and search fields in both filter tabs.
  * Source strings come from Lite's active _locales; no HTML labels hardcoded. */
-#lists > #mu-rulesets-heading {
+/* Both title + live total sit on one responsive line; the heading row owns
+ * the whole bottom gap so removing the old count row leaves no extra space. */
+#lists > .mu-filter-heading-row,
+#mu-filters .mu-site-filters > .mu-filter-heading-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 12px;
+  row-gap: 3px;
   margin: 0 0 12px;
+}
+#lists > .mu-filter-heading-row > #mu-rulesets-heading,
+#mu-filters .mu-site-filters > .mu-filter-heading-row > h2 {
+  margin: 0 !important;
   font: 750 17px/1.4 var(--mu-family);
   color: var(--mu-text);
 }
-#lists > [data-pane-related="rulesets"] > p:first-child,
-#mu-filters #mu-custom-filter-total {
-  margin: 0 0 10px;
+#lists > .mu-filter-heading-row > #mu-rulesets-stats,
+#mu-filters .mu-site-filters > .mu-filter-heading-row > #mu-custom-filter-total {
+  margin: 0 !important;
   padding: 0;
-  color: var(--mu-text);
+  color: var(--mu-text-muted);
   font: 400 14px/1.4 var(--mu-family);
+}
+#lists > [data-pane-related="rulesets"] > #dnrError:empty {
+  display: none !important;
+  margin: 0 !important;
 }
 #lists > [data-pane-related="rulesets"] #findInLists,
 #mu-filters #mu-site-search {

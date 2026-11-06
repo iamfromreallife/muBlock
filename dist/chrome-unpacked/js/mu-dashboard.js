@@ -51,13 +51,23 @@ if (rulesetList && rulesetSearch &&
     !rulesetList.querySelector(':scope > [data-pane-related="rulesets"]')) {
   rulesetList.prepend(rulesetSearch);
 }
-/* Use Lite's existing localized Filter Lists label. The heading is inserted
- * above its original dynamic network-rule counter and search field. */
-if (rulesetList && !rulesetList.querySelector('#mu-rulesets-heading')) {
+/* Reuse Lite's translated title and MOVE its existing live rules-count node
+ * beside the title. Retaining the original node keeps Lite's updates and its
+ * in-progress spinner intact, without observing or duplicating the counter. */
+if (rulesetList && rulesetSearch &&
+    !rulesetList.querySelector('#mu-rulesets-heading')) {
+  const row = document.createElement('div');
+  row.className = 'mu-filter-heading-row';
   const heading = document.createElement('h2');
   heading.id = 'mu-rulesets-heading';
   heading.textContent = muGetMessage('aboutFilterLists');
-  rulesetList.prepend(heading);
+  row.append(heading);
+  const stats = rulesetSearch.querySelector('#listsOfBlockedHostsPrompt')?.closest('p');
+  if (stats) {
+    stats.id = 'mu-rulesets-stats';
+    row.append(stats);
+  }
+  rulesetList.prepend(row);
 }
 
 
