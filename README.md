@@ -2,6 +2,8 @@
 
 **muBlock** is an independent UI-focused fork of [uBlock Origin Lite](https://github.com/uBlockOrigin/uBOL-home). It preserves Lite's Manifest V3 filtering engine, rulesets, element-picker behavior, configuration storage, and backup/restore compatibility.
 
+It also resolves some outsanding issues of the original uBlock on youtube, specifically, videos lagging on starting playback.
+
 It is **not** an official uBlock Origin release. Credit for the original filtering functionality belongs to **Raymond Hill** and the upstream uBlock Origin Lite authors and contributors. The UI fork is maintained by **iamfromreallife**.
 
 ## Direct download and installation
