@@ -36,7 +36,9 @@ if(pane&&sandbox&&!pane.querySelector('#mu-site-textarea')){
  let ready=false,saving=false,conflict=false,saved='',original=[],sandboxEditor=null;
  const site=document.createElement('section');site.className='mu-editor-panel mu-site-filters';
  const title=document.createElement('h2');title.textContent=tr('customFiltersPageName');
- site.append(title);
+ const total=document.createElement('p');total.id='mu-custom-filter-total';
+ total.setAttribute('role','status');total.setAttribute('aria-live','polite');
+ site.append(title,total);
  const searchGroup=document.createElement('div');searchGroup.className='mu-site-search';
  const search=document.createElement('input');search.id='mu-site-search';search.type='search';
  search.placeholder=t.search;search.autocomplete='off';search.spellcheck=false;
@@ -116,7 +118,23 @@ if(pane&&sandbox&&!pane.querySelector('#mu-site-textarea')){
    status.textContent=value;status.classList.toggle('mu-editor-error',error);
  };
  const dirty=()=>box.value.replace(/\r\n/g,'\n').trimEnd()!==saved.trimEnd();
+ // The editor is one cosmetic rule per non-empty line. Count the complete
+ // editable set, not just the current search matches or sandbox filters.
+ const numberFormatter=new Intl.NumberFormat(activeLocale.replace(/_/g,'-'));
+ const pluralRules=new Intl.PluralRules(activeLocale.replace(/_/g,'-'));
+ function updateCustomFilterTotal(){
+   if(!ready)return;
+   const count=box.value.replace(/\r\n/g,'\n').split('\n')
+     .filter(line=>line.trim().length!==0).length;
+   const key=pluralRules.select(count)==='one'
+     ? 'muCustomFilterCountOne' : 'muCustomFilterCountOther';
+   const translated=muGetMessage(key,[numberFormatter.format(count)]);
+   total.textContent=translated&&translated!==key
+     ? translated
+     : numberFormatter.format(count)+' '+tr('customFiltersPageName');
+ }
  function buttons(){
+   updateCustomFilterTotal();
    saveBtn.disabled=!ready||saving||conflict||!dirty();
    revertBtn.disabled=!ready||saving||(!dirty()&&!conflict);
    importBtn.disabled=!ready||saving;exportBtn.disabled=!ready||saving;

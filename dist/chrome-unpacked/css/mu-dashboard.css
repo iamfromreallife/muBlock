@@ -1351,3 +1351,40 @@ section[data-pane="about"] .mu-about-fork > a {
   margin: 0;
   text-align: start;
 }
+
+/* Matched titles, count text, and search fields in both filter tabs.
+ * Source strings come from Lite's active _locales; no HTML labels hardcoded. */
+#lists > #mu-rulesets-heading {
+  margin: 0 0 12px;
+  font: 750 17px/1.4 var(--mu-family);
+  color: var(--mu-text);
+}
+#lists > [data-pane-related="rulesets"] > p:first-child,
+#mu-filters #mu-custom-filter-total {
+  margin: 0 0 10px;
+  padding: 0;
+  color: var(--mu-text);
+  font: 400 14px/1.4 var(--mu-family);
+}
+#lists > [data-pane-related="rulesets"] #findInLists,
+#mu-filters #mu-site-search {
+  box-sizing: border-box;
+  height: 42px;
+  min-height: 42px;
+  border: 1px solid transparent;
+  border-radius: var(--mu-radius-sm);
+  padding: 10px 14px;
+  background: var(--mu-surface-low);
+  color: var(--mu-text);
+  box-shadow: none;
+  font: 400 13px/1.4 var(--mu-family);
+}
+#lists > [data-pane-related="rulesets"] #findInLists:hover:not(:disabled),
+#mu-filters #mu-site-search:hover:not(:disabled) {
+  background: var(--mu-surface-high);
+}
+#lists > [data-pane-related="rulesets"] #findInLists:focus,
+#mu-filters #mu-site-search:focus {
+  background: var(--mu-surface-low);
+  border-color: var(--mu-primary);
+}

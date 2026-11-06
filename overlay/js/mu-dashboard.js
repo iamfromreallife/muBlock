@@ -1,4 +1,4 @@
-import { activeLocale } from './mu-language.js';
+import { activeLocale, muGetMessage } from './mu-language.js';
 /* muBlock dashboard polish. The original Lite settings and list event
  * handlers remain the source of truth for all configuration changes.
  */
@@ -50,6 +50,14 @@ const rulesetSearch = document.querySelector('header [data-pane-related="ruleset
 if (rulesetList && rulesetSearch &&
     !rulesetList.querySelector(':scope > [data-pane-related="rulesets"]')) {
   rulesetList.prepend(rulesetSearch);
+}
+/* Use Lite's existing localized Filter Lists label. The heading is inserted
+ * above its original dynamic network-rule counter and search field. */
+if (rulesetList && !rulesetList.querySelector('#mu-rulesets-heading')) {
+  const heading = document.createElement('h2');
+  heading.id = 'mu-rulesets-heading';
+  heading.textContent = muGetMessage('aboutFilterLists');
+  rulesetList.prepend(heading);
 }
 
 

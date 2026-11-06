@@ -50,7 +50,56 @@ def add_language_messages(bundle:dict, locale:str)->None:
     bundle["muDisableCosmeticFiltering"] = {"message": cosmetic}
     bundle["muCosmeticDisabledForSite"] = {"message": disabled}
     bundle["muCosmeticRuleError"] = {"message": error}
+    # Every upstream language gets a localized counter. Major locales have
+    # hand-written singular/plural forms; others reuse Lite's own translated
+    # "Custom filters" caption instead of displaying untranslated English.
+    translated_title = bundle.get("customFiltersPageName", {}).get("message", "Custom filters")
+    one, other = CUSTOM_FILTER_COUNT.get(locale, (
+        "$1 " + translated_title, "$1 " + translated_title,
+    ))
+    bundle["muCustomFilterCountOne"] = {"message": one}
+    bundle["muCustomFilterCountOther"] = {"message": other}
 
+
+CUSTOM_FILTER_COUNT = {
+    "en": ("$1 custom filter", "$1 custom filters"),
+    "en_GB": ("$1 custom filter", "$1 custom filters"),
+    "pt_PT": ("$1 filtro personalizado", "$1 filtros personalizados"),
+    "pt_BR": ("$1 filtro personalizado", "$1 filtros personalizados"),
+    "es": ("$1 filtro personalizado", "$1 filtros personalizados"),
+    "fr": ("$1 filtre personnalisé", "$1 filtres personnalisés"),
+    "de": ("$1 benutzerdefinierter Filter", "$1 benutzerdefinierte Filter"),
+    "it": ("$1 filtro personalizzato", "$1 filtri personalizzati"),
+    "nl": ("$1 aangepast filter", "$1 aangepaste filters"),
+    "pl": ("$1 filtr niestandardowy", "$1 filtrów niestandardowych"),
+    "ru": ("$1 пользовательский фильтр", "$1 пользовательских фильтров"),
+    "uk": ("$1 власний фільтр", "$1 власних фільтрів"),
+    "ja": ("カスタムフィルター $1 件", "カスタムフィルター $1 件"),
+    "ko": ("사용자 지정 필터 $1개", "사용자 지정 필터 $1개"),
+    "zh_CN": ("$1 条自定义过滤规则", "$1 条自定义过滤规则"),
+    "zh_TW": ("$1 條自訂過濾規則", "$1 條自訂過濾規則"),
+    "ar": ("فلتر مخصص واحد ($1)", "$1 فلاتر مخصصة"),
+    "he": ("$1 מסנן מותאם אישית", "$1 מסננים מותאמים אישית"),
+    "tr": ("$1 özel filtre", "$1 özel filtre"),
+    "cs": ("$1 vlastní filtr", "$1 vlastních filtrů"),
+    "sk": ("$1 vlastný filter", "$1 vlastných filtrov"),
+    "da": ("$1 tilpasset filter", "$1 tilpassede filtre"),
+    "sv": ("$1 anpassat filter", "$1 anpassade filter"),
+    "fi": ("$1 mukautettu suodatin", "$1 mukautettua suodatinta"),
+    "nb": ("$1 tilpasset filter", "$1 tilpassede filtre"),
+    "el": ("$1 προσαρμοσμένο φίλτρο", "$1 προσαρμοσμένα φίλτρα"),
+    "ro": ("$1 filtru personalizat", "$1 filtre personalizate"),
+    "hu": ("$1 egyéni szűrő", "$1 egyéni szűrő"),
+    "id": ("$1 filter khusus", "$1 filter khusus"),
+    "vi": ("$1 bộ lọc tùy chỉnh", "$1 bộ lọc tùy chỉnh"),
+    "bg": ("$1 персонализиран филтър", "$1 персонализирани филтри"),
+    "ca": ("$1 filtre personalitzat", "$1 filtres personalitzats"),
+    "hr": ("$1 prilagođeni filtar", "$1 prilagođenih filtara"),
+    "sl": ("$1 filter po meri", "$1 filtrov po meri"),
+    "sr": ("$1 прилагођени филтер", "$1 прилагођених филтера"),
+    "th": ("ตัวกรองกำหนดเอง $1 รายการ", "ตัวกรองกำหนดเอง $1 รายการ"),
+    "hi": ("$1 कस्टम फ़िल्टर", "$1 कस्टम फ़िल्टर"),
+}
 
 # (Switch label, tooltip when enabled, error on failed save).
 COSMETIC_LABELS = {
