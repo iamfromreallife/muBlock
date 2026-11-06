@@ -60,3 +60,15 @@ section[data-pane="develop"] .mu-select-trigger{min-width:0;}
 section[data-pane="develop"] label[for="editors"]{margin-right:8px;}
 section[data-pane="develop"] .mu-select-menu{font-size:13px;}
 section[data-pane="develop"] .mu-select-option{text-align:left!important;}
+
+/* Only the Developer Tools "View" trigger should have the same neutral
+ * input surface as Find Lists / Search Filters; keep native select behavior. */
+section[data-pane="develop"] .mu-select-trigger {
+  background: var(--mu-surface-low) !important;
+  border-color: transparent !important;
+  border-radius: var(--mu-radius-sm) !important;
+  box-shadow: none !important;
+}
+section[data-pane="develop"] .mu-select-trigger:hover:not(:disabled) {
+  background: var(--mu-surface-high) !important;
+}

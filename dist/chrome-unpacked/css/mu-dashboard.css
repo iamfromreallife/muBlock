@@ -1308,3 +1308,46 @@ section[data-pane="about"] .mu-about-fork > a {
 section[data-pane="about"] .mu-about-fork > a {
   display:block;
 }
+
+/* Unified search geometry across Filter Lists and Custom Filters.
+ * Only layout changes: the original inputs, search results and listeners stay. */
+:root {
+  --mu-dashboard-search-width: 440px;
+  --mu-dashboard-search-gap: 10px;
+}
+/* Remove 15px padding + 8px margin that created the excessive empty strip. */
+#lists > [data-pane-related="rulesets"] {
+  padding-bottom: 0 !important;
+  margin-bottom: var(--mu-dashboard-search-gap) !important;
+}
+/* The first list category also inherited a 16px top margin. */
+#lists > .listEntries > .listEntry[data-role="rootnode"]:first-child {
+  margin-top: 0 !important;
+}
+#lists > [data-pane-related="rulesets"] #findInLists {
+  width: min(100%, var(--mu-dashboard-search-width));
+}
+/* Match the 440px Find Lists input and put the live result count right after it. */
+#mu-filters .mu-site-search {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: var(--mu-dashboard-search-gap);
+}
+#mu-filters #mu-site-search {
+  flex: 0 1 var(--mu-dashboard-search-width);
+  width: min(100%, var(--mu-dashboard-search-width));
+  max-width: var(--mu-dashboard-search-width);
+  min-width: 0;
+  padding-inline-end: 14px;
+}
+#mu-filters #mu-site-search-count {
+  position: static;
+  inset: auto;
+  transform: none;
+  flex: 0 0 auto;
+  margin: 0;
+  text-align: start;
+}
