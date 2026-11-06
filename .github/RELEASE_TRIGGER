@@ -1,7 +1,6 @@
-muBlock inline filter totals and compact filter headings — 2026-11-06
-Source commit: c4b9dab563acab22582eae93df1ef7c7d92e93aa
-Filter lists: place the existing dynamic network-rule count beside its localized title, retain its spinner and updates.
-My filters: place the live custom-filter count next to the Custom filters heading, preserving locale-aware singular/plural translations.
-Give both counters the same dark-grey color and remove obsolete vertical count-row gaps.
-Retain matching search fields, the per-site cosmetic exception feature, YouTube startup-lag fix and custom theme.
-Publish one updated muBlock ZIP GitHub Release through the existing workflow.
+muBlock picker slider styling fix — 2026-11-06
+Source commit: 7f26eadb7637813e9dd909dc7f832560c5d9b6b7
+Remove the white thumb border only in the element-picker slider, in both WebKit and Firefox pseudo-elements.
+Keep the maroon handle, thumb dimensions, slider range, dragging, filtering logic and other controls unchanged.
+Preserve all previous muBlock custom features, translations, YouTube player correction and custom theme.
+Publish one updated extension ZIP through the existing release workflow.
