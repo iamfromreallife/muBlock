@@ -1,6 +1,5 @@
-muBlock picker slider styling fix — 2026-11-06
-Source commit: 7f26eadb7637813e9dd909dc7f832560c5d9b6b7
-Remove the white thumb border only in the element-picker slider, in both WebKit and Firefox pseudo-elements.
-Keep the maroon handle, thumb dimensions, slider range, dragging, filtering logic and other controls unchanged.
-Preserve all previous muBlock custom features, translations, YouTube player correction and custom theme.
-Publish one updated extension ZIP through the existing release workflow.
+Upstream uBOL release 2026.1110.1816 — 2026-11-10T19:09:56.251Z
+Source commit: 04195b17ed1b505395ac739a12cd09f65d5cdc0d
+Incorporate the current uBlock Origin Lite Chromium package, including validated tool-overlay secret gating, user-style injection log handling, filter-engine updates, refreshed rulesets and translations.
+Preserve the muBlock Flor overlay, branding, layout, local custom features, translated UI and styling without wholesale upstream UI replacement.
+Build the ready-to-install Chromium ZIP through the existing release workflow; publish only if all workflow validation steps succeed.
