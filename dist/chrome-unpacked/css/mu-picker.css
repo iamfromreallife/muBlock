@@ -305,26 +305,16 @@
   border: 0 !important;
 }
 
-/* The expanded picker can grow beyond Lite's 32rem panel to accommodate
- * localized actions while remaining inside the viewport. Minimized picker,
- * zapper and unpicker retain their original dimensions. */
-:root#ubol-picker:not(.minimized) aside {
-  width: min(42rem, calc(100vw - 18px)) !important;
-  min-width: min(42rem, calc(100vw - 18px)) !important;
-  max-width: min(42rem, calc(100vw - 18px)) !important;
-}
-/* Keep Pick, Preview, Create universal and Create on ONE line. On an unusually
- * narrow viewport, scroll just the toolbar instead of hiding or wrapping a
- * control. Normal desktop and translated labels fit in the wider picker. */
+/* The original 32rem-wide picker is intentionally retained. When there
+ * is not enough room for the four localized actions, allow two rows. */
 :root#ubol-picker #toolbar {
   display: flex !important;
   flex-direction: row !important;
-  flex-wrap: nowrap !important;
+  flex-wrap: wrap !important;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 8px;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: visible;
 }
 :root#ubol-picker #toolbar > div:first-child {
   display: flex;
@@ -334,13 +324,12 @@
 }
 :root#ubol-picker #toolbar button {
   flex: 0 0 auto;
-  min-width: 0 !important;
-  padding: 11px 12px;
-  white-space: nowrap !important;
+  padding: 11px 14px;
+  white-space: normal;
 }
 :root#ubol-picker #toolbar #create-all {
-  flex: 0 0 auto;
-  max-width: none;
+  flex: 0 1 auto;
+  max-width: 100%;
   text-align: center;
   background: var(--mu-secondary-container) !important;
   color: var(--mu-on-secondary-container) !important;
