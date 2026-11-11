@@ -1,7 +1,7 @@
-muBlock global cosmetic filter creation from element picker — 2026-11-11
-Source commit: bb273b102af519cc2358d1f8af0a54ef8399a767
-Element picker: localized Create for all websites button directly before Create.
-Create uses the current hostname; Create for all websites saves to site.* with syntax *##selector.
-Global rules are active on eligible websites, respect filtering modes and cosmetic exceptions, and can be edited or removed from My filters.
-Keep unpicker site-scoped. Preserve the existing UI, custom theme and YouTube playback fix.
-Publish one new versioned muBlock ZIP with source commit in release notes.
+muBlock element picker single-row toolbar and Create universal labels — 2026-11-11
+Source commit: e971975bdba0cf5c00d33f3f22611350f63361bc
+Rename the global cosmetic rule action from Create for all websites to Create universal, including 44 localized labels.
+Widen the expanded picker up to 42rem, constrained to viewport width.
+Keep Pick, Preview, Create universal, and Create on one row in all locales; narrow screens can scroll the toolbar rather than wrapping.
+Keep the minimized picker dimensions, existing global filter behavior, custom theme, and YouTube fix unchanged.
+Publish versioned muBlock ZIP via the existing build-and-release workflow.
