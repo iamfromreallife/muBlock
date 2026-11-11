@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "לפי שפת הדפדפן"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "יצירה עבור כל האתרים"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Disable cosmetic filtering"
   },

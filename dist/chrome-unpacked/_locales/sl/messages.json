@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Sledi jeziku brskalnika"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Ustvari za vsa spletna mesta"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Disable cosmetic filtering"
   },

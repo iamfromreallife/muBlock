@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Χρήση γλώσσας προγράμματος περιήγησης"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Δημιουργία για όλους τους ιστότοπους"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Disable cosmetic filtering"
   },

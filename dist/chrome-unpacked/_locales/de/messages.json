@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Browsersprache verwenden"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Für alle Websites erstellen"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Kosmetische Filterung deaktivieren"
   },

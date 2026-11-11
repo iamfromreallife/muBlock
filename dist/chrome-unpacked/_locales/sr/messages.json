@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Прати језик прегледача"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Направи за све сајтове"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Disable cosmetic filtering"
   },

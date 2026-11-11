@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Følg browserens sprog"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Opret for alle websteder"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Deaktiver kosmetisk filtrering"
   },

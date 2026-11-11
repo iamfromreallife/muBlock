@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "A böngésző nyelvének használata"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Létrehozás minden webhelyhez"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Disable cosmetic filtering"
   },

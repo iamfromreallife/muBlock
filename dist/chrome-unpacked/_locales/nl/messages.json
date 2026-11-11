@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Browsertaal volgen"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Maken voor alle websites"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Cosmetische filtering uitschakelen"
   },

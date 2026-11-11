@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Използвай езика на браузъра"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Създай за всички сайтове"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Disable cosmetic filtering"
   },

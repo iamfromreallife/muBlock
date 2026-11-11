@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Theo ngôn ngữ trình duyệt"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Tạo cho tất cả trang web"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Disable cosmetic filtering"
   },

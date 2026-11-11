@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Käytä selaimen kieltä"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Luo kaikille verkkosivustoille"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Poista kosmeettinen suodatus käytöstä"
   },

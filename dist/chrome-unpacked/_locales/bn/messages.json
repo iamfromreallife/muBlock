@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Follow browser language"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "সব ওয়েবসাইটের জন্য তৈরি করুন"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Disable cosmetic filtering"
   },

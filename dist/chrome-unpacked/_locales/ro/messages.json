@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Folosește limba browserului"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Creează pentru toate site-urile"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Disable cosmetic filtering"
   },

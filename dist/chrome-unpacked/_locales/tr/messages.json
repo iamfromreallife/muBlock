@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Tarayıcı dilini kullan"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Tüm web siteleri için oluştur"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Kozmetik filtrelemeyi devre dışı bırak"
   },

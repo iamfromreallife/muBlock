@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Ikuti bahasa browser"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Buat untuk semua situs web"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Disable cosmetic filtering"
   },

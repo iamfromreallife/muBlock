@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "ブラウザーの言語を使用"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "すべてのウェブサイトに適用して作成"
+  },
   "muDisableCosmeticFiltering": {
     "message": "要素の非表示を無効にする"
   },

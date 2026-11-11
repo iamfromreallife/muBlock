@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Użyj języka przeglądarki"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Utwórz dla wszystkich witryn"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Wyłącz filtrowanie kosmetyczne"
   },

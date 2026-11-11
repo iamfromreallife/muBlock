@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Follow browser language"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Loo kõigile veebisaitidele"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Disable cosmetic filtering"
   },

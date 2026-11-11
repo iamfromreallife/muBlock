@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "Použít jazyk prohlížeče"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "Vytvořit pro všechny weby"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Vypnout kosmetické filtrování"
   },

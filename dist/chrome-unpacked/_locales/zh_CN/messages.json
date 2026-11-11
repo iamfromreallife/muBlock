@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "跟随浏览器语言"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "为所有网站创建"
+  },
   "muDisableCosmeticFiltering": {
     "message": "禁用元素隐藏过滤"
   },

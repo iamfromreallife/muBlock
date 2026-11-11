@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "브라우저 언어 따르기"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "모든 웹사이트에 적용"
+  },
   "muDisableCosmeticFiltering": {
     "message": "요소 숨김 필터링 비활성화"
   },

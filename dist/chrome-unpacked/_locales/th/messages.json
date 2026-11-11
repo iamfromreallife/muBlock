@@ -469,6 +469,9 @@
   "muLanguageSystem": {
     "message": "ใช้ภาษาของเบราว์เซอร์"
   },
+  "muPickerCreateForAllWebsites": {
+    "message": "สร้างสำหรับทุกเว็บไซต์"
+  },
   "muDisableCosmeticFiltering": {
     "message": "Disable cosmetic filtering"
   },
