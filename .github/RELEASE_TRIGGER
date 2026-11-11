@@ -1,7 +1,7 @@
-muBlock element picker single-row toolbar and Create universal labels — 2026-11-11
-Source commit: e971975bdba0cf5c00d33f3f22611350f63361bc
-Rename the global cosmetic rule action from Create for all websites to Create universal, including 44 localized labels.
-Widen the expanded picker up to 42rem, constrained to viewport width.
-Keep Pick, Preview, Create universal, and Create on one row in all locales; narrow screens can scroll the toolbar rather than wrapping.
-Keep the minimized picker dimensions, existing global filter behavior, custom theme, and YouTube fix unchanged.
-Publish versioned muBlock ZIP via the existing build-and-release workflow.
+muBlock compact element picker and two-row actions — 2026-11-11
+Source commit: 2d3cacb802da78956e8b8004df235b92dfc203c8
+Restore the picker’s original 32rem (512px) maximum width instead of 42rem (672px).
+Allow Pick, Preview, Create universal and Create to wrap into two rows when needed.
+Remove forced single-row layout and toolbar horizontal scrolling.
+Preserve existing translations, picker controls, global cosmetic filters, theme and YouTube playback fix.
+Publish updated versioned muBlock ZIP release through existing workflow.
