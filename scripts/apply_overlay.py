@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Build muBlock UI on top of the upstream uBO Lite Chromium distribution.
 
-Only UI entrypoints, localization, icon metadata and presentation resources are
-modified. All original background, filter engine, storage and picker algorithms
-remain unmodified.
+UI entrypoints, localization, icons, and narrowly scoped custom cosmetic-filter
+support are modified. The upstream network-filtering engine is not replaced.
 """
 from __future__ import annotations
 
@@ -58,6 +57,11 @@ def main(extension: Path) -> None:
     # exceptions into Lite's existing cosmetic CSS registration and backup UI.
     from mu_cosmetic_patch import patch_cosmetic_filtering
     patch_cosmetic_filtering(extension)
+
+    # Enable a global scope for the existing cosmetic-filter store and picker.
+    # Fail closed on upstream API changes, to protect Lite's filtering engine.
+    from mu_global_picker_patch import patch_global_picker
+    patch_global_picker(extension)
 
     # Preserve the known YouTube playback fix across upstream rebuilds.
     # Register it alongside the stock MAIN-world scriptlets, preserving

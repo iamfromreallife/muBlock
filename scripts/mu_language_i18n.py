@@ -46,6 +46,9 @@ def add_language_messages(bundle:dict, locale:str)->None:
     label, system=LABELS.get(locale, LABELS["en"])
     bundle["muLanguageLabel"]={"message":label}
     bundle["muLanguageSystem"]={"message":system}
+    bundle["muPickerCreateForAllWebsites"] = {
+        "message": PICKER_GLOBAL_LABELS.get(locale, PICKER_GLOBAL_LABELS["en"])
+    }
     cosmetic, disabled, error = COSMETIC_LABELS.get(locale, COSMETIC_LABELS["en"])
     bundle["muDisableCosmeticFiltering"] = {"message": cosmetic}
     bundle["muCosmeticDisabledForSite"] = {"message": disabled}
@@ -60,6 +63,55 @@ def add_language_messages(bundle:dict, locale:str)->None:
     bundle["muCustomFilterCountOne"] = {"message": one}
     bundle["muCustomFilterCountOther"] = {"message": other}
 
+
+
+# Picker action labels. Missing locales fall back to English, as does muGetMessage.
+PICKER_GLOBAL_LABELS = {
+    "en": "Create for all websites",
+    "en_GB": "Create for all websites",
+    "pt_PT": "Criar para todos os websites",
+    "pt_BR": "Criar para todos os sites",
+    "es": "Crear para todos los sitios web",
+    "fr": "Créer pour tous les sites web",
+    "de": "Für alle Websites erstellen",
+    "it": "Crea per tutti i siti web",
+    "nl": "Maken voor alle websites",
+    "pl": "Utwórz dla wszystkich witryn",
+    "ru": "Создать для всех сайтов",
+    "uk": "Створити для всіх сайтів",
+    "ja": "すべてのウェブサイトに適用して作成",
+    "ko": "모든 웹사이트에 적용",
+    "zh_CN": "为所有网站创建",
+    "zh_TW": "為所有網站建立",
+    "ar": "إنشاء لجميع المواقع",
+    "he": "יצירה עבור כל האתרים",
+    "tr": "Tüm web siteleri için oluştur",
+    "cs": "Vytvořit pro všechny weby",
+    "sk": "Vytvoriť pre všetky weby",
+    "da": "Opret for alle websteder",
+    "sv": "Skapa för alla webbplatser",
+    "fi": "Luo kaikille verkkosivustoille",
+    "nb": "Opprett for alle nettsteder",
+    "el": "Δημιουργία για όλους τους ιστότοπους",
+    "ro": "Creează pentru toate site-urile",
+    "hu": "Létrehozás minden webhelyhez",
+    "id": "Buat untuk semua situs web",
+    "vi": "Tạo cho tất cả trang web",
+    "bg": "Създай за всички сайтове",
+    "ca": "Crea per a tots els llocs web",
+    "hr": "Stvori za sve web-stranice",
+    "sl": "Ustvari za vsa spletna mesta",
+    "sr": "Направи за све сајтове",
+    "th": "สร้างสำหรับทุกเว็บไซต์",
+    "hi": "सभी वेबसाइटों के लिए बनाएँ",
+    "fil": "Gawin para sa lahat ng website",
+    "fa": "ایجاد برای همه وب‌سایت‌ها",
+    "bn": "সব ওয়েবসাইটের জন্য তৈরি করুন",
+    "et": "Loo kõigile veebisaitidele",
+    "lt": "Sukurti visoms svetainėms",
+    "lv": "Izveidot visām vietnēm",
+    "ms": "Cipta untuk semua laman web",
+}
 
 CUSTOM_FILTER_COUNT = {
     "en": ("$1 custom filter", "$1 custom filters"),

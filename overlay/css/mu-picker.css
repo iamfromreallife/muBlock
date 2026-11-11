@@ -304,3 +304,29 @@
 :root#ubol-picker input#slider::-moz-range-thumb {
   border: 0 !important;
 }
+
+/* Secondary, localized global action directly before Create. The original
+ * toolbar buttons and picker sizing remain responsive for long translations. */
+:root#ubol-picker #toolbar {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+:root#ubol-picker #toolbar > div:first-child {
+  margin-inline-end: auto;
+}
+:root#ubol-picker #toolbar #create-all {
+  flex: 0 1 auto;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  background: var(--mu-secondary-container) !important;
+  color: var(--mu-on-secondary-container) !important;
+}
+:root#ubol-picker #toolbar #create-all:hover:not(:disabled) {
+  background: var(--mu-primary-container) !important;
+  color: var(--mu-on-primary-container) !important;
+}
+:root#ubol-picker #toolbar #create-all:disabled {
+  opacity: .4;
+}

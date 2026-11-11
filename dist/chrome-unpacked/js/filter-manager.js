@@ -66,7 +66,7 @@ let pendingStorageOp = Promise.resolve();
 
 /******************************************************************************/
 
-export async function customFiltersFromHostname(hostname) {
+export async function customFiltersFromHostname(hostname, includeGlobal = true) {
     const promises = [];
     let hn = hostname;
     while ( hn !== '' ) {
@@ -74,6 +74,9 @@ export async function customFiltersFromHostname(hostname) {
         const pos = hn.indexOf('.');
         if ( pos === -1 ) { break; }
         hn = hn.slice(pos + 1);
+    }
+    if ( includeGlobal && hostname !== '*' ) {
+        promises.push(readFromStorage('site.*'));
     }
     const results = await Promise.all(promises);
     const out = [];
@@ -84,13 +87,14 @@ export async function customFiltersFromHostname(hostname) {
             out.push(selector);
         });
     }
-    return out.sort();
+    return Array.from(new Set(out)).sort();
 }
 
 /******************************************************************************/
 
 export async function hasCustomFilters(hostname) {
-    const selectors = await customFiltersFromHostname(hostname);
+    // The unpicker is scoped to the website: global rules are edited in My filters.
+    const selectors = await customFiltersFromHostname(hostname, false);
     return selectors?.length ?? 0;
 }
 
@@ -211,20 +215,28 @@ export async function registerCustomFilters(context) {
     if ( customFilters.size === 0 ) { return; }
 
     const { none } = context.filteringModeDetails;
+    const hasGlobalFilters = customFilters.get('*')?.some(a =>
+        isCSS(a) || isProcedural(a)
+    ) ?? false;
     let hostnames = Array.from(customFilters.keys());
     let excludeHostnames = [];
     if ( none.has('all-urls') ) {
         const { basic, optimal, complete } = context.filteringModeDetails;
-        hostnames = intersectHostnameIters(hostnames, [
-            ...basic, ...optimal, ...complete
-        ]);
+        const permitted = [ ...basic, ...optimal, ...complete ];
+        // A global filter must still honor the per-site permission modes:
+        // only register it on sites the user explicitly enabled.
+        hostnames = intersectHostnameIters(
+            hostnames.filter(hn => hn !== '*'), permitted
+        );
+        if ( hasGlobalFilters ) { hostnames.push(...permitted); }
     } else if ( none.size !== 0 ) {
         hostnames = [ ...subtractHostnameIters(hostnames, none) ];
         excludeHostnames = Array.from(none);
     }
-    hostnames = hostnames.filter(a =>
-        customFilters.get(a).some(a => isCSS(a) || isProcedural(a))
-    );
+    hostnames = Array.from(new Set(hostnames.filter(hn =>
+        (none.has('all-urls') && hasGlobalFilters) ||
+        customFilters.get(hn)?.some(a => isCSS(a) || isProcedural(a))
+    )));
     if ( hostnames.length === 0 ) { return; }
 
     const directive = {

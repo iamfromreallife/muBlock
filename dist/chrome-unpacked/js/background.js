@@ -659,7 +659,8 @@ async function onMessage(request, sender) {
     }
 
     case 'customFiltersFromHostname':
-        return customFiltersFromHostname(request.hostname);
+        // Keep the unpicker site-scoped; global rules belong to My filters.
+        return customFiltersFromHostname(request.hostname, false);
 
     case 'getRegisteredContentScripts':
         return getRegisteredContentScripts();

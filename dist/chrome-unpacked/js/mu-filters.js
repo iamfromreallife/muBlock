@@ -260,16 +260,23 @@ if(pane&&sandbox&&!pane.querySelector('#mu-site-textarea')){
      let newPairs=[];
      if(existing.get(line)?.length)newPairs=[existing.get(line).shift()];
      else {
-       parser.parse(line);
+       // A leading *## (or ##) is a website-independent cosmetic rule.
+       // Validate through Lite's normal parser, then store under site.*.
+       const global=line.startsWith('*##')||line.startsWith('##');
+       parser.parse(line.startsWith('*##')?line.slice(1):line);
        if(parser.hasError()||parser.isException()||!parser.isCosmeticFilter()||
           typeof parser.result.compiled!=='string'||!parser.result.compiled)
          throw Error(t.invalid.replace('%',i+1));
-       for(const {hn,bad,not} of parser.getExtFilterDomainIterator()){
-         if(!hn||bad||not||hn.includes('/')||hn.includes('*'))
-           throw Error(t.host.replace('%',i+1));
-         newPairs.push([hn,parser.result.compiled]);
+       if(global){
+         newPairs.push(['*',parser.result.compiled]);
+       }else{
+         for(const {hn,bad,not} of parser.getExtFilterDomainIterator()){
+           if(!hn||bad||not||hn.includes('/')||hn.includes('*'))
+             throw Error(t.host.replace('%',i+1));
+           newPairs.push([hn,parser.result.compiled]);
+         }
+         if(!newPairs.length)throw Error(t.host.replace('%',i+1));
        }
-       if(!newPairs.length)throw Error(t.host.replace('%',i+1));
      }
      for(const [h,selector] of newPairs){
        const set=result.get(h)||new Set();set.add(selector);result.set(h,set);

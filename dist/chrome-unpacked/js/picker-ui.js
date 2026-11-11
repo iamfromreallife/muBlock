@@ -198,10 +198,12 @@ function updateElementCount(details) {
         span.textContent = 'Error';
         span.setAttribute('title', error);
         dom.attr('#create', 'disabled', '');
+        dom.attr('#create-all', 'disabled', '');
     } else {
         span.textContent = count;
         span.removeAttribute('title');
         dom.attr('#create', 'disabled', null);
+        dom.attr('#create-all', 'disabled', null);
     }
     updatePreview();
 }
@@ -225,13 +227,13 @@ function updatePreview(state) {
 
 /******************************************************************************/
 
-async function onCreateClicked() {
+async function onCreateClicked(allWebsites = false) {
     const selector = validateSelector(qs$('textarea').value);
     if ( selector === undefined ) { return; }
     await toolOverlay.postMessage({ what: 'terminateCustomFilters' });
     await toolOverlay.sendMessage({
         what: 'addCustomFilters',
-        hostname: toolOverlay.url.hostname,
+        hostname: allWebsites ? '*' : toolOverlay.url.hostname,
         selectors: [ selector ],
     });
     await toolOverlay.postMessage({ what: 'startCustomFilters' });
@@ -383,6 +385,7 @@ function startPicker() {
     dom.on('#preview', 'click', onPreviewClicked);
     dom.on('#moreOrLess > span:first-of-type', 'click', ( ) => { onViewToggled(1); });
     dom.on('#moreOrLess > span:last-of-type', 'click', ( ) => { onViewToggled(-1); });
+    dom.on('#create-all', 'click', ( ) => { onCreateClicked(true); });
     dom.on('#create', 'click', ( ) => { onCreateClicked(); });
     dom.on('#candidateFilters ul', 'click', onCandidateClicked);
     toolOverlay.highlightElementUnderMouse(true);
