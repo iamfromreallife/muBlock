@@ -102,6 +102,10 @@ jobs:
             echo "Upstream uBlock Origin Lite commit: $(cat dist/UPSTREAM_COMMIT.txt)"
             echo "GitHub Actions run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
             echo
+            echo "### Upstream integration summary"
+            echo
+            sed -n '2,$p' .github/RELEASE_TRIGGER
+            echo
             echo "### New commits since the previous published build"
             echo
             if [[ "$(git rev-list --count "$previous_sha..HEAD")" -gt 0 ]]; then
