@@ -1,7 +1,18 @@
-muBlock compact element picker and two-row actions — 2026-11-11
-Source commit: 2d3cacb802da78956e8b8004df235b92dfc203c8
-Restore the picker’s original 32rem (512px) maximum width instead of 42rem (672px).
-Allow Pick, Preview, Create universal and Create to wrap into two rows when needed.
-Remove forced single-row layout and toolbar horizontal scrolling.
-Preserve existing translations, picker controls, global cosmetic filters, theme and YouTube playback fix.
-Publish updated versioned muBlock ZIP release through existing workflow.
+muBlock 2026.1116.1650 — upstream uBOL update
+Upstream release: https://github.com/uBlockOrigin/uBOL-home/releases/tag/2026.1116.1650
+Upstream commit: 2b8d1ba0868a22c7189c59e77dae4a798b2d44fd
+
+### Incorporated changes
+- Element picker now reports html/body elements.
+- Updated filtering rules, generic selectors, scriptlets, popup rules and strict-block resources.
+- Updated ruleset metadata and locale-specific filter payloads.
+- Hardened upstream release workflow and adopted its security policy.
+- Refreshed Chromium manifest/package assets and linked uBlock source revision.
+
+### Flor-specific visual deviations retained
+- muBlock/Flor name, branding, colour system, popup/dashboard layout and user-facing styling remain supplied by the existing overlay.
+- The upstream interface was not substituted wholesale.
+
+### Validation
+- The release workflow rebuilds from the tagged upstream source, applies scripts/apply_overlay.py, validates the manifest version, creates the Chromium load-unpacked ZIP, refreshes the distribution and publishes only after every step succeeds.
+- No separate automated test suite is defined by the repository.
