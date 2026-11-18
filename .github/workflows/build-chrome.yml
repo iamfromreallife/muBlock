@@ -33,8 +33,15 @@ jobs:
           git -C "$RUNNER_TEMP/uBOL-home" rev-parse HEAD > dist/UPSTREAM_COMMIT.txt
       - name: Install build-only icon renderer
         run: python3 -m pip install --disable-pip-version-check --user cairosvg==2.8.2 pillow==12.0.0
+      - name: Restore verified Fenix YouTube player fix for MV3
+        run: python3 scripts/restore_fenix_youtube.py
       - name: Apply muBlock UI overlay
         run: python3 scripts/apply_overlay.py dist/chrome-unpacked
+      - name: Test MV3 YouTube player and SABR stream handling
+        run: |
+          node --check dist/chrome-unpacked/js/scripting/youtube-player.js
+          node tests/youtube-player.cjs
+          grep -q "/js/scripting/youtube-player.js" dist/chrome-unpacked/js/scripting-manager.js
       - name: Get version and artifact name from final manifest
         run: |
           set -euo pipefail
@@ -75,7 +82,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md LICENSE dist/UPSTREAM_COMMIT.txt dist/chrome-unpacked
+          git add README.md LICENSE dist/UPSTREAM_COMMIT.txt dist/chrome-unpacked overlay/js/scripting/youtube-player.js
           if ! git diff --cached --quiet; then
             git commit -m "Publish muBlock $MUBLOCK_VERSION (build $GITHUB_RUN_NUMBER)"
             git push origin HEAD:main

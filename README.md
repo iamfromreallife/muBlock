@@ -2,9 +2,13 @@
 
 **muBlock** is an independent UI-focused fork of [uBlock Origin Lite](https://github.com/uBlockOrigin/uBOL-home). It preserves Lite's Manifest V3 filtering engine, rulesets, element-picker behavior, configuration storage, and backup/restore compatibility.
 
-It also resolves some outsanding issues of the original uBlock on youtube, specifically, videos lagging on starting playback.
+It includes a YouTube playback compatibility layer in the page's MAIN JavaScript world. The Fenix MV2 player-request fix was adapted to MV3 without importing the MV2 filtering engine. It covers WEB player-request parameters, ad-free inline playback context, the anti-adblock callback, and bounded incremental SABR NEXT_REQUEST_POLICY backoff mitigation for eligible GoogleVideo streams. This is a compatibility workaround, not a guarantee that YouTube will never change its streaming behavior; worker-owned streams and some filtering modes may not use this page-side hook.
 
 It is **not** an official uBlock Origin release. Credit for the original filtering functionality belongs to **Raymond Hill** and the upstream uBlock Origin Lite authors and contributors. The UI fork is maintained by **iamfromreallife**.
+
+### YouTube MV3 compatibility validation
+
+The adapted YouTube script is rebuilt from an exact SHA-256-verified copy of the user-supplied Fenix MV2 YouTube script (stored in two compressed source parts), then committed in readable form to `overlay/js/scripting/youtube-player.js`. The pipeline runs targeted Node checks for player requests, SPA navigation and incremental UMP/SABR backoff rewriting before publishing. The regular MV3 declarative filtering engine and the current theme are preserved.
 
 ## Direct download and installation
 
