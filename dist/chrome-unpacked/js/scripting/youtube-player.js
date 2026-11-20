@@ -523,9 +523,11 @@
         } catch {}
     }
 
-    // Two-entry bounded MRU cache: repeated callbacks avoid toString(), but
-    // the many one-shot Promise callbacks do not fill an unbounded cache.
-    // Unlike a WeakMap, this has no per-callback allocations on miss.
+    // Preserve the allocation-free two-entry MRU for the common immediate
+    // repeat, and weakly cache older callbacks reused by the player. An
+    // MRU-only cache repeatedly stringifies callbacks that alternate among
+    // three or more handlers; WeakMap does not retain unreachable handlers.
+    const callbackMatchCache = new WeakMap();
     let recentCallback, recentMatches = false;
     let previousCallback, previousMatches = false;
     hook(Promise.prototype, 'then', {
@@ -540,8 +542,12 @@
                     } else if ( callback === previousCallback ) {
                         if ( previousMatches && inScope() ) { args[0] = noop; }
                     } else if ( inScope() ) {
-                        const matches = apply(functionText, callback, [])
-                            .includes('onAbnormalityDetected');
+                        let matches = callbackMatchCache.get(callback);
+                        if ( matches === undefined ) {
+                            matches = apply(functionText, callback, [])
+                                .includes('onAbnormalityDetected');
+                            callbackMatchCache.set(callback, matches);
+                        }
                         previousCallback = recentCallback;
                         previousMatches = recentMatches;
                         recentCallback = callback;

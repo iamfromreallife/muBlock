@@ -274,9 +274,6 @@ function registerScriptlet(context, scriptletDetails) {
             js.push(`/rulesets/scripting/scriptlet/${world.toLowerCase()}/${id}.js`);
         }
         if ( js.length === 0 ) { continue; }
-        if ( world === 'MAIN' && rulesetsDetails.some(({ id }) => id === 'ublock-filters') ) {
-            js.push('/js/scripting/youtube-player.js');
-        }
         js.unshift(`/rulesets/scripting/scriptlet/${world.toLowerCase()}/scriptlet-begin.js`);
         js.push(`/rulesets/scripting/scriptlet/${world.toLowerCase()}/scriptlet-end.js`);
         const directive = {
@@ -298,6 +295,34 @@ function registerScriptlet(context, scriptletDetails) {
 
         // register
         context.toAdd.push(directive);
+
+        // Fenix: unlike the generic MAIN scriptlet framework, this dedicated
+        // player helper only executes on www.youtube.com. Keep it out of the
+        // bundle injected into every site, but preserve the mode-specific
+        // exclusions and the original document_start MAIN-world timing.
+        if ( world === 'MAIN' &&
+             rulesetsDetails.some(({ id }) => id === 'ublock-filters') ) {
+            const youtubeAllowed = hasBroadHostPermission ||
+                permissionGrantedHostnames.includes('www.youtube.com') ||
+                ut.isDescendantHostnameOfIter(
+                    'www.youtube.com', permissionGrantedHostnames
+                );
+            if ( youtubeAllowed ) {
+                const playerDirective = {
+                    id: 'fenix-youtube-player',
+                    js: [ '/js/scripting/youtube-player.js' ],
+                    matches: [ '*://www.youtube.com/*' ],
+                    allFrames: true,
+                    matchOriginAsFallback: true,
+                    runAt: 'document_start',
+                    world: 'MAIN',
+                };
+                if ( excludeMatches.length !== 0 ) {
+                    playerDirective.excludeMatches = [ ...excludeMatches ];
+                }
+                context.toAdd.push(playerDirective);
+            }
+        }
     }
 }
 

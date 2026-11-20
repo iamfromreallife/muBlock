@@ -678,7 +678,7 @@ class ProceduralFilterer {
             }
             t0 = t1;
             if ( nodes.length === 0 ) { continue; }
-            this.processNodes(nodes, pselector.action);
+            this.processNodes(nodes, pselector.action, pselector);
         }
 
         this.unprocessNodes(toUnstyle);
@@ -694,7 +694,7 @@ class ProceduralFilterer {
         return styleToken;
     }
 
-    processNodes(nodes, action) {
+    processNodes(nodes, action, pselector) {
         const op = action && action[0] || '';
         const arg = op !== '' ? action[1] : '';
         switch ( op ) {
@@ -718,7 +718,10 @@ class ProceduralFilterer {
             break;
         }
         case 'remove-attr': {
-            const reAttr = regexFromString(arg, true);
+            // Compile lazily exactly as before, then reuse while this
+            // procedural rule is active. Avoid recompilation on every DOM pass.
+            const reAttr = pselector?.actionRegex ?? regexFromString(arg, true);
+            if ( pselector ) { pselector.actionRegex = reAttr; }
             for ( const node of nodes ) {
                 for ( const name of node.getAttributeNames() ) {
                     if ( reAttr.test(name) === false ) { continue; }
@@ -728,7 +731,8 @@ class ProceduralFilterer {
             break;
         }
         case 'remove-class': {
-            const reClass = regexFromString(arg, true);
+            const reClass = pselector?.actionRegex ?? regexFromString(arg, true);
+            if ( pselector ) { pselector.actionRegex = reClass; }
             for ( const node of nodes ) {
                 const cl = node.classList;
                 for ( const name of cl.values() ) {

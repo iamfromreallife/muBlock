@@ -3392,6 +3392,136 @@ function replaceFetchResponseFn(
     const propNeedles = parsePropertiesToMatchFn(propsToMatch, 'url');
     const extraArgs = safe.parseVarargs(varargs);
     const reIncludes = extraArgs.includes ? safe.patternToRegex(extraArgs.includes) : null;
+    // Fenix: the YouTube /get_watch response streams playerResponse followed by
+    // watchNextResponse. A trusted-rpfr rule which waits for clone().text()
+    // delays exposure of the *entire* fetch response until the second part ends.
+    // Keep the exact first-match replacement, but forward this specific ASCII
+    // replacement incrementally. All other rules retain their original path.
+    const streamWatchAdSlots = pattern === '"adSlots"' &&
+        replacement === '"no_ads"' &&
+        propsToMatch === '/get_watch?' &&
+        self.location?.hostname === 'www.youtube.com' &&
+        typeof TransformStream === 'function';
+
+    const streamWatchResponse = responseBefore => {
+        const needle = new Uint8Array([34,97,100,83,108,111,116,115,34]);
+        const substitute = new Uint8Array([34,110,111,95,97,100,115,34]);
+        let held = new Uint8Array(0);
+        let replaced = false;
+        let passthrough = false;
+        const stream = responseBefore.body.pipeThrough(new TransformStream({
+            transform(chunk, controller) {
+                if ( !chunk?.length ) { return; }
+                if ( replaced || passthrough ) {
+                    controller.enqueue(chunk);
+                    return;
+                }
+                // Retain only a possible prefix of the nine-byte needle,
+                // rather than always holding eight bytes and copying every
+                // incoming chunk. In the common case, forward the original
+                // chunk without allocating or adding extra stream writes.
+                try {
+                    if ( held.length ) {
+                        const needed = needle.length - held.length;
+                        const limit = Math.min(needed, chunk.length);
+                        let matched = 0;
+                        while ( matched < limit &&
+                                chunk[matched] === needle[held.length+matched] ) {
+                            matched++;
+                        }
+                        if ( matched === needed ) {
+                            controller.enqueue(substitute);
+                            if ( needed < chunk.length ) {
+                                controller.enqueue(chunk.subarray(needed));
+                            }
+                            replaced = true;
+                            held = new Uint8Array(0);
+                            try { safe.uboLog(logPrefix, 'Replaced'); } catch {}
+                            return;
+                        }
+                        if ( matched === chunk.length &&
+                             chunk.length < needed ) {
+                            // A still-incomplete prefix uses at most eight
+                            // retained bytes, regardless of chunk size.
+                            const nextHeld = new Uint8Array(
+                                held.length + chunk.length
+                            );
+                            nextHeld.set(held);
+                            nextHeld.set(chunk, held.length);
+                            held = nextHeld;
+                            return;
+                        }
+                        controller.enqueue(held);
+                        held = new Uint8Array(0);
+                    }
+
+                    let found = -1;
+                    for ( let i = 0, end = chunk.length - needle.length;
+                          i <= end; i++ ) {
+                        if ( chunk[i] !== needle[0] ) { continue; }
+                        let j = 1;
+                        while ( j < needle.length &&
+                                chunk[i+j] === needle[j] ) { j++; }
+                        if ( j === needle.length ) { found = i; break; }
+                    }
+                    if ( found >= 0 ) {
+                        if ( found ) { controller.enqueue(chunk.subarray(0, found)); }
+                        controller.enqueue(substitute);
+                        const tail = found + needle.length;
+                        if ( tail < chunk.length ) {
+                            controller.enqueue(chunk.subarray(tail));
+                        }
+                        replaced = true;
+                        try { safe.uboLog(logPrefix, 'Replaced'); } catch {}
+                        return;
+                    }
+
+                    // The needle has no repeated leading quote character in
+                    // its proper prefixes. Only a suffix of the *current*
+                    // chunk can start the next cross-chunk match. Look back
+                    // at most eight bytes, with no full-chunk allocation.
+                    let keep = 0;
+                    for ( let n = Math.min(needle.length - 1, chunk.length);
+                          n !== 0; n-- ) {
+                        if ( chunk[chunk.length-n] !== needle[0] ) { continue; }
+                        let i = 1;
+                        while ( i < n &&
+                                chunk[chunk.length-n+i] === needle[i] ) { i++; }
+                        if ( i === n ) { keep = n; break; }
+                    }
+                    if ( keep === 0 ) {
+                        controller.enqueue(chunk);
+                    } else {
+                        const nextHeld = chunk.slice(chunk.length-keep);
+                        if ( chunk.length !== keep ) {
+                            controller.enqueue(chunk.subarray(0, chunk.length-keep));
+                        }
+                        held = nextHeld;
+                    }
+                } catch {
+                    passthrough = true;
+                    if ( held.length ) { controller.enqueue(held); }
+                    controller.enqueue(chunk);
+                    held = new Uint8Array(0);
+                }
+            },
+            flush(controller) {
+                if ( held.length ) { controller.enqueue(held); }
+            },
+        }));
+        const responseAfter = new Response(stream, {
+            status: responseBefore.status,
+            statusText: responseBefore.statusText,
+            headers: responseBefore.headers,
+        });
+        Object.defineProperties(responseAfter, {
+            ok: { value: responseBefore.ok },
+            redirected: { value: responseBefore.redirected },
+            type: { value: responseBefore.type },
+            url: { value: responseBefore.url },
+        });
+        return responseAfter;
+    };
     self.fetch = new Proxy(self.fetch, {
         apply: function(target, thisArg, args) {
             const fetchPromise = Reflect.apply(target, thisArg, args);
@@ -3405,6 +3535,16 @@ function replaceFetchResponseFn(
                 }
             }
             return fetchPromise.then(responseBefore => {
+                if ( streamWatchAdSlots && responseBefore?.body &&
+                     responseBefore.headers?.get('content-type')
+                         ?.toLowerCase().startsWith('application/json') ) {
+                    try {
+                        return streamWatchResponse(responseBefore);
+                    } catch {
+                        // Preserve the original whole-body fallback if the
+                        // streaming API is not usable for this response.
+                    }
+                }
                 const response = responseBefore.clone();
                 return response.text().then(textBefore => {
                     if ( reIncludes && reIncludes.test(textBefore) === false ) {
