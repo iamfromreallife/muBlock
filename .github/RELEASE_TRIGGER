@@ -1,7 +1,19 @@
-muBlock MV3 Fenix YouTube playback and SABR improvements — 2026-11-18
-Source commit: dbc539c9ccf2d2a3ee597e51dd65a572726455cb
-Port only the validated YouTube MAIN-world scriptlet from Fenix MV2; preserve the existing MV3 filtering engine, network rules, controls, and theme.
-Add the ad-free inline playback request flag, optimized player request interception, SPA path cache, reduced Promise callback work, and streaming SABR NEXT_REQUEST_POLICY backoff mitigation.
-Use a SHA-256-verified source from the uploaded MV2 ZIP, regenerated as the readable MV3 script on each build.
-Run focused Node regression checks on WEB player requests, unrelated responses, and partial UMP/SABR streaming; fail the build on errors.
-Include the complete updated MV3 extension ZIP in a public GitHub release and retain the source in overlay/js/scripting/youtube-player.js.
+muBlock 2026.1122.1948 — upstream uBOL update
+Upstream release: https://github.com/uBlockOrigin/uBOL-home/releases/tag/2026.1122.1948
+Upstream commit: 8a1885eed5308a9a22411d44dddc68a604a1eccf
+
+### Incorporated changes
+- Filter engine/scriptlets: path-based scriptlet targets and refreshed scriptlet templates/resources.
+- Reliability: improved launch behavior for overlay-based tools.
+- Security: overlay tool DOM is concealed within a shadow DOM.
+- Compatibility/build: refreshed Chromium MV3 package and manifest artifacts.
+- Filters/localization: updated regional rulesets, generic/specific scripting payloads, regex rules, metadata, and translated/filter-list coverage.
+
+### Flor-specific visual deviations retained
+- muBlock/uBlockOrigin Flor branding, layout, color system, icons, and user-facing styling remain overlaid.
+- No upstream user-interface wholesale replacement is permitted; only functional/build/filter payloads are refreshed.
+
+### Validation
+- Build the Chromium extension from the refreshed upstream package plus Flor overlay.
+- Validate manifest and packaged ZIP integrity.
+- Run repository checks; publish only if every required check succeeds.
