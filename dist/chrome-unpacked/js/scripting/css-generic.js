@@ -150,19 +150,7 @@ const processPendingHashes = ( ) => {
 
 const exceptPendingSelectors = ( ) => {
     if ( exceptionSet.size === 0 ) { return pendingSelectors.join(',\n'); }
-    // Fenix: most compiled cosmetic entries contain a single selector.
-    // Avoid allocating an array for each entry and flattening the arrays
-    // when excluding exceptions from a survey batch.
-    const selectorSet = new Set();
-    for ( const selectors of pendingSelectors ) {
-        if ( selectors.includes(',\n') === false ) {
-            selectorSet.add(selectors);
-        } else {
-            for ( const selector of selectors.split(',\n') ) {
-                selectorSet.add(selector);
-            }
-        }
-    }
+    const selectorSet = new Set(pendingSelectors.map(a => a.split(',\n')).flat());
     return Array.from(selectorSet.difference(exceptionSet)).join(',\n');
 };
 

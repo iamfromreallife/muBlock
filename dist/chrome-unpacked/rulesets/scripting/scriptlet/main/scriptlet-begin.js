@@ -2736,6 +2736,7 @@ function preventClipboardWrite(matches = '', ...varargs) {
             const code = doc.createElement('code');
             const styles = [
                 'background-color: #ddc',
+                'color: inherit',
                 'display: inline-block',
                 'font-family: monospace',
                 'font-size: 100%',
@@ -3392,136 +3393,6 @@ function replaceFetchResponseFn(
     const propNeedles = parsePropertiesToMatchFn(propsToMatch, 'url');
     const extraArgs = safe.parseVarargs(varargs);
     const reIncludes = extraArgs.includes ? safe.patternToRegex(extraArgs.includes) : null;
-    // Fenix: the YouTube /get_watch response streams playerResponse followed by
-    // watchNextResponse. A trusted-rpfr rule which waits for clone().text()
-    // delays exposure of the *entire* fetch response until the second part ends.
-    // Keep the exact first-match replacement, but forward this specific ASCII
-    // replacement incrementally. All other rules retain their original path.
-    const streamWatchAdSlots = pattern === '"adSlots"' &&
-        replacement === '"no_ads"' &&
-        propsToMatch === '/get_watch?' &&
-        self.location?.hostname === 'www.youtube.com' &&
-        typeof TransformStream === 'function';
-
-    const streamWatchResponse = responseBefore => {
-        const needle = new Uint8Array([34,97,100,83,108,111,116,115,34]);
-        const substitute = new Uint8Array([34,110,111,95,97,100,115,34]);
-        let held = new Uint8Array(0);
-        let replaced = false;
-        let passthrough = false;
-        const stream = responseBefore.body.pipeThrough(new TransformStream({
-            transform(chunk, controller) {
-                if ( !chunk?.length ) { return; }
-                if ( replaced || passthrough ) {
-                    controller.enqueue(chunk);
-                    return;
-                }
-                // Retain only a possible prefix of the nine-byte needle,
-                // rather than always holding eight bytes and copying every
-                // incoming chunk. In the common case, forward the original
-                // chunk without allocating or adding extra stream writes.
-                try {
-                    if ( held.length ) {
-                        const needed = needle.length - held.length;
-                        const limit = Math.min(needed, chunk.length);
-                        let matched = 0;
-                        while ( matched < limit &&
-                                chunk[matched] === needle[held.length+matched] ) {
-                            matched++;
-                        }
-                        if ( matched === needed ) {
-                            controller.enqueue(substitute);
-                            if ( needed < chunk.length ) {
-                                controller.enqueue(chunk.subarray(needed));
-                            }
-                            replaced = true;
-                            held = new Uint8Array(0);
-                            try { safe.uboLog(logPrefix, 'Replaced'); } catch {}
-                            return;
-                        }
-                        if ( matched === chunk.length &&
-                             chunk.length < needed ) {
-                            // A still-incomplete prefix uses at most eight
-                            // retained bytes, regardless of chunk size.
-                            const nextHeld = new Uint8Array(
-                                held.length + chunk.length
-                            );
-                            nextHeld.set(held);
-                            nextHeld.set(chunk, held.length);
-                            held = nextHeld;
-                            return;
-                        }
-                        controller.enqueue(held);
-                        held = new Uint8Array(0);
-                    }
-
-                    let found = -1;
-                    for ( let i = 0, end = chunk.length - needle.length;
-                          i <= end; i++ ) {
-                        if ( chunk[i] !== needle[0] ) { continue; }
-                        let j = 1;
-                        while ( j < needle.length &&
-                                chunk[i+j] === needle[j] ) { j++; }
-                        if ( j === needle.length ) { found = i; break; }
-                    }
-                    if ( found >= 0 ) {
-                        if ( found ) { controller.enqueue(chunk.subarray(0, found)); }
-                        controller.enqueue(substitute);
-                        const tail = found + needle.length;
-                        if ( tail < chunk.length ) {
-                            controller.enqueue(chunk.subarray(tail));
-                        }
-                        replaced = true;
-                        try { safe.uboLog(logPrefix, 'Replaced'); } catch {}
-                        return;
-                    }
-
-                    // The needle has no repeated leading quote character in
-                    // its proper prefixes. Only a suffix of the *current*
-                    // chunk can start the next cross-chunk match. Look back
-                    // at most eight bytes, with no full-chunk allocation.
-                    let keep = 0;
-                    for ( let n = Math.min(needle.length - 1, chunk.length);
-                          n !== 0; n-- ) {
-                        if ( chunk[chunk.length-n] !== needle[0] ) { continue; }
-                        let i = 1;
-                        while ( i < n &&
-                                chunk[chunk.length-n+i] === needle[i] ) { i++; }
-                        if ( i === n ) { keep = n; break; }
-                    }
-                    if ( keep === 0 ) {
-                        controller.enqueue(chunk);
-                    } else {
-                        const nextHeld = chunk.slice(chunk.length-keep);
-                        if ( chunk.length !== keep ) {
-                            controller.enqueue(chunk.subarray(0, chunk.length-keep));
-                        }
-                        held = nextHeld;
-                    }
-                } catch {
-                    passthrough = true;
-                    if ( held.length ) { controller.enqueue(held); }
-                    controller.enqueue(chunk);
-                    held = new Uint8Array(0);
-                }
-            },
-            flush(controller) {
-                if ( held.length ) { controller.enqueue(held); }
-            },
-        }));
-        const responseAfter = new Response(stream, {
-            status: responseBefore.status,
-            statusText: responseBefore.statusText,
-            headers: responseBefore.headers,
-        });
-        Object.defineProperties(responseAfter, {
-            ok: { value: responseBefore.ok },
-            redirected: { value: responseBefore.redirected },
-            type: { value: responseBefore.type },
-            url: { value: responseBefore.url },
-        });
-        return responseAfter;
-    };
     self.fetch = new Proxy(self.fetch, {
         apply: function(target, thisArg, args) {
             const fetchPromise = Reflect.apply(target, thisArg, args);
@@ -3535,16 +3406,6 @@ function replaceFetchResponseFn(
                 }
             }
             return fetchPromise.then(responseBefore => {
-                if ( streamWatchAdSlots && responseBefore?.body &&
-                     responseBefore.headers?.get('content-type')
-                         ?.toLowerCase().startsWith('application/json') ) {
-                    try {
-                        return streamWatchResponse(responseBefore);
-                    } catch {
-                        // Preserve the original whole-body fallback if the
-                        // streaming API is not usable for this response.
-                    }
-                }
                 const response = responseBefore.clone();
                 return response.text().then(textBefore => {
                     if ( reIncludes && reIncludes.test(textBefore) === false ) {
@@ -4667,7 +4528,7 @@ function xmlPrune(
     });
 }
 
-function zeta_cf85f31b7b4b44dab31e89f2a2457e78() { // fingerprint2.js
+function zeta_77c8b410804e4a15a7cb2a3b7d57edca() { // fingerprint2.js
 // Reference:
 // https://github.com/fingerprintjs/fingerprintjs/tree/v2
 
@@ -4704,7 +4565,7 @@ function zeta_cf85f31b7b4b44dab31e89f2a2457e78() { // fingerprint2.js
 })();
 }
 
-function zeta_694ba09464294328ac141b207d54d40e() { // google-ima.js
+function zeta_54552bdfa18d4308820d6be315d92476() { // google-ima.js
 'use strict';
 
 
@@ -5333,7 +5194,7 @@ if (!window.google || !window.google.ima || !window.google.ima.VERSION) {
 }
 }
 
-function zeta_8b389ead5e2f4ea9ac89a98648c1a311() { // nobab2.js
+function zeta_34f66a7de3ee4b8bba66c40e6e26b2cb() { // nobab2.js
 (function() {
     'use strict';
     const script = document.currentScript;
@@ -5357,7 +5218,7 @@ function zeta_8b389ead5e2f4ea9ac89a98648c1a311() { // nobab2.js
 })();
 }
 
-function zeta_f685cb72c8f147e7964090d54d8230c7() { // noeval.js
+function zeta_469b81e2f02f4b7aaabfba1eb926a953() { // noeval.js
 (function() {
     'use strict';
     const log = console.log.bind(console);
@@ -5369,7 +5230,7 @@ function zeta_f685cb72c8f147e7964090d54d8230c7() { // noeval.js
 })();
 }
 
-function zeta_8b5ec9c6b75949a6848a1efccf235a4a() { // nofab.js
+function zeta_b5eb93153e774be79bc519b6efd1a73e() { // nofab.js
 (function() {
     'use strict';
     const noopfn = function() {
@@ -5418,7 +5279,7 @@ function zeta_8b5ec9c6b75949a6848a1efccf235a4a() { // nofab.js
 })();
 }
 
-function zeta_5a0eb0f58a1b49f4bf1b815eefc1ff29() { // popads-dummy.js
+function zeta_549e8f67a0a245f6abe3ef85a2891bdf() { // popads-dummy.js
 (function() {
     'use strict';
     delete window.PopAds;
@@ -5434,18 +5295,18 @@ function zeta_5a0eb0f58a1b49f4bf1b815eefc1ff29() { // popads-dummy.js
 
 scriptletGlobals.origins = (( ) => {
     const docloc = document.location;
-    const origins = [ docloc.origin ];
+    const origins = [{ origin: docloc.origin, path: docloc.pathname }];
     if ( docloc.ancestorOrigins?.length ) {
         const topOrigin = docloc.ancestorOrigins[docloc.ancestorOrigins.length-1];
         if ( topOrigin !== 'null' ) {
-            origins.push(topOrigin);
+            origins.push({ origin: topOrigin });
         } else if ( scriptletGlobals.topOrigin ) {
-            origins.push(scriptletGlobals.topOrigin);
+            origins.push({ origin: scriptletGlobals.topOrigin });
         }
     }
     const out = [];
     for ( let i = 0; i < origins.length; i++ ) {
-        const origin = origins[i];
+        const { origin, path } = origins[i];
         const beg = origin.indexOf('://') + 3;
         if ( beg === 2 ) { continue; }
         const end = origin.indexOf(':', beg);
@@ -5472,16 +5333,16 @@ scriptletGlobals.origins = (( ) => {
             if ( d !== 0 ) { return d; }
             return a > b ? -1 : 1;
         });
-        out.push({ hns, ens, i });
+        out.push({ hns, ens, path, i });
     }
     return out;
 })();
 
-scriptletGlobals.functionRefs = /* 59 */ [trustedEditInboundObject,adjustSetTimeout,jsonPruneFetchResponse,jsonPruneXhrResponse,trustedReplaceXhrResponse,trustedReplaceFetchResponse,trustedPreventDomBypass,jsonPrune,jsonEdit,jsonlEditXhrResponse,noWindowOpenIf,setConstant,abortCurrentScript,preventXhr,preventSetTimeout,preventFetch,trustedReplaceArgument,abortOnPropertyRead,removeAttr,trustedOverrideElementMethod,trustedReplaceOutboundText,trustedSuppressNativeMethod,preventAddEventListener,abortOnStackTrace,trustedPreventFetch,trustedPreventXhr,adjustSetInterval,preventSetInterval,zeta_cf85f31b7b4b44dab31e89f2a2457e78,trustedSetConstant,jsonEditFetchResponse,zeta_f685cb72c8f147e7964090d54d8230c7,abortOnPropertyWrite,noWebrtc,zeta_8b5ec9c6b75949a6848a1efccf235a4a,zeta_5a0eb0f58a1b49f4bf1b815eefc1ff29,preventRequestAnimationFrame,noEvalIf,preventBab,disableNewtabLinks,trustedJsonEditFetchResponse,preventInnerHTML,editObjectOnSetter,trustedJsonEdit,trustedJsonEditXhrResponse,preventClipboardWrite,jsonEditXhrResponse,xmlPrune,m3uPrune,spoofCSS,zeta_694ba09464294328ac141b207d54d40e,alertBuster,preventCanvas,mpegdashPrune,jsonEditFetchRequest,proxyApplyConfig,jsonlEditFetchResponse,evaldataPrune,zeta_8b389ead5e2f4ea9ac89a98648c1a311];
+scriptletGlobals.functionRefs = /* 59 */ [trustedEditInboundObject,adjustSetTimeout,jsonPruneFetchResponse,jsonPruneXhrResponse,trustedReplaceXhrResponse,trustedReplaceFetchResponse,trustedPreventDomBypass,jsonPrune,jsonEdit,jsonlEditXhrResponse,noWindowOpenIf,setConstant,abortCurrentScript,preventXhr,preventSetTimeout,preventFetch,trustedReplaceArgument,abortOnPropertyRead,removeAttr,trustedOverrideElementMethod,trustedReplaceOutboundText,trustedSuppressNativeMethod,preventAddEventListener,abortOnStackTrace,trustedPreventFetch,trustedPreventXhr,adjustSetInterval,preventSetInterval,zeta_77c8b410804e4a15a7cb2a3b7d57edca,trustedSetConstant,jsonEditFetchResponse,zeta_469b81e2f02f4b7aaabfba1eb926a953,abortOnPropertyWrite,noWebrtc,zeta_b5eb93153e774be79bc519b6efd1a73e,zeta_549e8f67a0a245f6abe3ef85a2891bdf,preventRequestAnimationFrame,noEvalIf,preventBab,disableNewtabLinks,trustedJsonEditFetchResponse,preventInnerHTML,editObjectOnSetter,trustedJsonEdit,trustedJsonEditXhrResponse,preventClipboardWrite,jsonEditXhrResponse,xmlPrune,m3uPrune,spoofCSS,zeta_54552bdfa18d4308820d6be315d92476,alertBuster,preventCanvas,mpegdashPrune,jsonEditFetchRequest,proxyApplyConfig,jsonlEditFetchResponse,evaldataPrune,zeta_34f66a7de3ee4b8bba66c40e6e26b2cb];
 
 /******************************************************************************/
 
 // End of local scope
-})("9dc37916-c431-474d-8d61-287e89f3b66b");
+})("28049053-2f06-4210-9323-9d4634fd8974");
 
 void 0;
