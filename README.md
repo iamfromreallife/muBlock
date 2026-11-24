@@ -13,7 +13,7 @@ The adapted YouTube script is rebuilt from an exact SHA-256-verified copy of the
 ## Direct download and installation
 
 <!-- MU_INSTALL_START -->
-[**Download muBlock_2026.1122.1948.zip directly**](https://github.com/iamfromreallife/muBlock/releases/download/v2026.1122.1948-build.65/muBlock_2026.1122.1948.zip)
+[**Download muBlock_2026.1124.1811.zip directly**](https://github.com/iamfromreallife/muBlock/releases/download/v2026.1124.1811-build.68/muBlock_2026.1124.1811.zip)
 <!-- MU_INSTALL_END -->
 
 **The link above is replaced automatically with a direct ZIP download link after each completed build.** The file is named **muBlock_VERSION.zip**, where VERSION is read from the bundled upstream uBlock Origin Lite manifest.
