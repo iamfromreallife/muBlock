@@ -43,6 +43,23 @@ jobs:
         run: python3 scripts/restore_fenix_youtube.py
       - name: Apply muBlock UI overlay
         run: python3 scripts/apply_overlay.py dist/chrome-unpacked
+      - name: Verify existing Flor files outside the upstream delta
+        run: |
+          set -euo pipefail
+          old=$(git show HEAD:dist/UPSTREAM_COMMIT.txt)
+          upstream="$RUNNER_TEMP/uBOL-home"
+          git -C "$upstream" fetch --depth=1 origin "$old"
+          git -C "$upstream" diff --no-renames --name-only "$old" HEAD -- chromium/ > "$RUNNER_TEMP/upstream-delta"
+          python3 - <<'PY'
+          import os, subprocess
+          from pathlib import Path
+          upstream = {p.removeprefix("chromium/") for p in (Path(os.environ["RUNNER_TEMP"]) / "upstream-delta").read_text().splitlines()}
+          prefix = "dist/chrome-unpacked/"
+          changed = subprocess.check_output(["git", "diff", "--no-renames", "--name-only", "HEAD", "--", prefix], text=True).splitlines()
+          unexpected = sorted(p for p in changed if p.removeprefix(prefix) not in upstream)
+          if unexpected:
+              raise SystemExit("Unexpected changes outside the upstream delta: " + ", ".join(unexpected))
+          PY
       - name: Test MV3 YouTube player and SABR stream handling
         run: |
           node --check dist/chrome-unpacked/js/scripting/youtube-player.js
