@@ -1,10 +1,10 @@
 name: Build and publish muBlock
 # Build on demand or on a final source release-trigger commit, not on each
-# intermediate source commit. Every build produces a GitHub Release.
+# intermediate source commit. Update branches validate without publishing.
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [main, "update/ubol-*"]
     paths: [".github/RELEASE_TRIGGER"]
 permissions:
   contents: write
@@ -19,13 +19,19 @@ jobs:
       - name: Check out finalized main with commit history
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.sha }}
           fetch-depth: 0
           persist-credentials: true
       - name: Copy upstream uBlock Origin Lite Chromium build
         run: |
           set -euo pipefail
-          git clone --depth=1 https://github.com/uBlockOrigin/uBOL-home.git "$RUNNER_TEMP/uBOL-home"
+          tag=$(awk 'NR==2 { sub(".*/", ""); print }' .github/RELEASE_TRIGGER)
+          pin=$(awk '/^Upstream commit: / { print $3 }' .github/RELEASE_TRIGGER)
+          [[ "$pin" =~ ^[0-9a-f]{40}$ && "$tag" =~ ^[0-9]+(\.[0-9]+)+$ ]]
+          git clone --depth=1 --branch "$tag" https://github.com/uBlockOrigin/uBOL-home.git "$RUNNER_TEMP/uBOL-home"
+          test "$(git -C "$RUNNER_TEMP/uBOL-home" rev-parse HEAD)" = "$pin"
+          export UPSTREAM_TAG="$tag"
+          python3 -c 'import json,os; from pathlib import Path; assert json.loads((Path(os.environ["RUNNER_TEMP"])/"uBOL-home/chromium/manifest.json").read_text())["version"] == os.environ["UPSTREAM_TAG"]'
           rm -rf dist/chrome-unpacked
           mkdir -p dist/chrome-unpacked
           cp -a "$RUNNER_TEMP/uBOL-home/chromium/." dist/chrome-unpacked/
@@ -51,7 +57,26 @@ jobs:
           echo "MUBLOCK_ARCHIVE=muBlock_$version.zip" >> "$GITHUB_ENV"
           echo "MUBLOCK_TAG=v$version-build.$GITHUB_RUN_NUMBER" >> "$GITHUB_ENV"
       - name: Create versioned install ZIP
-        run: (cd dist && zip -q -r "muBlock_$MUBLOCK_VERSION.zip" chrome-unpacked)
+        run: |
+          set -euo pipefail
+          cd dist/chrome-unpacked
+          node --check js/background.js
+          node --check js/scripting/tool-overlay.js
+          grep -Fq 'css/mu-popup.css' popup.html
+          grep -Fq 'css/mu-dashboard.css' dashboard.html
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          manifest = json.loads(Path("manifest.json").read_text())
+          assert manifest["name"] == "muBlock"
+          for path in manifest["icons"].values():
+              assert Path(path).is_file(), path
+          for resource in manifest["declarative_net_request"]["rule_resources"]:
+              json.loads(Path(resource["path"]).read_text())
+          PY
+          zip -qr "../$MUBLOCK_ARCHIVE" .
+          unzip -tq "../$MUBLOCK_ARCHIVE"
+          unzip -p "../$MUBLOCK_ARCHIVE" manifest.json | cmp - manifest.json
       - name: Publish versioned workflow artifact
         uses: actions/upload-artifact@v4
         with:
@@ -59,6 +84,7 @@ jobs:
           path: dist/muBlock_${{ env.MUBLOCK_VERSION }}.zip
           if-no-files-found: error
       - name: Refresh README direct installation link
+        if: github.ref == 'refs/heads/main'
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -78,6 +104,7 @@ jobs:
              end+text.split(end,1)[1],encoding="utf-8")
           PY
       - name: Commit generated distribution and README to main
+        if: github.ref == 'refs/heads/main'
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -88,6 +115,7 @@ jobs:
             git push origin HEAD:main
           fi
       - name: Generate release notes from the last successfully published commit
+        if: github.ref == 'refs/heads/main'
         run: |
           set -euo pipefail
           # GitHub Releases API endpoints may be unavailable for this repo.
@@ -105,13 +133,16 @@ jobs:
           {
             echo "## muBlock $MUBLOCK_VERSION"
             echo
-            echo "Download: $MUBLOCK_ARCHIVE (extract and load chrome-unpacked)."
+            echo "Download: $MUBLOCK_ARCHIVE (extract the ZIP and load the extracted folder in Chromium)."
             echo "Upstream uBlock Origin Lite commit: $(cat dist/UPSTREAM_COMMIT.txt)"
             echo "GitHub Actions run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
             echo
             echo "### Upstream integration summary"
             echo
             sed -n '2,$p' .github/RELEASE_TRIGGER
+            echo
+            echo "### Passed checks"
+            echo "Flor overlay build, verified Fenix restoration, YouTube/SABR tests, script registration and syntax checks, popup/dashboard stylesheet references, manifest icons and static ruleset JSON, ZIP integrity and root manifest."
             echo
             echo "### New commits since the previous published build"
             echo
@@ -127,6 +158,7 @@ jobs:
             echo "muBlock is a visual fork of uBlock Origin Lite by Raymond Hill and contributors."
           } > dist/RELEASE_NOTES.md
       - name: Publish GitHub Release with muBlock_VERSION.zip
+        if: github.ref == 'refs/heads/main'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -134,7 +166,7 @@ jobs:
           # GitHub sometimes returns HTTP 500 while finalizing a release,
           # leaving its asset in a draft. Create/upload once, then retry only
           # the publish transition rather than creating duplicate releases.
-          title="muBlock $MUBLOCK_VERSION — build $GITHUB_RUN_NUMBER"
+          title="$MUBLOCK_VERSION"
           gh release create "$MUBLOCK_TAG" "dist/$MUBLOCK_ARCHIVE" \
             --repo "$GITHUB_REPOSITORY" \
             --title "$title" \
@@ -162,6 +194,7 @@ jobs:
             exit 1
           fi
       - name: Record last successfully published muBlock commit
+        if: github.ref == 'refs/heads/main'
         run: |
           set -euo pipefail
           published_sha="$(git rev-parse HEAD)"
@@ -171,14 +204,3 @@ jobs:
             git commit -m "Record last published muBlock build $GITHUB_RUN_NUMBER"
             git push origin HEAD:main
           fi
-      - name: Keep only main by deleting all other remote branches
-        run: |
-          set -euo pipefail
-          # Every task and release finishes with one single surviving branch.
-          # Run only AFTER successfully publishing the GitHub Release and ZIP.
-          git ls-remote --heads origin | sed 's#.*refs/heads/##' |
-          while IFS= read -r old; do
-            if [[ "$old" != "main" ]]; then
-              git push origin --delete "$old"
-            fi
-          done
