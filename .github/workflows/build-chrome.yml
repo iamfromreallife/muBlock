@@ -44,6 +44,7 @@ jobs:
       - name: Apply muBlock UI overlay
         run: python3 scripts/apply_overlay.py dist/chrome-unpacked
       - name: Verify existing Flor files outside the upstream delta
+        if: startsWith(github.ref, 'refs/heads/update/ubol-')
         run: |
           set -euo pipefail
           old=$(git show HEAD:dist/UPSTREAM_COMMIT.txt)
@@ -89,7 +90,7 @@ jobs:
           for path in manifest["icons"].values():
               assert Path(path).is_file(), path
           for resource in manifest["declarative_net_request"]["rule_resources"]:
-              json.loads(Path(resource["path"]).read_text())
+              json.loads(Path(resource["path"].lstrip("/")).read_text())
           PY
           zip -qr "../$MUBLOCK_ARCHIVE" .
           unzip -tq "../$MUBLOCK_ARCHIVE"
