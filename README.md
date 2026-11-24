@@ -21,7 +21,7 @@ The adapted YouTube script is rebuilt from an exact SHA-256-verified copy of the
 1. Download and extract the ZIP.
 2. Open **chrome://extensions** in Chrome or a compatible Chromium browser.
 3. Enable **Developer mode**.
-4. Choose **Load unpacked** and select the extracted **chrome-unpacked** folder.
+4. Choose **Load unpacked** and select the extracted folder containing **manifest.json**.
 5. On updates, replace the unpacked extension files, then reload the extension in Chrome. Back up your settings before updating.
 
 Find previous packages under [GitHub Releases](https://github.com/iamfromreallife/muBlock/releases).
