@@ -13,3 +13,4 @@ Upstream commit: 3d34aee059565540bc9d5129c14f69f6bb642b35
 - Preserve the fork's cosmetic rules, global picker and Fenix YouTube handling.
 
 Validation compares regenerated Flor files with the previous distribution outside the upstream Chromium diff.
+The package check resolves all static ruleset paths from the extension root and parses their JSON before testing the ZIP.
