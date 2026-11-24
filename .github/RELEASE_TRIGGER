@@ -1,19 +1,13 @@
-muBlock 2026.1122.1948 — upstream uBOL update
-Upstream release: https://github.com/uBlockOrigin/uBOL-home/releases/tag/2026.1122.1948
-Upstream commit: 8a1885eed5308a9a22411d44dddc68a604a1eccf
+muBlock 2026.1124.1811
+Upstream release: https://github.com/uBlockOrigin/uBOL-home/releases/tag/2026.1124.1811
+Upstream commit: 3d34aee059565540bc9d5129c14f69f6bb642b35
 
 ### Incorporated changes
-- Filter engine/scriptlets: path-based scriptlet targets and refreshed scriptlet templates/resources.
-- Reliability: improved launch behavior for overlay-based tools.
-- Security: overlay tool DOM is concealed within a shadow DOM.
-- Compatibility/build: refreshed Chromium MV3 package and manifest artifacts.
-- Filters/localization: updated regional rulesets, generic/specific scripting payloads, regex rules, metadata, and translated/filter-list coverage.
+- Refresh Chromium's bundled filtering rules, regional lists, cosmetic filtering scripts and ruleset metadata.
+- Use a fresh, short-lived pairing secret when a content script launches an overlay. Stop the overlay if pairing fails.
+- Keep the crosshair cursor in overlay tools and the closed shadow root on Chromium. Upstream's direct-frame fallback applies to Safari.
+- Update the Chromium manifest version. The upstream Chromium diff contains no separate locale message or stylesheet changes.
 
-### Flor-specific visual deviations retained
-- muBlock/uBlockOrigin Flor branding, layout, color system, icons, and user-facing styling remain overlaid.
-- No upstream user-interface wholesale replacement is permitted; only functional/build/filter payloads are refreshed.
-
-### Validation
-- Build the Chromium extension from the refreshed upstream package plus Flor overlay.
-- Validate manifest and packaged ZIP integrity.
-- Run repository checks; publish only if every required check succeeds.
+### Flor-specific presentation
+- Retain the Flor popup, dashboard, element picker, language controls, theme, layout and icons through the existing overlay.
+- Preserve the fork's cosmetic rules, global picker and Fenix YouTube handling.
